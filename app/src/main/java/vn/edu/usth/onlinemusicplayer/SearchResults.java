@@ -3,10 +3,14 @@ package vn.edu.usth.onlinemusicplayer;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.viewpager.widget.PagerAdapter;
+import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import com.google.android.material.tabs.TabLayout;
 
 public class SearchResults extends Fragment {
 
@@ -46,6 +50,22 @@ public class SearchResults extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_search_results, container, false);
+        View view = inflater.inflate(R.layout.fragment_search_results, container, false);
+
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        PagerAdapter adapter = new SearchFragmentPagerAdapter(
+                getChildFragmentManager()
+        );
+        ViewPager pager = (ViewPager) view.findViewById(R.id.pager);
+        pager.setOffscreenPageLimit(3);
+        pager.setAdapter(adapter);
+        TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab);
+        tabLayout.setupWithViewPager(pager);
     }
 }
