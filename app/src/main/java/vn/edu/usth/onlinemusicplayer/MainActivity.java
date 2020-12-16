@@ -1,5 +1,6 @@
 package vn.edu.usth.onlinemusicplayer;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.graphics.Color;
@@ -15,10 +16,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().hide();
+        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
+        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
+        getSupportActionBar().setDisplayShowCustomEnabled(true);
+        getSupportActionBar().setCustomView(R.layout.custom_action_bar_layout);
     }
 
     public void setActionBarTitle(String title) {
-        getSupportActionBar().setTitle(title);
+        TextView header_title = findViewById(R.id.header_title);
+        header_title.setText(title);
+        //        getSupportActionBar().setTitle(title);
     }
 }
