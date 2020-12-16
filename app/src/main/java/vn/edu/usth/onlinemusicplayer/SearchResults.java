@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -51,7 +52,8 @@ public class SearchResults extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_results, container, false);
-        ((MainActivity) getActivity()).setActionBarTitle("Search results");
+//        ((MainActivity) getActivity()).setActionBarTitle("Search results");
+
         return view;
     }
 
@@ -59,12 +61,15 @@ public class SearchResults extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // ViewPager
         PagerAdapter adapter = new SearchFragmentPagerAdapter(
                 getChildFragmentManager()
         );
         ViewPager pager = (ViewPager) view.findViewById(R.id.pager);
         pager.setOffscreenPageLimit(3);
         pager.setAdapter(adapter);
+
+        // TabLayout
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab);
         tabLayout.setupWithViewPager(pager);
     }
