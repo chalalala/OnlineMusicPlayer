@@ -14,7 +14,9 @@
             android:id="@+id/tab"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:tabIndicatorHeight="0dp"/>
+            app:tabIndicatorHeight="0dp"
+            app:tabTextAppearance="@style/TabLayoutStyle"
+            />
 
         <androidx.viewpager.widget.ViewPager
             android:id="@+id/pager"
