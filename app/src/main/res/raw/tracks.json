@@ -1,47 +1,54 @@
 [
   {
     "title": "I Love Me",
-    "artistName":"Demi Lovato",
-    "isPlayed": true
+    "artistName":"Demi Lovato"
   },
   {
     "title": "Confident",
-    "artistName":"Demi Lovato",
-    "isPlayed": false
+    "artistName":"Demi Lovato"
   },
   {
     "title": "AYA",
-    "artistName":"MAMAMOO",
-    "isPlayed": false
+    "artistName":"MAMAMOO"
   },
   {
     "title": "HIP",
-    "artistName":"MAMAMOO",
-    "isPlayed": false
+    "artistName":"MAMAMOO"
   },
   {
     "title": "Dingga",
-    "artistName":"MAMAMOO",
-    "isPlayed": false
+    "artistName":"MAMAMOO"
+  },
+  {
+    "title": "P.Y.T. (Pretty Young Thing)",
+    "artistName":"Micheal Jackson"
   },
   {
     "title": "How Do You Like That",
-    "artistName":"Black Pink",
-    "isPlayed": false
+    "artistName":"Black Pink"
   },
   {
     "title": "Kill This Love",
-    "artistName":"Black Pink",
-    "isPlayed": false
+    "artistName":"Black Pink"
+  },
+  {
+    "title": "As If It Was Your Last",
+    "artistName":"Black Pink"
   },
   {
     "title": "Poker Face",
-    "artistName":"Lady Gaga",
-    "isPlayed": false
+    "artistName":"Lady Gaga"
   },
   {
     "title": "Born This Way",
-    "artistName":"Lady Gaga",
-    "isPlayed": false
+    "artistName":"Lady Gaga"
+  },
+  {
+    "title": "Stupid Love",
+    "artistName":"Lady Gaga"
+  },
+  {
+    "title": "Lover",
+    "artistName":"Taylor Swift"
   }
 ]

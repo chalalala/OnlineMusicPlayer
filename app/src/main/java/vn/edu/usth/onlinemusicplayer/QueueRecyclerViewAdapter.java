@@ -2,62 +2,76 @@ package vn.edu.usth.onlinemusicplayer;
 
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
-import vn.edu.usth.onlinemusicplayer.dummy.DummyContent.DummyItem;
+import vn.edu.usth.onlinemusicplayer.model.TrackModel;
 
 import java.util.List;
 
-/**
- * {@link RecyclerView.Adapter} that can display a {@link DummyItem}.
- * TODO: Replace the implementation with code for your data type.
- */
-public class QueueRecyclerViewAdapter extends RecyclerView.Adapter<QueueRecyclerViewAdapter.ViewHolder> {
+public class QueueRecyclerViewAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
 
-    private final List<DummyItem> mValues;
+    private static final int TYPE = 1;
+    private final Context context;
+    private final List<Object> listRecyclerItem;
 
-    public QueueRecyclerViewAdapter(List<DummyItem> items) {
-        mValues = items;
+    public QueueRecyclerViewAdapter(Context context, List<Object> listRecyclerItem) {
+        this.context = context;
+        this.listRecyclerItem = listRecyclerItem;
+    }
+
+    public class ItemViewHolder extends RecyclerView.ViewHolder {
+
+        private TextView title;
+        private TextView artistName;
+        public ItemViewHolder( View itemView) {
+            super(itemView);
+            title = (TextView) itemView.findViewById(R.id.title);
+            artistName = (TextView) itemView.findViewById(R.id.artistName);
+//            icon = (ImageView) itemView.findViewById(R.id.icon);
+        }
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_queue, parent, false);
-        return new ViewHolder(view);
+    public RecyclerView.ViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
+        switch (i) {
+            case TYPE:
+
+            default:
+
+                View layoutView = LayoutInflater.from(viewGroup.getContext()).inflate(
+                        R.layout.fragment_queue, viewGroup, false);
+
+                return new ItemViewHolder((layoutView));
+        }
+
     }
 
     @Override
-    public void onBindViewHolder(final ViewHolder holder, int position) {
-        holder.mItem = mValues.get(position);
-        holder.mIdView.setText(mValues.get(position).id);
-        holder.mContentView.setText(mValues.get(position).content);
+    public void onBindViewHolder(RecyclerView.ViewHolder viewHolder, int i) {
+        int viewType = getItemViewType(i);
+        switch (viewType) {
+            case TYPE:
+            default:
+                ItemViewHolder itemViewHolder = (ItemViewHolder) viewHolder;
+                TrackModel track = (TrackModel) listRecyclerItem.get(i);
+//                int drawableResourceId = context.getResources().getIdentifier(dayForecast.getIcon(), "drawable", context.getPackageName());
+
+                itemViewHolder.title.setText(track.getTitle());
+                itemViewHolder.artistName.setText(track.getArtistName());
+//                itemViewHolder.icon.setImageResource(drawableResourceId);
+
+        }
+
     }
 
     @Override
     public int getItemCount() {
-        return mValues.size();
+        return listRecyclerItem.size();
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder {
-        public final View mView;
-        public final TextView mIdView;
-        public final TextView mContentView;
-        public DummyItem mItem;
-
-        public ViewHolder(View view) {
-            super(view);
-            mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
-            mContentView = (TextView) view.findViewById(R.id.content);
-        }
-
-        @Override
-        public String toString() {
-            return super.toString() + " '" + mContentView.getText() + "'";
-        }
-    }
 }
