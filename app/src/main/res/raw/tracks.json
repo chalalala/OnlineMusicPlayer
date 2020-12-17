@@ -1,0 +1,47 @@
+[
+  {
+    "title": "I Love Me",
+    "artistName":"Demi Lovato",
+    "isPlayed": true
+  },
+  {
+    "title": "Confident",
+    "artistName":"Demi Lovato",
+    "isPlayed": false
+  },
+  {
+    "title": "AYA",
+    "artistName":"MAMAMOO",
+    "isPlayed": false
+  },
+  {
+    "title": "HIP",
+    "artistName":"MAMAMOO",
+    "isPlayed": false
+  },
+  {
+    "title": "Dingga",
+    "artistName":"MAMAMOO",
+    "isPlayed": false
+  },
+  {
+    "title": "How Do You Like That",
+    "artistName":"Black Pink",
+    "isPlayed": false
+  },
+  {
+    "title": "Kill This Love",
+    "artistName":"Black Pink",
+    "isPlayed": false
+  },
+  {
+    "title": "Poker Face",
+    "artistName":"Lady Gaga",
+    "isPlayed": false
+  },
+  {
+    "title": "Born This Way",
+    "artistName":"Lady Gaga",
+    "isPlayed": false
+  }
+]
