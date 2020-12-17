@@ -4,57 +4,324 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeScreen">
+    tools:context=".HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <RelativeLayout
-        android:layout_width="match_parent"
-        android:layout_margin="5dp"
-        android:layout_height="wrap_content">
-        <ImageButton
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src = "@drawable/ic_baseline_settings_24"
-            android:layout_alignParentLeft="true"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="User_name"
-            android:textSize="14dp"
-            android:id="@+id/user_name"
-            android:layout_alignParentRight="true"
-            android:layout_centerVertical="true"/>
-        <ImageView
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:src="@drawable/ic_baseline_account_circle_24"
-            android:paddingRight="10dp"
-            android:layout_centerVertical="true"
-            android:layout_centerHorizontal="true"
-            android:layout_toLeftOf="@id/user_name"/>
-    </RelativeLayout>
-    <SearchView
-        android:id="@+id/searchView"
-        android:padding="5dp"
-        android:layout_gravity="center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:iconifiedByDefault="false"
-        android:queryHint="Search"
-        android:layout_centerHorizontal="true"
-        android:background="@drawable/bg_white_rounded"
-        android:queryBackground="@android:color/transparent"
-        />
     <ScrollView
-        android:paddingHorizontal="15dp"
-        android:layout_margin="15dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1">
-        <fragment
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:name="vn.edu.usth.onlinemusicplayer.home_scroll"
-            android:id="@+id/scrollable_piece"/>
+        android:layout_height="wrap_content">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingHorizontal="30dp"
+            tools:context=".home_scroll">
+
+            <SearchView
+                android:id="@+id/searchView"
+                android:padding="2dp"
+                android:layout_marginBottom="20dp"
+                android:layout_gravity="center"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:iconifiedByDefault="false"
+                android:queryHint="Search"
+                android:backgroundTint="@color/light_grey"
+                android:layout_centerHorizontal="true"
+                android:background="@drawable/bg_white_rounded"
+                android:queryBackground="@android:color/transparent"
+                />
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Recent"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/recent_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="See All"
+                    android:layout_alignBottom="@+id/recent_text"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id = "@+id/playlist_first"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/playlist_first"
+                    android:id="@+id/playlist_name"
+                    android:text = "Song Name"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/playlist_name"
+                    android:text = "Artist"
+                    android:textSize="10sp"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id = "@+id/playlist_second"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/playlist_second"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/playlist_second_name"
+                    android:text = "Song Name"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/playlist_second_name"
+                    android:layout_centerHorizontal="true"
+                    android:text = "Artist"
+                    android:textSize="10sp"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:id = "@+id/playlist_third"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/playlist_third"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/playlist_third_name"
+                    android:text = "Song Name"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/playlist_third_name"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:text = "Artist"
+                    android:textSize="10sp"/>
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Your Playlists"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/playlist_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="See All"
+                    android:layout_alignBottom="@+id/playlist_text"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id = "@+id/recent_first"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recent_first"
+                    android:id="@+id/recent_first_name"
+                    android:text = "Song Name"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recent_first_name"
+                    android:text = "Artist"
+                    android:textSize="10sp"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id = "@+id/recent_second"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recent_second"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/recent_second_name"
+                    android:text = "Song Name"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recent_second_name"
+                    android:layout_centerHorizontal="true"
+                    android:text = "Artist"
+                    android:textSize="10sp"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:id = "@+id/recent_third"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recent_third"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/recent_third_name"
+                    android:text = "Song Name"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/recent_third_name"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:text = "Artist"
+                    android:textSize="10sp"/>
+
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Artist"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/artist_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"/>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="See All"
+                    android:layout_alignBottom="@+id/artist_text"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id = "@+id/artist_first"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/artist_first"
+                    android:id="@+id/artist_first_name"
+                    android:text = "Artist"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id = "@+id/artist_second"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/artist_second"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/artist_second_name"
+                    android:text = "Artist"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:id = "@+id/artist_third"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/artist_third"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/artist_third_name"
+                    android:text = "Artist"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_marginTop="30dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Genre"
+                    android:layout_alignParentLeft="true"
+                    android:id="@+id/genre_text"
+                    android:textSize="20sp"
+                    android:textStyle="bold"    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentRight="true"
+                    android:text="See All"
+                    android:layout_alignBottom="@+id/genre_text"/>
+            </RelativeLayout>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id = "@+id/genre_first"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/genre_first"
+                    android:id="@+id/genre_first_name"
+                    android:text = "Blues"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:id = "@+id/genre_second"
+                    android:layout_alignParentRight="true"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/genre_second"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/genre_second_name"
+                    android:text = "Metal"/>
+                <ImageView
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
+                    android:id = "@+id/genre_third"
+                    android:src="@drawable/ic_baseline_music_note_24"/>
+                <TextView
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/genre_third"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerHorizontal="true"
+                    android:id="@+id/genre_third_name"
+                    android:text = "Rock"/>
+            </RelativeLayout>
+        </LinearLayout>
+
     </ScrollView>
 </LinearLayout>
