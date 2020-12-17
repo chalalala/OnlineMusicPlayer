@@ -12,7 +12,7 @@
         android:ellipsize="marquee"
         android:singleLine="true"
         android:text="Demi Lovato"
-        android:textSize="12sp" />
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/title"
