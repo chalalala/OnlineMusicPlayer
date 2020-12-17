@@ -11,6 +11,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CompoundButton;
+import android.widget.ToggleButton;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -45,20 +48,13 @@ public class QueueFragment extends Fragment {
 //        rootView.setBackgroundColor(Color.parseColor("#dedefd"));
 
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerlist);
-
-
-        // use this setting to improve performance if you know that changes
-        // in content do not change the layout size of the RecyclerView
         mRecyclerView.setHasFixedSize(true);
-
         // use a linear layout manager
         layoutManager = new LinearLayoutManager(getActivity());
         mRecyclerView.setLayoutManager(layoutManager);
-
         // specify an adapter (see also next example)
         mAdapter = new QueueRecyclerViewAdapter(getActivity(), viewItems);
         mRecyclerView.setAdapter(mAdapter);
-
         addItemsFromJSON();
         return rootView;
     }

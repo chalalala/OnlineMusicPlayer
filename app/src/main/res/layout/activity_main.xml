@@ -19,7 +19,10 @@
         <fragment
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:name="vn.edu.usth.onlinemusicplayer.QueueFragment"/>
+            android:name="vn.edu.usth.onlinemusicplayer.QueueFragment"
+            android:layout_marginTop="20dip"
+            android:layout_marginLeft="25dip"
+            android:layout_marginRight="25dip"/>
 
     </LinearLayout>
 

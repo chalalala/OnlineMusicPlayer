@@ -5,18 +5,16 @@ xmlns:tools="http://schemas.android.com/tools"
 android:name="vn.edu.usth.onlinemusicplayer.QueueFragment"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:orientation="vertical"
-android:layout_marginTop="20dp"
-android:layout_marginLeft="25dp"
-android:layout_marginRight="25dp">
+android:orientation="vertical">
     <TextView
         android:id="@+id/nowPlaying"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Now Playing"
         android:textSize="20sp"
-        android:textColor="@color/black"/>
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:textColor="#000000"
+        />
+    <RelativeLayout
         android:layout_width="fill_parent"
         android:layout_height="?android:attr/listPreferredItemHeight"
         android:padding="8dip" >
@@ -31,7 +29,8 @@ android:layout_marginRight="25dp">
             android:singleLine="true"
             android:text="Demi Lovato"
             android:textColor="#cbb2fa"
-            android:textSize="12sp" />
+            android:textSize="12sp"
+            android:layout_alignParentEnd="true" />
 
         <TextView
             android:id="@+id/nowplayingTitle"
@@ -45,7 +44,23 @@ android:layout_marginRight="25dp">
             android:text="Confident"
             android:textStyle="bold"
             android:textColor="#874eee"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:layout_alignParentEnd="true" />
+
+        <ImageButton
+            android:id="@+id/play_pause"
+            android:layout_width="40dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginTop="0dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="10dp"
+            android:contentDescription="Play/Pause Icon"
+            android:background="@drawable/button_custom" />
 
     </RelativeLayout>
     <TextView
@@ -54,7 +69,7 @@ android:layout_marginRight="25dp">
         android:layout_height="wrap_content"
         android:text="Next Up"
         android:textSize="20sp"
-        android:textColor="@color/black"
+        android:textColor="#000000"
         />
 
     <androidx.recyclerview.widget.RecyclerView
