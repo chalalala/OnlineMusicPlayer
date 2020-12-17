@@ -17,7 +17,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -28,8 +28,8 @@
 
                     <ImageButton
                         android:id="@+id/img1"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/blackpink"
 
                         android:layout_centerInParent="true"
@@ -54,8 +54,8 @@
 
                     <ImageButton
                         android:id="@+id/img2"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/demi"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -79,8 +79,8 @@
 
                     <ImageButton
                         android:id="@+id/img3"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -100,7 +100,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -111,8 +111,8 @@
 
                     <ImageButton
                         android:id="@+id/img4"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/blackpink"
 
                         android:layout_centerInParent="true"
@@ -137,8 +137,8 @@
 
                     <ImageButton
                         android:id="@+id/img5"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/demi"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -162,8 +162,8 @@
 
                     <ImageButton
                         android:id="@+id/img6"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -183,7 +183,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -194,8 +194,8 @@
 
                     <ImageButton
                         android:id="@+id/img7"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/oneokrock"
 
                         android:layout_centerInParent="true"
@@ -220,8 +220,8 @@
 
                     <ImageButton
                         android:id="@+id/img8"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/taylorswift"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -245,8 +245,8 @@
 
                     <ImageButton
                         android:id="@+id/img9"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -266,7 +266,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -277,8 +277,8 @@
 
                     <ImageButton
                         android:id="@+id/img10"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/oneokrock"
 
                         android:layout_centerInParent="true"
@@ -303,8 +303,8 @@
 
                     <ImageButton
                         android:id="@+id/img11"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/taylorswift"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -328,8 +328,8 @@
 
                     <ImageButton
                         android:id="@+id/img12"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -349,7 +349,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -360,8 +360,8 @@
 
                     <ImageButton
                         android:id="@+id/img13"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/blackpink"
 
                         android:layout_centerInParent="true"
@@ -386,8 +386,8 @@
 
                     <ImageButton
                         android:id="@+id/img14"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/demi"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -411,8 +411,8 @@
 
                     <ImageButton
                         android:id="@+id/img15"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -432,7 +432,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -443,8 +443,8 @@
 
                     <ImageButton
                         android:id="@+id/img16"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/blackpink"
 
                         android:layout_centerInParent="true"
@@ -469,8 +469,8 @@
 
                     <ImageButton
                         android:id="@+id/img17"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/demi"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -494,8 +494,8 @@
 
                     <ImageButton
                         android:id="@+id/img18"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -515,7 +515,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -526,8 +526,8 @@
 
                     <ImageButton
                         android:id="@+id/img19"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/blackpink"
 
                         android:layout_centerInParent="true"
@@ -552,8 +552,8 @@
 
                     <ImageButton
                         android:id="@+id/img20"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/demi"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -577,8 +577,8 @@
 
                     <ImageButton
                         android:id="@+id/img21"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -598,7 +598,7 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
+                android:layout_margin="5dp"
                 android:orientation="horizontal">
 
                 <RelativeLayout
@@ -609,8 +609,8 @@
 
                     <ImageButton
                         android:id="@+id/img22"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/blackpink"
 
                         android:layout_centerInParent="true"
@@ -635,8 +635,8 @@
 
                     <ImageButton
                         android:id="@+id/img23"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:src="@drawable/demi"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
@@ -660,8 +660,8 @@
 
                     <ImageButton
                         android:id="@+id/img24"
-                        android:layout_width="96dp"
-                        android:layout_height="96dp"
+                        android:layout_width="100dp"
+                        android:layout_height="100dp"
                         android:adjustViewBounds="true"
                         android:background="@color/white"
                         android:layout_centerInParent="true"
