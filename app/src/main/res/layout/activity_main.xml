@@ -9,8 +9,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/container">
 
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="vn.edu.usth.onlinemusicplayer.HomeScreen"/>
+  
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
