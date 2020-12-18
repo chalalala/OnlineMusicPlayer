@@ -19,8 +19,8 @@ public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
         // returns an instance of Fragment corresponding to the specified page
         switch (page) {
             case 0: return SearchSongsFragment.newInstance();
-            case 1: return SearchSongsFragment.newInstance();
-            case 2: return SearchSongsFragment.newInstance();
+            case 1: return SearchArtistFragment.newInstance();
+            case 2: return SearchAlbumFragment.newInstance();
 
             default:
                 return SearchSongsFragment.newInstance();
