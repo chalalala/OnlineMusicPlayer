@@ -6,16 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".HomeActivity">
 
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical"
         android:id="@+id/container">
 
         <fragment
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
             android:name="vn.edu.usth.onlinemusicplayer.HomeFragment"/>
-
-    </LinearLayout>
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:name="vn.edu.usth.onlinemusicplayer.NowPlayingBar"/>
+    </RelativeLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
