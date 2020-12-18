@@ -61,12 +61,12 @@ public class NowPlayingBar extends Fragment {
         ImageView heart = view.findViewById(R.id.heart);
         Drawable heart_clicked = MaterialDrawableBuilder.with(this.getContext()) // provide a context
                 .setIcon(MaterialDrawableBuilder.IconValue.HEART) // provide an icon
-                .setColor(Color.parseColor("#9c9c9c")) // set the icon color
+                .setColor(getResources().getColor(R.color.gray)) // set the icon color
                 .setSizeDp(20)
                 .build();
         Drawable heart_outline = MaterialDrawableBuilder.with(this.getContext()) // provide a context
                 .setIcon(MaterialDrawableBuilder.IconValue.HEART_OUTLINE) // provide an icon
-                .setColor(Color.parseColor("#9c9c9c")) // set the icon color
+                .setColor(getResources().getColor(R.color.gray)) // set the icon color
                 .setSizeDp(20)
                 .build();
         heart.setOnClickListener(new View.OnClickListener(){
