@@ -11,35 +11,28 @@ import android.widget.TextView;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class SearchActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_search);
 
         getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.menu.search_menu);
 
-        ImageButton back = (ImageButton) findViewById(R.id.back_button);
-        back.setVisibility(View.GONE);
+        TextView header_title = (TextView) findViewById(R.id.header_title);
+        header_title.setText("Search results");
 
-        ImageButton search = (ImageButton) findViewById(R.id.search_button);
-        search.setOnClickListener(new View.OnClickListener() {
+        ImageButton back = (ImageButton) findViewById(R.id.back_button);
+        back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), SearchActivity.class);
+                Intent intent = new Intent(v.getContext(), MainActivity.class);
                 startActivity(intent);
             }
         });
-
-    }
-
-    public void setActionBarTitle(String title) {
-        TextView header_title = (TextView) findViewById(R.id.header_title);
-        header_title.setText(title);
-        //        getSupportActionBar().setTitle(title);
     }
 }
