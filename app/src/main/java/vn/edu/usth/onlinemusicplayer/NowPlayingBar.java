@@ -2,23 +2,18 @@ package vn.edu.usth.onlinemusicplayer;
 
 import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
-
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
-
-import android.util.Log;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import androidx.annotation.RequiresApi;
+import androidx.fragment.app.Fragment;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
@@ -95,28 +90,22 @@ public class NowPlayingBar extends Fragment {
         play.setOnClickListener(new View.OnClickListener(){
             @RequiresApi(api = Build.VERSION_CODES.N)
             public void onClick(View v){
-                Log.i("click", "Clicked");
-                boolean state = play.getDrawable() == play_button;
-                play.setImageDrawable(state ? pause_button : play_button);
-                
-                if (state){
+                if (player.isPlaying()) {
+                    player.pause();
+                    play.setImageDrawable(play_button);
+                }
+                else {
+                    AssetFileDescriptor afd;
                     try {
-                        AssetFileDescriptor afd;
                         afd = getContext().getAssets().openFd("musics/Demi Lovato - Heart Attack.mp3");
                         player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                         player.prepare();
                         player.start();
-                        Log.i("play", "Played");
                     } catch (IOException e) {
-                        Log.i("errors", "ERRORS!!!");
                         e.printStackTrace();
                     }
+                    play.setImageDrawable(pause_button);
                 }
-                else{
-                    Log.i("pause", "Paused");
-                    player.pause();
-                }
-
             }
         });
 
