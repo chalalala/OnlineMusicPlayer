@@ -18,5 +18,6 @@ public class HomeActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
         getSupportActionBar().setDisplayShowCustomEnabled(true);
         getSupportActionBar().setCustomView(R.menu.home_menu);
+        getSupportActionBar().hide();
     }
 }
