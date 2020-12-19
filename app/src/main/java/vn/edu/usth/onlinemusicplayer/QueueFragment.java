@@ -68,10 +68,10 @@ public class QueueFragment extends Fragment {
             for (int i=0; i<jsonArray.length(); ++i) {
 
                 JSONObject itemObj = jsonArray.getJSONObject(i);
-
-                String title = itemObj.getString("title");
-                String artistName = itemObj.getString("artistName");
-                TrackModel track = new TrackModel(title, artistName);
+                String id = itemObj.getString("id");
+                String title = itemObj.getString("name");
+                String artistName = itemObj.getString("artist");
+                TrackModel track = new TrackModel(id, title, artistName);
                 viewItems.add(track);
             }
 
