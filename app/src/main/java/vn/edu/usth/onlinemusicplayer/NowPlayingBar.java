@@ -1,9 +1,13 @@
 package vn.edu.usth.onlinemusicplayer;
 
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.media.MediaPlayer;
+import android.os.Build;
 import android.os.Bundle;
 
+import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,16 +15,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link NowPlayingBar#newInstance} factory method to
- * create an instance of this fragment.
- */
-public class NowPlayingBar extends Fragment {
+import java.io.IOException;
 
+public class NowPlayingBar extends Fragment {
+    public static MediaPlayer player = new MediaPlayer();
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -58,6 +60,8 @@ public class NowPlayingBar extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_now_playing_bar, container, false);
+
+        // Handle heart clicked
         ImageView heart = view.findViewById(R.id.heart);
         Drawable heart_clicked = MaterialDrawableBuilder.with(this.getContext()) // provide a context
                 .setIcon(MaterialDrawableBuilder.IconValue.HEART) // provide an icon
@@ -71,10 +75,44 @@ public class NowPlayingBar extends Fragment {
                 .build();
         heart.setOnClickListener(new View.OnClickListener(){
             public void onClick(View v){
-                Drawable state = heart.getDrawable();
-                heart.setImageDrawable(state == heart_clicked ? heart_outline : heart_clicked);
+                boolean state = heart.getDrawable() == heart_clicked ;
+                heart.setImageDrawable(state ? heart_outline : heart_clicked);
             }
         });
+
+        // Handle play clicked
+        ImageButton play = view.findViewById(R.id.play);
+        Drawable play_button = getResources().getDrawable(R.drawable.ic_baseline_play_circle_outline_24);
+        Drawable pause_button = getResources().getDrawable(R.drawable.ic_baseline_pause_circle_outline_24);
+
+        play.setOnClickListener(new View.OnClickListener(){
+            @RequiresApi(api = Build.VERSION_CODES.N)
+            public void onClick(View v){
+                boolean state = play.getDrawable() == play_button;
+                play.setImageDrawable(state ? pause_button : play_button);
+                
+                    if (state){
+                        try {
+                            AssetFileDescriptor afd;
+                            afd = getContext().getAssets().openFd("musics/Demi Lovato - Heart Attack.mp3");
+                            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                            player.prepare();
+                            player.start();
+                        } catch (IOException e) {
+                            Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG);
+                            e.printStackTrace();
+                        }
+                    }
+                    else{
+                        Toast.makeText(getContext(), "Stop", Toast.LENGTH_LONG);
+                        if (player.isPlaying()) {
+                            player.pause();
+                        }
+                    }
+
+            }
+        });
+
         return view;
     }
 }
