@@ -15,14 +15,8 @@ public class QueueActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_queue);
 
-        // Use custom header
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.menu.search_menu);
-
         // Set title
-        TextView header_title = (TextView) findViewById(R.id.header_title);
+        TextView header_title = findViewById(R.id.header_title);
         header_title.setText("Queue");
     }
 }
