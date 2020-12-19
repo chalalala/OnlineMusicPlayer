@@ -46,7 +46,6 @@ public class QueueFragment extends Fragment {
                              Bundle savedInstanceState) {
         View rootView = inflater.inflate(R.layout.fragment_queue_list, container, false);
 //        rootView.setBackgroundColor(Color.parseColor("#dedefd"));
-
         mRecyclerView = (RecyclerView) rootView.findViewById(R.id.recyclerlist);
         mRecyclerView.setHasFixedSize(true);
         // use a linear layout manager
