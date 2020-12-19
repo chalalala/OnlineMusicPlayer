@@ -1,5 +1,6 @@
 package vn.edu.usth.onlinemusicplayer;
 
+import android.content.Intent;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.graphics.drawable.Drawable;
@@ -10,6 +11,7 @@ import android.os.Bundle;
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,6 +25,9 @@ import java.io.IOException;
 
 public class NowPlayingBar extends Fragment {
     public static MediaPlayer player = new MediaPlayer();
+    public static String songName;
+    public static String artist;
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
@@ -81,35 +86,45 @@ public class NowPlayingBar extends Fragment {
         });
 
         // Handle play clicked
-        ImageButton play = view.findViewById(R.id.play);
         Drawable play_button = getResources().getDrawable(R.drawable.ic_baseline_play_circle_outline_24);
         Drawable pause_button = getResources().getDrawable(R.drawable.ic_baseline_pause_circle_outline_24);
+        ImageButton play = view.findViewById(R.id.play);
+        play.setImageDrawable(play_button);
 
         play.setOnClickListener(new View.OnClickListener(){
             @RequiresApi(api = Build.VERSION_CODES.N)
             public void onClick(View v){
+                Log.i("click", "Clicked");
                 boolean state = play.getDrawable() == play_button;
                 play.setImageDrawable(state ? pause_button : play_button);
                 
-                    if (state){
-                        try {
-                            AssetFileDescriptor afd;
-                            afd = getContext().getAssets().openFd("musics/Demi Lovato - Heart Attack.mp3");
-                            player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                            player.prepare();
-                            player.start();
-                        } catch (IOException e) {
-                            Toast.makeText(getContext(), "Error", Toast.LENGTH_LONG);
-                            e.printStackTrace();
-                        }
+                if (state){
+                    try {
+                        AssetFileDescriptor afd;
+                        afd = getContext().getAssets().openFd("musics/Demi Lovato - Heart Attack.mp3");
+                        player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                        player.prepare();
+                        player.start();
+                        Log.i("play", "Played");
+                    } catch (IOException e) {
+                        Log.i("errors", "ERRORS!!!");
+                        e.printStackTrace();
                     }
-                    else{
-                        Toast.makeText(getContext(), "Stop", Toast.LENGTH_LONG);
-                        if (player.isPlaying()) {
-                            player.pause();
-                        }
-                    }
+                }
+                else{
+                    Log.i("pause", "Paused");
+                    player.pause();
+                }
 
+            }
+        });
+
+        // Handle queue clicked
+        ImageButton queue = view.findViewById(R.id.queue);
+        queue.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                Intent intent = new Intent(getContext(), QueueActivity.class);
+                startActivity(intent);
             }
         });
 

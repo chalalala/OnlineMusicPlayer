@@ -5,7 +5,9 @@ xmlns:tools="http://schemas.android.com/tools"
 android:name="vn.edu.usth.onlinemusicplayer.QueueFragment"
 android:layout_width="match_parent"
 android:layout_height="match_parent"
-android:orientation="vertical">
+android:orientation="vertical"
+    android:paddingHorizontal="20dp"
+    android:paddingTop="20dp">
     <TextView
         android:id="@+id/nowPlaying"
         android:layout_width="match_parent"
