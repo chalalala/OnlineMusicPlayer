@@ -14,13 +14,10 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:name="vn.edu.usth.onlinemusicplayer.HomeActionBarFragment"/>
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:id="@+id/subcontainer">
             <fragment
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="0dp"
+                android:layout_weight="1"
                 android:layout_alignParentTop="true"
                 android:name="vn.edu.usth.onlinemusicplayer.HomeFragment"/>
             <fragment
@@ -28,6 +25,5 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentBottom="true"
                 android:name="vn.edu.usth.onlinemusicplayer.NowPlayingBar"/>
-        </RelativeLayout>
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
