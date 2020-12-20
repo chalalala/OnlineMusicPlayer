@@ -18,6 +18,16 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
+class CustomOnClickListener implements View.OnClickListener{
+    String param;
+    public CustomOnClickListener(String param){
+        this.param = param;
+    }
+
+    @Override
+    public void onClick(View v){
+    }
+}
 
 public class HomeFragment extends Fragment {
 
@@ -48,6 +58,11 @@ public class HomeFragment extends Fragment {
                 }
             }
 
+            // Recent - Image
+            ImageView first_img = view.findViewById(R.id.recent_first);
+            ImageView second_img = view.findViewById(R.id.recent_second);
+            ImageView third_img = view.findViewById(R.id.recent_third);
+
             // Recent - Song name
             TextView first = view.findViewById(R.id.recent_first_name);
             TextView second = view.findViewById(R.id.recent_second_name);
@@ -66,11 +81,24 @@ public class HomeFragment extends Fragment {
             TextView[] song_names = {first, second, third};
             TextView[] recent_artists = {first_name, second_name, third_name};
             TextView[] artists_name = {artist_first, artist_second, artist_third};
+            ImageView[] images = {first_img, second_img, third_img};
 
             for (int i=0; i<song_names.length; i++){
-                song_names[i].setText(songs.get(i));
-                recent_artists[i].setText(artists.get(i));
+                String sname = songs.get(i);
+                String aname = artists.get(i);
+                song_names[i].setText(sname);
+                recent_artists[i].setText(aname);
                 artists_name[i].setText(single_artist.get(i));
+
+                // Handle click
+                images[i].setOnClickListener(new CustomOnClickListener(fileNames[i]) {
+                    @Override
+                    public void onClick(View v) {
+                        Intent intent = new Intent(getContext(), MusicPlayerActivity.class);
+                        intent.putExtra("file_name", param);
+                        startActivity(intent);
+                    }
+                });
             }
 
         } catch (IOException e) {
