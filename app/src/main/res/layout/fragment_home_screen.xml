@@ -83,7 +83,6 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_second"
-                    android:layout_alignParentRight="true"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/recent_second_name"
                     android:text = "Song Name"/>
@@ -91,7 +90,6 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_second_name"
-                    android:layout_alignParentRight="true"
                     android:layout_centerHorizontal="true"
                     android:text = "Artist"
                     android:textSize="10sp"
@@ -106,14 +104,14 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_third"
-                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentRight="true"
                     android:id="@+id/recent_third_name"
                     android:text = "Song Name"/>
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_third_name"
-                    android:layout_centerHorizontal="true"
+                    android:layout_alignParentRight="true"
                     android:text = "Artist"
                     android:textSize="10sp"
                     android:id="@+id/recent_artist_third"/>
