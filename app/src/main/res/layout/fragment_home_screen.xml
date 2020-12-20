@@ -39,7 +39,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Recent"
+                    android:text="Songs"
                     android:layout_alignParentLeft="true"
                     android:id="@+id/recent_text"
                     android:textSize="20sp"
@@ -51,90 +51,7 @@
                     android:text="See All"
                     android:layout_alignBottom="@+id/recent_text"/>
             </RelativeLayout>
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:id = "@+id/playlist_first"
-                    android:src="@drawable/ic_baseline_music_note_24"/>
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/playlist_first"
-                    android:id="@+id/playlist_name"
-                    android:text = "Song Name"/>
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/playlist_name"
-                    android:text = "Artist"
-                    android:textSize="10sp"/>
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:id = "@+id/playlist_second"
-                    android:layout_alignParentRight="true"
-                    android:src="@drawable/ic_baseline_music_note_24"/>
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/playlist_second"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/playlist_second_name"
-                    android:text = "Song Name"/>
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/playlist_second_name"
-                    android:layout_centerHorizontal="true"
-                    android:text = "Artist"
-                    android:textSize="10sp"/>
-                <ImageView
-                    android:layout_width="100dp"
-                    android:layout_height="100dp"
-                    android:layout_centerHorizontal="true"
-                    android:id = "@+id/playlist_third"
-                    android:src="@drawable/ic_baseline_music_note_24"/>
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/playlist_third"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
-                    android:id="@+id/playlist_third_name"
-                    android:text = "Song Name"/>
-                <TextView
-                    android:layout_width="100dp"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/playlist_third_name"
-                    android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
-                    android:text = "Artist"
-                    android:textSize="10sp"/>
 
-            </RelativeLayout>
-
-            <RelativeLayout
-                android:layout_marginTop="30dp"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Your Playlists"
-                    android:layout_alignParentLeft="true"
-                    android:id="@+id/playlist_text"
-                    android:textSize="20sp"
-                    android:textStyle="bold"/>
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentRight="true"
-                    android:text="See All"
-                    android:layout_alignBottom="@+id/playlist_text"/>
-            </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content">
@@ -154,12 +71,13 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_first_name"
                     android:text = "Artist"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp"
+                    android:id="@+id/recent_artist_first"/>
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
                     android:id = "@+id/recent_second"
-                    android:layout_alignParentRight="true"
                     android:src="@drawable/ic_baseline_music_note_24"/>
                 <TextView
                     android:layout_width="100dp"
@@ -174,19 +92,19 @@
                     android:layout_below="@+id/recent_second_name"
                     android:layout_centerHorizontal="true"
                     android:text = "Artist"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp"
+                    android:id="@+id/recent_artist_second"/>
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_centerHorizontal="true"
                     android:id = "@+id/recent_third"
+                    android:layout_alignParentRight="true"
                     android:src="@drawable/ic_baseline_music_note_24"/>
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_third"
                     android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
                     android:id="@+id/recent_third_name"
                     android:text = "Song Name"/>
                 <TextView
@@ -194,9 +112,9 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_third_name"
                     android:layout_alignParentRight="true"
-                    android:layout_centerHorizontal="true"
                     android:text = "Artist"
-                    android:textSize="10sp"/>
+                    android:textSize="10sp"
+                    android:id="@+id/recent_artist_third"/>
 
             </RelativeLayout>
             <RelativeLayout
