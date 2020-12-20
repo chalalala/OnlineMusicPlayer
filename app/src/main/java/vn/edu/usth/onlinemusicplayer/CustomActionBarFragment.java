@@ -1,5 +1,6 @@
 package vn.edu.usth.onlinemusicplayer;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.media.Image;
 import android.os.Bundle;
@@ -14,6 +15,7 @@ import android.widget.TextView;
 
 public class CustomActionBarFragment extends Fragment {
     public static TextView header_title;
+    public static ImageButton search;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,12 +60,13 @@ public class CustomActionBarFragment extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(v.getContext(), HomeActivity.class);
-                startActivity(intent);
+//                Intent intent = new Intent(v.getContext(), HomeActivity.class);
+//                startActivity(intent);
+                getActivity().finish();
             }
         });
 
-        ImageButton search = view.findViewById(R.id.search_button);
+        search = view.findViewById(R.id.search_button);
         search.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View v){

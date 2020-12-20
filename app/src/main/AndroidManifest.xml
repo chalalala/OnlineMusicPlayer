@@ -22,6 +22,9 @@
             android:enabled="true"
             android:exported="true"></service>
 
+        android:theme="@style/Theme.OnlineMusicPlayer">
+        <activity android:name=".SignUpActivity"></activity>
+        <activity android:name=".LoginActivity" />
         <activity android:name=".MusicPlayerActivity" />
         <activity android:name=".QueueActivity" />
         <activity android:name=".SearchActivity" />
