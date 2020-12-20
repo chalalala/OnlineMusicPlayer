@@ -562,7 +562,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnComplet
                 // Hide the timestamp
                 .setShowWhen(false)
                 // Set the Notification style
-                .setStyle(new android.support.v4.media.app.NotificationCompat.MediaStyle()
+                .setStyle(new androidx.media.app.NotificationCompat.MediaStyle()
                         // Attach our MediaSession token
                         .setMediaSession(mediaSession.getSessionToken())
                         // Show our playback controls in the compat view
