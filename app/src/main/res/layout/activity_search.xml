@@ -10,13 +10,23 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
+        android:layout_alignParentTop="true"
         android:id="@+id/container">
 
         <fragment
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:name="vn.edu.usth.onlinemusicplayer.SearchResults"/>
+            android:name="vn.edu.usth.onlinemusicplayer.CustomActionBarFragment"/>
 
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="vn.edu.usth.onlinemusicplayer.SearchResults"/>
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:name="vn.edu.usth.onlinemusicplayer.NowPlayingBar"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

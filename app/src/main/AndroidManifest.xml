@@ -12,7 +12,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineMusicPlayer">
-        <activity android:name=".QueueActivity"></activity>
+        <activity android:name=".MusicPlayerActivity"></activity>
+        <activity android:name=".QueueActivity" />
         <activity android:name=".SearchActivity" />
         <activity android:name=".HomeActivity">
             <intent-filter>

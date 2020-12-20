@@ -1,31 +1,25 @@
 package vn.edu.usth.onlinemusicplayer;
 
-import android.media.AudioManager;
+import android.content.res.AssetFileDescriptor;
+import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-
-import androidx.fragment.app.Fragment;
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.Toast;
+
+import androidx.fragment.app.Fragment;
+
+import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.io.IOException;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MusicPlayerFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
 public class MusicPlayerFragment extends Fragment {
 
     ImageButton play, pause;
-    MediaPlayer mediaPlayer;
-
+    public static MediaPlayer player;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,14 +34,6 @@ public class MusicPlayerFragment extends Fragment {
         // Required empty public constructor
     }
 
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment MusicPlayerFragment.
-     */
     // TODO: Rename and change types and number of parameters
     public static MusicPlayerFragment newInstance(String param1, String param2) {
         MusicPlayerFragment fragment = new MusicPlayerFragment();
@@ -70,8 +56,44 @@ public class MusicPlayerFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.fragment_music_player, container, false);
+        View view = inflater.inflate(R.layout.fragment_music_player, container, false);
 
-        return rootView;
+//        MediaPlayer player = NowPlayingBar.player;
+        player = new MediaPlayer();
+        ImageView play = view.findViewById(R.id.play);
+        Drawable play_button = MaterialDrawableBuilder.with(this.getContext()) // provide a context
+                .setIcon(MaterialDrawableBuilder.IconValue.PLAY_CIRCLE) // provide an icon
+                .setColor(getResources().getColor(R.color.purple_500)) // set the icon color
+                .setSizeDp(80)
+                .build();
+        Drawable pause_button = MaterialDrawableBuilder.with(this.getContext()) // provide a context
+                .setIcon(MaterialDrawableBuilder.IconValue.PAUSE_CIRCLE) // provide an icon
+                .setColor(getResources().getColor(R.color.purple_500)) // set the icon color
+                .setSizeDp(80)
+                .build();
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (player.isPlaying()) {
+                    player.pause();
+                    play.setImageDrawable(play_button);
+                }
+                else {
+                    AssetFileDescriptor afd;
+                    try {
+                        afd = getContext().getAssets().openFd("musics/Demi Lovato - Heart Attack.mp3");
+                        player.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                        player.prepare();
+                        player.start();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                    play.setImageDrawable(pause_button);
+                }
+            }
+        });
+
+        return view;
     }
 }

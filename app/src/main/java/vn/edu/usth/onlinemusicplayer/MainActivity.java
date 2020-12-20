@@ -22,26 +22,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        getSupportActionBar().setBackgroundDrawable(new ColorDrawable(Color.TRANSPARENT));
-        getSupportActionBar().setDisplayOptions(ActionBar.DISPLAY_SHOW_CUSTOM);
-        getSupportActionBar().setDisplayShowCustomEnabled(true);
-        getSupportActionBar().setCustomView(R.layout.custom_action_bar_layout);
-
-        mediaPlayer=MediaPlayer.create(MainActivity.this,R.raw.demilovatocommanderinchief);
-        play=(ImageButton)findViewById(R.id.play);
-        play.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.pause();
-                    play.setBackgroundResource(R.drawable.pause);
-                }
-                else {
-                    mediaPlayer.start();
-                    play.setBackgroundResource(R.drawable.pause);
-                }
-            }
-        });
 
     }
 
