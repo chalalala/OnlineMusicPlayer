@@ -76,13 +76,14 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:layout_centerHorizontal="true"
                     android:id = "@+id/recent_second"
-                    android:layout_toLeftOf="@id/recent_first"
                     android:src="@drawable/ic_baseline_music_note_24"/>
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_second"
+                    android:layout_alignParentRight="true"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/recent_second_name"
                     android:text = "Song Name"/>
@@ -90,6 +91,7 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_second_name"
+                    android:layout_alignParentRight="true"
                     android:layout_centerHorizontal="true"
                     android:text = "Artist"
                     android:textSize="10sp"
@@ -97,14 +99,13 @@
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
-                    android:layout_toRightOf="@id/recent_second"
                     android:id = "@+id/recent_third"
+                    android:layout_alignParentRight="true"
                     android:src="@drawable/ic_baseline_music_note_24"/>
                 <TextView
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_third"
-                    android:layout_alignParentRight="true"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/recent_third_name"
                     android:text = "Song Name"/>
@@ -112,7 +113,6 @@
                     android:layout_width="100dp"
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/recent_third_name"
-                    android:layout_alignParentRight="true"
                     android:layout_centerHorizontal="true"
                     android:text = "Artist"
                     android:textSize="10sp"
