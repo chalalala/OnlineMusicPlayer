@@ -64,7 +64,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         collapsingImageView = (ImageView) findViewById(R.id.collapsingImageView);
 
-        loadCollapsingImage(imageIndex);
+//        loadCollapsingImage(imageIndex);
 
         if (checkAndRequestPermissions()) {
             loadAudioList();
@@ -75,7 +75,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 //                playAudioOnl("https://upload.wikimedia.org/wikipedia/commons/6/6c/Grieg_Lyric_Pieces_Kobold.ogg");
-                //play the first audio in the ArrayList
+//                play the first audio in the ArrayList
 //                playAudio(2);
                 if (imageIndex == 4) {
                     imageIndex = 0;
@@ -218,7 +218,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
     private void initRecyclerView() {
         if (audioList != null && audioList.size() > 0) {
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.songrecyclerview);
             RecyclerView_Adapter adapter = new RecyclerView_Adapter(audioList, getApplication());
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
