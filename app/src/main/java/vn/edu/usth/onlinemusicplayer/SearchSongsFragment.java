@@ -65,20 +65,10 @@ public class SearchSongsFragment extends Fragment {
 
             for (int i=0; i<songs.length; i++){
 //                Toast.makeText(this.getContext(),songs[i], Toast.LENGTH_LONG).show();
-                // Create row by LinearLayout
+                // Create row by RelativeLayout
                 RelativeLayout row = new RelativeLayout(this.getActivity());
-                RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, 120);
+                RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
                 row.setLayoutParams(row_params);
-
-                // Create layout contains Name of songs and Artists
-                LinearLayout NameField = new LinearLayout(this.getActivity());
-                NameField.setOrientation(LinearLayout.VERTICAL);
-
-                RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-                nameFieldParams.addRule(RelativeLayout.ALIGN_PARENT_LEFT);
-                NameField.setLayoutParams(nameFieldParams);
-
-                LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, 0, 1f);
 
                 String[] songs_detail = songs[i].replace(".mp3","").split(" - ");
 
@@ -88,16 +78,17 @@ public class SearchSongsFragment extends Fragment {
                 name.setTextSize(16);
                 name.setTypeface(Typeface.defaultFromStyle(Typeface.BOLD));
                 name.setTextColor(Color.BLACK);
-                name.setLayoutParams(name_params);
-                NameField.addView(name);
+                name.setId(i+1);
+                row.addView(name);
 
                 // Artist
+                RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+                nameFieldParams.addRule(RelativeLayout.BELOW, name.getId());
+                nameFieldParams.bottomMargin = 20;
                 TextView artist = new TextView(this.getContext());
                 artist.setText(songs_detail[0]);
-                artist.setLayoutParams(name_params);
-                NameField.addView(artist);
-
-                row.addView(NameField);
+                artist.setLayoutParams(nameFieldParams);
+                row.addView(artist);
 
                 // Heart button
                 ImageView heart = new ImageView(this.getContext());
