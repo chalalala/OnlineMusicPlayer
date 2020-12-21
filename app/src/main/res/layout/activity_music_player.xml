@@ -1,76 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
-<!--    xmlns:tools="http://schemas.android.com/tools"-->
-<!--    android:layout_width="match_parent"-->
-<!--    android:layout_height="match_parent"-->
-<!--    tools:context=".MusicPlayerActivity">-->
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        android:orientation="vertical"-->
-<!--        android:id="@+id/container">-->
-<!--        <fragment-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:name="vn.edu.usth.onlinemusicplayer.CustomActionBarFragment"/>-->
-<!--        <fragment-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:name="vn.edu.usth.onlinemusicplayer.MusicPlayerFragment"/>-->
-<!--    </LinearLayout>-->
-<!--</androidx.constraintlayout.widget.ConstraintLayout>-->
-
 <androidx.coordinatorlayout.widget.CoordinatorLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    tools:context=".MusicPlayerActivity">
-
-<com.google.android.material.appbar.AppBarLayout
-    android:id="@+id/app_bar"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:fitsSystemWindows="true">
-
-    <com.google.android.material.appbar.CollapsingToolbarLayout
-        android:id="@+id/toolbar_layout"
-        android:layout_width="match_parent"
-        android:layout_height="256dp"
-        android:fitsSystemWindows="true"
-        android:gravity="bottom"
-        app:expandedTitleMargin="30dp"
-        app:layout_scrollFlags="scroll|exitUntilCollapsed">
-
-        <ImageView
-            android:id="@+id/collapsingImageView"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#000"
-            android:fitsSystemWindows="true"
-            android:scaleType="centerCrop"
-            app:layout_collapseMode="parallax"/>
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:layout_collapseMode="pin" />
-    </com.google.android.material.appbar.CollapsingToolbarLayout>
-</com.google.android.material.appbar.AppBarLayout>
+xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:fitsSystemWindows="true"
+tools:context="vn.edu.usth.onlinemusicplayer.MusicPlayerActivity">
 
 <include layout="@layout/content_main" />
-
-<com.google.android.material.floatingactionbutton.FloatingActionButton
-    android:id="@+id/fab"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:src="@drawable/ic_headset"
-    app:layout_anchor="@id/app_bar"
-    app:layout_anchorGravity="bottom|end" />
-
+<!--    <fragment-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:name="vn.edu.usth.onlinemusicplayer.HomeActionBarFragment"/>-->
+<!--    <fragment-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="0dp"-->
+<!--        android:layout_weight="1"-->
+<!--        android:layout_alignParentTop="true"-->
+<!--        android:name="vn.edu.usth.onlinemusicplayer.HomeFragment"/>-->
+<!--    <fragment-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:name="vn.edu.usth.onlinemusicplayer.NowPlayingBar"/>-->
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

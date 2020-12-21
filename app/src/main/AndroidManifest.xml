@@ -23,10 +23,10 @@
             android:enabled="true"
             android:exported="true"></service>
 
-        <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".QueueActivity" />
-        <activity android:name=".SearchActivity" />
+<!--        <activity android:name=".SignUpActivity"></activity>-->
+<!--        <activity android:name=".LoginActivity" />-->
+<!--        <activity android:name=".QueueActivity" />-->
+<!--        <activity android:name=".SearchActivity" />-->
 <!--        <activity android:name=".MusicPlayerActivity" />-->
 <!--        <activity android:name=".HomeActivity">-->
 <!--            <intent-filter tools:ignore="ExtraText">-->
@@ -35,7 +35,7 @@
 <!--            </intent-filter>-->
 <!--        </activity>-->
 
-        <activity android:name=".HomeActivity" />
+<!--        <activity android:name=".HomeActivity" />-->
         <activity android:name=".MusicPlayerActivity">
             <intent-filter tools:ignore="ExtraText">
                 <action android:name="android.intent.action.MAIN" />

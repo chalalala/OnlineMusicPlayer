@@ -4,12 +4,11 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context="vn.edu.usth.onlinemusicplayer.MusicPlayerActivity"
     tools:showIn="@layout/activity_music_player">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/songrecyclerview"
+        android:id="@+id/recyclerview"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"

@@ -6,8 +6,6 @@ import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 
-import vn.edu.usth.onlinemusicplayer.onItemClickListener;
-
 public class CustomTouchListener implements RecyclerView.OnItemTouchListener {
 
     //Gesture detector to intercept the touch events
