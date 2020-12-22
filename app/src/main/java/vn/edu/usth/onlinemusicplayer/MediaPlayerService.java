@@ -46,6 +46,7 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnComplet
     private final String MEDIA_CHANNEL_ID = "media_playback_channel";
 
     private MediaPlayer mediaPlayer;
+    private ProgressUlti utils;
 
     //MediaSession
     private MediaSessionManager mediaSessionManager;

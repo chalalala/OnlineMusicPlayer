@@ -1,7 +1,5 @@
 package vn.edu.usth.onlinemusicplayer;
 
-import android.content.res.AssetFileDescriptor;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -10,14 +8,14 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
 import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
-import java.io.IOException;
-
 public class MusicPlayerFragment extends Fragment {
+    private ProgressUlti utils;
 
     ImageButton play, pause;
 
@@ -77,6 +75,12 @@ public class MusicPlayerFragment extends Fragment {
                 heart.setImageDrawable(state ? heart_outline : heart_clicked);
             }
         });
+
+
+//        TextView totalDurationLabel = view.findViewById(R.id.totalDuration);
+//        totalDurationLabel.setText(""+utils.milliSecondsToTimer(totalDuration));
+//
+//        TextView currentDurationLabel = view.findViewById(R.id.currentDuration);
 
         return view;
     }

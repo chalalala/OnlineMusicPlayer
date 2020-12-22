@@ -19,6 +19,7 @@ import android.os.IBinder;
 import android.os.PersistableBundle;
 import android.provider.MediaStore;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
@@ -53,6 +54,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
     boolean serviceBound = false;
     public static ArrayList<Audio> audioList;
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -112,6 +114,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
 
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     private void loadAudioList() {
         loadAudio();
 //        initRecyclerView();
@@ -317,6 +320,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
      *
      * If this don't works for you, load the audio files to audioList Array your oun way
      */
+    @RequiresApi(api = Build.VERSION_CODES.Q)
     private void loadAudio() {
         ContentResolver contentResolver = getContentResolver();
 
@@ -333,9 +337,9 @@ public class MusicPlayerActivity extends AppCompatActivity {
                 String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
                 String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
                 String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-
+                int duration = cursor.getInt(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
                 // Save to audioList
-                audioList.add(new Audio(data, title, album, artist));
+                audioList.add(new Audio(data, title, album, artist, duration));
             }
         }
         if (cursor != null)
