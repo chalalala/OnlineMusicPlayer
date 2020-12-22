@@ -1,8 +1,13 @@
 package vn.edu.usth.onlinemusicplayer;
 
+import android.content.ContentResolver;
 import android.content.Intent;
 import android.content.res.AssetManager;
+import android.database.Cursor;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,6 +19,7 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
@@ -63,50 +69,65 @@ public class HomeFragment extends Fragment {
         TextView[] artists_name = {artist_first, artist_second, artist_third};
         ImageView[] images = {first_img, second_img, third_img};
 
-            AssetManager assetManager = getContext().getAssets();
+        ArrayList<Audio> audioList = loadAudio();
 
-        try {
-            String[] fileNames = assetManager.list("musics");
-            List<String> songs = new ArrayList<>();
-            List<String> artists = new ArrayList<>();
-            List<String> single_artist = new ArrayList<>();
+        List<String> single_artist = new ArrayList<>();
 
-            for (int i=0;i<fileNames.length; i++) {
-                String[] title = fileNames[i].replace(".mp3", "").split(" - ");
-                artists.add(title[0]);
-                songs.add(title[1]);
+        for (int i=0;i<audioList.size(); i++) {
+            String artists = audioList.get(i).getArtist();
 
-                String[] single_name = artists.get(i).split(" ft ");
-                for (String name : single_name){
-                    if (!single_artist.contains(name)){
-                        single_artist.add(name);
-                    }
+            String[] single_name = artists.split(" ft ");
+            for (String name : single_name){
+                if (!single_artist.contains(name)){
+                    single_artist.add(name);
                 }
             }
+        }
 
-            for (int i=0; i<song_names.length; i++){
-                String sname = songs.get(i);
-                String aname = artists.get(i);
-                song_names[i].setText(sname);
-                recent_artists[i].setText(aname);
-                artists_name[i].setText(single_artist.get(i));
-                Log.e("hello", "File name" + fileNames[i]);
-                Log.e("hello2", "Song name" + songs.get(i));
-                // Handle click
-                images[i].setOnClickListener(new CustomOnClickListener(i) {
-                    @Override
-                    public void onClick(View v) {
-                        Intent intent = new Intent(getContext(), MusicPlayerActivity.class);
-                        intent.putExtra("position", param);
-                        startActivity(intent);
-                    }
-                });
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
+        for (int i=0; i<song_names.length; i++){
+            song_names[i].setText(audioList.get(i).getTitle());
+            recent_artists[i].setText(audioList.get(i).getArtist());
+            artists_name[i].setText(single_artist.get(i));
+            // Handle click
+            images[i].setOnClickListener(new CustomOnClickListener(i) {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), MusicPlayerActivity.class);
+                    intent.putExtra("position", param);
+                    startActivity(intent);
+                }
+            });
         }
 
         return view;
+    }
+
+    private ArrayList loadAudio() {
+        ArrayList<Audio> audioList = new ArrayList<>();
+
+        ContentResolver contentResolver = getContext().getContentResolver();
+
+        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        String selection = MediaStore.Audio.Media.IS_MUSIC + "!= 0";
+        String sortOrder = MediaStore.Audio.Media.TITLE + " ASC";
+
+        Cursor cursor = contentResolver.query(uri, null, selection, null, sortOrder);
+
+        if (cursor != null && cursor.getCount() > 0) {
+            audioList = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                String data = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+                String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
+                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
+                String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+
+                // Save to audioList
+                audioList.add(new Audio(data, title, album, artist));
+            }
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        return audioList;
     }
 }
