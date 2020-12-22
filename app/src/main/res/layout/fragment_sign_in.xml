@@ -64,6 +64,7 @@
             android:textSize="17dp"
             android:background="@android:color/transparent"
             android:hint="Password"
+            android:inputType="textPassword"
             />
     </LinearLayout>
     <TextView

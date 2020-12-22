@@ -37,8 +37,8 @@ import java.util.List;
 import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 class CustomOnClickListener implements View.OnClickListener{
-    String param;
-    public CustomOnClickListener(String param){
+    int param;
+    public CustomOnClickListener(int param){
         this.param = param;
     }
 
@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment {
         TextView[] artists_name = {artist_first, artist_second, artist_third};
         ImageView[] images = {first_img, second_img, third_img};
 
-        AssetManager assetManager = getContext().getAssets();
+            AssetManager assetManager = getContext().getAssets();
 
         try {
             StorageUtil storage = new StorageUtil(getActivity().getApplicationContext());
@@ -117,11 +117,11 @@ public class HomeFragment extends Fragment {
                 Log.e("hello", "File name" + fileNames[i]);
                 Log.e("hello2", "Song name" + songs.get(i));
                 // Handle click
-                images[i].setOnClickListener(new CustomOnClickListener(fileNames[i]) {
+                images[i].setOnClickListener(new CustomOnClickListener(i) {
                     @Override
                     public void onClick(View v) {
                         Intent intent = new Intent(getContext(), MusicPlayerActivity.class);
-                        intent.putExtra("file_name", param);
+                        intent.putExtra("position", param);
                         startActivity(intent);
                     }
                 });
