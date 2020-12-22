@@ -12,10 +12,10 @@
         android:orientation="vertical"
         android:id="@+id/container">
 
-        <fragment
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:name="vn.edu.usth.onlinemusicplayer.HomeScreen"/>
+<!--        <fragment-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:name="vn.edu.usth.onlinemusicplayer.HomeScreen"/>-->
 
   </LinearLayout>
 
