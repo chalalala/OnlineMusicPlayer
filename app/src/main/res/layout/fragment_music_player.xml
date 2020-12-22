@@ -80,19 +80,14 @@
                 android:src="@drawable/ic_skip_previous"
                 android:tint="@color/gray" />
 
-            <net.steamcrafted.materialiconlib.MaterialIconView xmlns:app="http://schemas.android.com/apk/res-auto"
+            <ImageView
                 android:id="@+id/play"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/name_song"
-                android:background="@android:color/transparent"
-                android:scaleType="center"
-                app:materialIcon="play_circle"
-                app:materialIconColor="@color/design_default_color_primary"
-                app:materialIconSize="80dp" />
+                android:layout_toRightOf="@+id/name_song"/>
 
             <ImageButton
                 android:id="@+id/next"
