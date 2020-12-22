@@ -49,7 +49,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="See All"
-                    android:layout_alignBottom="@+id/recent_text"/>
+                    android:layout_alignBottom="@+id/recent_text"
+                    android:id="@+id/seeAllSong"/>
             </RelativeLayout>
 
             <RelativeLayout
@@ -134,7 +135,8 @@
                     android:layout_height="wrap_content"
                     android:layout_alignParentRight="true"
                     android:text="See All"
-                    android:layout_alignBottom="@+id/artist_text"/>
+                    android:layout_alignBottom="@+id/artist_text"
+                    android:id="@+id/seeAllArtist"/>
             </RelativeLayout>
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -210,7 +212,7 @@
                     android:layout_height="wrap_content"
                     android:layout_below="@+id/genre_first"
                     android:id="@+id/genre_first_name"
-                    android:text = "Blues"/>
+                    android:text = "Pop"/>
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"
@@ -223,7 +225,7 @@
                     android:layout_below="@+id/genre_second"
                     android:layout_centerHorizontal="true"
                     android:id="@+id/genre_second_name"
-                    android:text = "Metal"/>
+                    android:text = "Country"/>
                 <ImageView
                     android:layout_width="100dp"
                     android:layout_height="100dp"

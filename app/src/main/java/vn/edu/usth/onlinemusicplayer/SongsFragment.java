@@ -19,7 +19,7 @@ import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
 
 import java.io.IOException;
 
-public class SearchSongsFragment extends Fragment {
+public class SongsFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,13 +30,13 @@ public class SearchSongsFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public SearchSongsFragment() {
+    public SongsFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static SearchSongsFragment newInstance() {
-        SearchSongsFragment fragment = new SearchSongsFragment();
+    public static SongsFragment newInstance() {
+        SongsFragment fragment = new SongsFragment();
         Bundle args = new Bundle();
         fragment.setArguments(args);
         return fragment;
@@ -55,7 +55,7 @@ public class SearchSongsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_search_songs, container, false);
+        View view = inflater.inflate(R.layout.fragment_songs, container, false);
 
         LinearLayout searchsongs = (LinearLayout) view.findViewById(R.id.searchsongs);
 

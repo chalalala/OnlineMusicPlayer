@@ -6,4 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".SongActivity">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:id="@+id/container">
+
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="vn.edu.usth.onlinemusicplayer.CustomActionBarFragment"/>
+        <fragment
+            android:name="vn.edu.usth.onlinemusicplayer.SongsFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="vn.edu.usth.onlinemusicplayer.NowPlayingBar"/>
+
+    </LinearLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
