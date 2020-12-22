@@ -9,6 +9,7 @@ import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -110,7 +111,9 @@ public class ArtistFragment extends Fragment {
                 NameField.setLayoutParams(nameFieldParams);
 
                 LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
+                img_params.gravity = Gravity.CENTER;
                 LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                name_params.gravity = Gravity.CENTER;
 
                 //Image
                 ImageButton img = new ImageButton(this.getContext());
@@ -215,7 +218,9 @@ public class ArtistFragment extends Fragment {
                 NameField.setLayoutParams(nameFieldParams);
 
                 LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
+                img_params.gravity = Gravity.CENTER;
                 LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                name_params.gravity = Gravity.CENTER;
 
                 //Image
                 ImageButton img = new ImageButton(this.getContext());
@@ -252,7 +257,9 @@ public class ArtistFragment extends Fragment {
                 NameField.setLayoutParams(nameFieldParams);
 
                 LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
+                img_params.gravity = Gravity.CENTER;
                 LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+                name_params.gravity = Gravity.CENTER;
 
                 //Image
                 ImageButton img = new ImageButton(this.getContext());
