@@ -11,6 +11,7 @@ import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.content.res.TypedArray;
 import android.database.Cursor;
+import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -30,8 +31,12 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
+
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -46,7 +51,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
     private MediaPlayerService player;
     boolean serviceBound = false;
-    ArrayList<Audio> audioList;
+    public static ArrayList<Audio> audioList;
 
     ImageView collapsingImageView;
 
@@ -58,8 +63,50 @@ public class MusicPlayerActivity extends AppCompatActivity {
         setContentView(R.layout.activity_music_player);
 
         if (checkAndRequestPermissions()) {
-            loadAudioList();
+//            loadAudioList();
+            loadAudio();
         }
+
+        Bundle b = getIntent().getExtras();
+        int position = b.getInt("position");
+
+        // Set song name
+        TextView song_name = findViewById(R.id.song_name);
+        song_name.setText(audioList.get(position).getTitle());
+
+        // Set artist name
+        TextView artist = findViewById(R.id.artist);
+        artist.setText(audioList.get(position).getArtist());
+
+        // Play/stop button
+        ImageView play = findViewById(R.id.play);
+        Drawable play_button = MaterialDrawableBuilder.with(this) // provide a context
+                .setIcon(MaterialDrawableBuilder.IconValue.PLAY_CIRCLE) // provide an icon
+                .setColor(getResources().getColor(R.color.purple_500)) // set the icon color
+                .setSizeDp(80)
+                .build();
+        Drawable pause_button = MaterialDrawableBuilder.with(this) // provide a context
+                .setIcon(MaterialDrawableBuilder.IconValue.PAUSE_CIRCLE) // provide an icon
+                .setColor(getResources().getColor(R.color.purple_500)) // set the icon color
+                .setSizeDp(80)
+                .build();
+        play.setImageDrawable(serviceBound ? pause_button : play_button);
+
+        play.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (serviceBound) {
+                    unbindService(serviceConnection);
+                    //service is active
+                    player.stopSelf();
+                    play.setImageDrawable(play_button);
+                }
+                else {
+                    playAudio(position);
+                    play.setImageDrawable(pause_button);
+                }
+            }
+        });
     }
 
     // Storage Permissions
@@ -92,7 +139,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
     private void loadAudioList() {
         loadAudio();
-        initRecyclerView();
+//        initRecyclerView();
     }
 
     private boolean checkAndRequestPermissions() {
@@ -191,21 +238,21 @@ public class MusicPlayerActivity extends AppCompatActivity {
     }
 
 
-    private void initRecyclerView() {
-        if (audioList != null && audioList.size() > 0) {
-            System.out.println("audiolist + " + audioList);
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.songrecyclerview);
-            AudioRecyclerViewAdapter adapter = new AudioRecyclerViewAdapter(audioList, getApplication());
-            recyclerView.setAdapter(adapter);
-            recyclerView.setLayoutManager(new LinearLayoutManager(this));
-            recyclerView.addOnItemTouchListener(new CustomTouchListener(this, new onItemClickListener() {
-                @Override
-                public void onClick(View view, int index) {
-                    playAudio(index);
-                }
-            }));
-        }
-    }
+//    private void initRecyclerView() {
+//        if (audioList != null && audioList.size() > 0) {
+//            System.out.println("audiolist + " + audioList);
+//            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.songrecyclerview);
+//            AudioRecyclerViewAdapter adapter = new AudioRecyclerViewAdapter(audioList, getApplication());
+//            recyclerView.setAdapter(adapter);
+//            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+//            recyclerView.addOnItemTouchListener(new CustomTouchListener(this, new onItemClickListener() {
+//                @Override
+//                public void onClick(View view, int index) {
+//                    playAudio(index);
+//                }
+//            }));
+//        }
+//    }
 
     private void loadCollapsingImage(int i) {
         TypedArray array = getResources().obtainTypedArray(R.array.images);

@@ -1,55 +1,48 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-xmlns:android="http://schemas.android.com/apk/res/android"
-xmlns:tools="http://schemas.android.com/tools"
-android:layout_width="match_parent"
-android:layout_height="match_parent"
-android:fitsSystemWindows="true"
-tools:context="vn.edu.usth.onlinemusicplayer.MusicPlayerActivity">
-
-<RelativeLayout
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="vn.edu.usth.onlinemusicplayer.MusicPlayerActivity"
-    tools:showIn="@layout/activity_music_player"
-    android:padding="8dip">
-<!--    Note: I can't seem to inclide fragments in this activity-->
-<!--    <fragment-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:name="vn.edu.usth.onlinemusicplayer.HomeActionBarFragment"/>-->
-    <!--    <fragment-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="0dp"-->
-    <!--        android:layout_weight="1"-->
-    <!--        android:layout_alignParentTop="true"-->
-    <!--        android:name="vn.edu.usth.onlinemusicplayer.HomeFragment"/>-->
-    <!--    <fragment-->
-    <!--        android:layout_width="match_parent"-->
-    <!--        android:layout_height="wrap_content"-->
-    <!--        android:layout_alignParentBottom="true"-->
-    <!--        android:name="vn.edu.usth.onlinemusicplayer.NowPlayingBar"/>-->
+    android:fitsSystemWindows="true"
+    tools:context="vn.edu.usth.onlinemusicplayer.MusicPlayerActivity">
 
-    <TextView
-        android:id="@+id/yoursongs"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Your Device's Songs"
-        android:textStyle="bold"
-        android:textSize="20sp"
-        android:textColor="#000000"
-        />
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/songrecyclerview"
+    <LinearLayout
+        android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="40dp"
-        android:layout_marginBottom="10dp"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+        android:orientation="vertical"
+        tools:context="vn.edu.usth.onlinemusicplayer.MusicPlayerActivity">
 
-</RelativeLayout>
+        <fragment
+            android:name="vn.edu.usth.onlinemusicplayer.CustomActionBarFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <fragment
+            android:name="vn.edu.usth.onlinemusicplayer.MusicPlayerFragment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"/>
+
+        <!--    <TextView-->
+        <!--        android:id="@+id/yoursongs"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="wrap_content"-->
+        <!--        android:text="Your Device's Songs"-->
+        <!--        android:textStyle="bold"-->
+        <!--        android:textSize="20sp"-->
+        <!--        android:textColor="#000000"-->
+        <!--        />-->
+        <!--    <androidx.recyclerview.widget.RecyclerView-->
+        <!--        android:id="@+id/songrecyclerview"-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="match_parent"-->
+        <!--        android:layout_marginTop="40dp"-->
+        <!--        android:layout_marginBottom="10dp"-->
+        <!--        android:layout_marginLeft="10dp"-->
+        <!--        android:layout_marginRight="10dp"-->
+        <!--        android:layout_alignParentLeft="true"-->
+        <!--        android:layout_alignParentStart="true" />-->
+
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
