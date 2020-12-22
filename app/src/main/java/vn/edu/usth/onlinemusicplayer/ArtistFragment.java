@@ -1,13 +1,17 @@
 package vn.edu.usth.onlinemusicplayer;
 
+import android.content.ContentResolver;
 import android.content.res.AssetManager;
+import android.database.Cursor;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 
 import androidx.annotation.RequiresApi;
 import androidx.fragment.app.Fragment;
 
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
@@ -20,6 +24,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.LinkedHashSet;
 
@@ -77,217 +82,167 @@ public class ArtistFragment extends Fragment {
         LinearLayout column2 = (LinearLayout) view.findViewById((R.id.col2));
         LinearLayout column3 = (LinearLayout) view.findViewById((R.id.col3));
 
+        ArrayList<Audio> audioList = loadAudio();
+        String[] artist_name = new String[audioList.size()];
 
-        AssetManager assetManager = getContext().getAssets();
-
-        try{
-            String[] songs = assetManager.list("musics");
-            String[] songs_detail;
-            String[] artist_name = new String[songs.length];
-
-            for (int j=0; j<songs.length; j++){
-                songs_detail = songs[j].replace(".mp3", "").split(" - ");
-                artist_name[j] = songs_detail[0];
-            }
+        for (int j=0; j<artist_name.length; j++){
+            artist_name[j] = audioList.get(j).getArtist();
+        }
 //            remove duplicate artist name
-            artist_name = Arrays.stream(artist_name).distinct().toArray(String[]::new);
+        artist_name = Arrays.stream(artist_name).distinct().toArray(String[]::new);
 
-            for (int i=0; i<Math.ceil((double) artist_name.length/3); i++) {
+        for (int i=0; i<Math.ceil((double) artist_name.length/3); i++) {
 //                Row 1
-                // Create row by LinearLayout
-                LinearLayout row = new LinearLayout(this.getActivity());
-                RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,256);
+            // Create row by LinearLayout
+            LinearLayout row = new LinearLayout(this.getActivity());
+            RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,256);
 //                LinearLayout.LayoutParams row_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-                row.setPadding(5,5,5,5);
-                row.setLayoutParams(row_params);
-                row.setOrientation(LinearLayout.VERTICAL);
+            row.setPadding(5,5,5,5);
+            row.setLayoutParams(row_params);
+            row.setOrientation(LinearLayout.VERTICAL);
 
-                // Create layout contains Image and Artists
-                LinearLayout NameField = new LinearLayout(this.getActivity());
-                RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                NameField.setOrientation(LinearLayout.VERTICAL);
-                nameFieldParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                nameFieldParams.addRule(RelativeLayout.CENTER_VERTICAL);
-                NameField.setLayoutParams(nameFieldParams);
+            // Create layout contains Image and Artists
+            LinearLayout NameField = new LinearLayout(this.getActivity());
+            RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            NameField.setOrientation(LinearLayout.VERTICAL);
+            nameFieldParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            nameFieldParams.addRule(RelativeLayout.CENTER_VERTICAL);
+            NameField.setLayoutParams(nameFieldParams);
 
-                LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
-                img_params.gravity = Gravity.CENTER;
-                img_params.bottomMargin = 20;
-                LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                name_params.gravity = Gravity.CENTER;
+            LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
+            img_params.gravity = Gravity.CENTER;
+            img_params.bottomMargin = 20;
+            LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            name_params.gravity = Gravity.CENTER;
 
-                //Image
-                ImageButton img = new ImageButton(this.getContext());
-                img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                img.setBackgroundColor(Color.WHITE);
-                img.setImageResource(R.drawable.karaoke);
-                img.setLayoutParams(img_params);
-                NameField.addView(img);
+            //Image
+            ImageButton img = new ImageButton(this.getContext());
+            img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            img.setBackgroundColor(Color.WHITE);
+            img.setImageResource(R.drawable.karaoke);
+            img.setLayoutParams(img_params);
+            NameField.addView(img);
 
-                // Artist
-                TextView artist = new TextView(this.getContext());
-                artist.setText(artist_name[i]);
-                artist.setLayoutParams(name_params);
-                NameField.addView(artist);
+            // Artist
+            TextView artist = new TextView(this.getContext());
+            artist.setText(artist_name[i]);
+            artist.setLayoutParams(name_params);
+            NameField.addView(artist);
 
-                row.addView(NameField);
-                column1.addView(row);
+            row.addView(NameField);
+            column1.addView(row);
+        }
 
-////                Row 2
-//
-//                LinearLayout row2 = new LinearLayout(this.getActivity());
-//                row2.setLayoutParams(row_params);
-//                row2.setOrientation(LinearLayout.VERTICAL);
-//
-//                // Create 3 columns per row
-//
-//                // Create layout contains Image and Artists
-//                LinearLayout NameField2 = new LinearLayout(this.getActivity());
-//                NameField2.setOrientation(LinearLayout.VERTICAL);
-//                NameField2.setLayoutParams(nameFieldParams);
-//
-//
-//                //Image
-//                ImageButton img2 = new ImageButton(this.getContext());
-//                img2.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                img2.setBackgroundColor(Color.WHITE);
-//                img2.setImageResource(R.drawable.karaoke);
-//                img2.setLayoutParams(img_params);
-//                NameField2.addView(img2);
-//
-//                // Artist
-//                TextView artist2 = new TextView(this.getContext());
-//                artist2.setText(artist_name[i]);
-//                artist2.setLayoutParams(name_params);
-//                NameField2.addView(artist2);
-//
-//                row2.addView(NameField2);
-//                column2.addView(row2);
-//
-////                Row 3
-//                LinearLayout row3 = new LinearLayout(this.getActivity());
-////                LinearLayout.LayoutParams row_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-//                row3.setLayoutParams(row_params);
-//                row3.setOrientation(LinearLayout.VERTICAL);
-//
-//                // Create 3 columns per row
-//
-//                // Create layout contains Image and Artists
-//                LinearLayout NameField3 = new LinearLayout(this.getActivity());
-////                RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
-//                NameField3.setOrientation(LinearLayout.VERTICAL);
-////                nameFieldParams.addRule(RelativeLayout.CENTER_VERTICAL);
-//                NameField3.setLayoutParams(nameFieldParams);
-//
-////                LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(120, 120);
-////                LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-//
-////                String[] songs_detail = songs[i].replace(".mp3", "").split(" - ");
-//
-//                //Image
-//                ImageButton img3 = new ImageButton(this.getContext());
-//                img3.setScaleType(ImageView.ScaleType.CENTER_CROP);
-//                img3.setBackgroundColor(Color.WHITE);
-//                img3.setImageResource(R.drawable.karaoke);
-//                img3.setLayoutParams(img_params);
-//                NameField3.addView(img3);
-//
-//                // Artist
-//                TextView artist3 = new TextView(this.getContext());
-//                artist3.setText(artist_name[i]);
-//                artist3.setLayoutParams(name_params);
-//                NameField3.addView(artist3);
-//
-//                row3.addView(NameField3);
-//                column3.addView(row3);
-            }
-
-            for (int i = (int) Math.ceil((double) artist_name.length/3); i<Math.ceil((double) 2*artist_name.length/3); i++){
-                LinearLayout row = new LinearLayout(this.getActivity());
-                RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,256);
+        for (int i = (int) Math.ceil((double) artist_name.length/3); i<Math.ceil((double) 2*artist_name.length/3); i++){
+            LinearLayout row = new LinearLayout(this.getActivity());
+            RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,256);
 //                LinearLayout.LayoutParams row_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-                row.setLayoutParams(row_params);
-                row.setPadding(5,5,5,5);
-                row.setOrientation(LinearLayout.VERTICAL);
+            row.setLayoutParams(row_params);
+            row.setPadding(5,5,5,5);
+            row.setOrientation(LinearLayout.VERTICAL);
 
-                // Create layout contains Image and Artists
-                LinearLayout NameField = new LinearLayout(this.getActivity());
-                RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                NameField.setOrientation(LinearLayout.VERTICAL);
-                nameFieldParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                nameFieldParams.addRule(RelativeLayout.CENTER_VERTICAL);
-                NameField.setLayoutParams(nameFieldParams);
+            // Create layout contains Image and Artists
+            LinearLayout NameField = new LinearLayout(this.getActivity());
+            RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            NameField.setOrientation(LinearLayout.VERTICAL);
+            nameFieldParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            nameFieldParams.addRule(RelativeLayout.CENTER_VERTICAL);
+            NameField.setLayoutParams(nameFieldParams);
 
-                LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
-                img_params.gravity = Gravity.CENTER;
-                img_params.bottomMargin = 20;
-                LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                name_params.gravity = Gravity.CENTER;
+            LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
+            img_params.gravity = Gravity.CENTER;
+            img_params.bottomMargin = 20;
+            LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            name_params.gravity = Gravity.CENTER;
 
-                //Image
-                ImageButton img = new ImageButton(this.getContext());
-                img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                img.setBackgroundColor(Color.WHITE);
-                img.setImageResource(R.drawable.karaoke);
-                img.setLayoutParams(img_params);
-                NameField.addView(img);
+            //Image
+            ImageButton img = new ImageButton(this.getContext());
+            img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            img.setBackgroundColor(Color.WHITE);
+            img.setImageResource(R.drawable.karaoke);
+            img.setLayoutParams(img_params);
+            NameField.addView(img);
 
-                // Artist
-                TextView artist = new TextView(this.getContext());
-                artist.setText(artist_name[i]);
-                artist.setLayoutParams(name_params);
-                NameField.addView(artist);
+            // Artist
+            TextView artist = new TextView(this.getContext());
+            artist.setText(artist_name[i]);
+            artist.setLayoutParams(name_params);
+            NameField.addView(artist);
 
-                row.addView(NameField);
-                column2.addView(row);
-            }
+            row.addView(NameField);
+            column2.addView(row);
+        }
 
-            for (int i = (int) Math.ceil((double) 2*artist_name.length/3); i<artist_name.length; i++){
-                LinearLayout row = new LinearLayout(this.getActivity());
-                RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,256);
+        for (int i = (int) Math.ceil((double) 2*artist_name.length/3); i<artist_name.length; i++){
+            LinearLayout row = new LinearLayout(this.getActivity());
+            RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,256);
 //                LinearLayout.LayoutParams row_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-                row.setLayoutParams(row_params);
-                row.setPadding(5,5,5,5);
-                row.setOrientation(LinearLayout.VERTICAL);
+            row.setLayoutParams(row_params);
+            row.setPadding(5,5,5,5);
+            row.setOrientation(LinearLayout.VERTICAL);
 
-                // Create layout contains Image and Artists
-                LinearLayout NameField = new LinearLayout(this.getActivity());
-                RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-                NameField.setOrientation(LinearLayout.VERTICAL);
-                nameFieldParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-                nameFieldParams.addRule(RelativeLayout.CENTER_VERTICAL);
-                NameField.setLayoutParams(nameFieldParams);
+            // Create layout contains Image and Artists
+            LinearLayout NameField = new LinearLayout(this.getActivity());
+            RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+            NameField.setOrientation(LinearLayout.VERTICAL);
+            nameFieldParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+            nameFieldParams.addRule(RelativeLayout.CENTER_VERTICAL);
+            NameField.setLayoutParams(nameFieldParams);
 
-                LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
-                img_params.gravity = Gravity.CENTER;
-                img_params.bottomMargin = 20;
-                LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-                name_params.gravity = Gravity.CENTER;
+            LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
+            img_params.gravity = Gravity.CENTER;
+            img_params.bottomMargin = 20;
+            LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+            name_params.gravity = Gravity.CENTER;
 
-                //Image
-                ImageButton img = new ImageButton(this.getContext());
-                img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-                img.setBackgroundColor(Color.WHITE);
-                img.setImageResource(R.drawable.karaoke);
-                img.setLayoutParams(img_params);
-                NameField.addView(img);
+            //Image
+            ImageButton img = new ImageButton(this.getContext());
+            img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            img.setBackgroundColor(Color.WHITE);
+            img.setImageResource(R.drawable.karaoke);
+            img.setLayoutParams(img_params);
+            NameField.addView(img);
 
-                // Artist
-                TextView artist = new TextView(this.getContext());
-                artist.setText(artist_name[i]);
-                artist.setLayoutParams(name_params);
-                NameField.addView(artist);
+            // Artist
+            TextView artist = new TextView(this.getContext());
+            artist.setText(artist_name[i]);
+            artist.setLayoutParams(name_params);
+            NameField.addView(artist);
 
-                row.addView(NameField);
-                column3.addView(row);
-            }
-
-
-        } catch (IOException e){
-            e.printStackTrace();
+            row.addView(NameField);
+            column3.addView(row);
         }
 
 
         return view;
+    }
+
+    private ArrayList loadAudio() {
+        ArrayList<Audio> audioList = new ArrayList<>();
+
+        ContentResolver contentResolver = getContext().getContentResolver();
+
+        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
+        String selection = MediaStore.Audio.Media.IS_MUSIC + "!= 0";
+        String sortOrder = MediaStore.Audio.Media.TITLE + " ASC";
+
+        Cursor cursor = contentResolver.query(uri, null, selection, null, sortOrder);
+
+        if (cursor != null && cursor.getCount() > 0) {
+            audioList = new ArrayList<>();
+            while (cursor.moveToNext()) {
+                String data = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
+                String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
+                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
+                String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+
+                // Save to audioList
+                audioList.add(new Audio(data, title, album, artist));
+            }
+        }
+        if (cursor != null) {
+            cursor.close();
+        }
+        return audioList;
     }
 }

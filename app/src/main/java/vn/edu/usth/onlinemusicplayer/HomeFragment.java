@@ -1,14 +1,8 @@
 package vn.edu.usth.onlinemusicplayer;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.content.SharedPreferences;
 import android.content.res.AssetManager;
-import android.database.Cursor;
-import android.net.Uri;
-import android.os.AsyncTask;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,21 +14,10 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonElement;
-
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
-
-import static androidx.constraintlayout.motion.utils.Oscillator.TAG;
 
 class CustomOnClickListener implements View.OnClickListener{
     int param;
@@ -48,8 +31,6 @@ class CustomOnClickListener implements View.OnClickListener{
 }
 
 public class HomeFragment extends Fragment {
-
-    private static final String TAG = "HomeFragment";
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -85,11 +66,6 @@ public class HomeFragment extends Fragment {
             AssetManager assetManager = getContext().getAssets();
 
         try {
-            StorageUtil storage = new StorageUtil(getActivity().getApplicationContext());
-            JsonElement jsonstorage = storage.loadJsonAudio();
-            System.out.println("jsonstorage" + jsonstorage);
-            System.out.println("jsonstorage isJsonPrimitive" + jsonstorage.isJsonPrimitive());
-
             String[] fileNames = assetManager.list("musics");
             List<String> songs = new ArrayList<>();
             List<String> artists = new ArrayList<>();
