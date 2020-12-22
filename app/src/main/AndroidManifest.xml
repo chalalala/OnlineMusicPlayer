@@ -24,7 +24,6 @@
             android:exported="true"></service>
 
         <activity android:name=".SignUpActivity"></activity>
-        android:theme="@style/Theme.OnlineMusicPlayer">
         <activity android:name=".SongActivity"></activity>
         <activity android:name=".ArtistActivity" />
         <activity android:name=".LoginActivity" />

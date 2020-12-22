@@ -112,6 +112,7 @@ public class ArtistFragment extends Fragment {
 
                 LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
                 img_params.gravity = Gravity.CENTER;
+                img_params.bottomMargin = 20;
                 LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 name_params.gravity = Gravity.CENTER;
 
@@ -219,6 +220,7 @@ public class ArtistFragment extends Fragment {
 
                 LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
                 img_params.gravity = Gravity.CENTER;
+                img_params.bottomMargin = 20;
                 LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 name_params.gravity = Gravity.CENTER;
 
@@ -258,6 +260,7 @@ public class ArtistFragment extends Fragment {
 
                 LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
                 img_params.gravity = Gravity.CENTER;
+                img_params.bottomMargin = 20;
                 LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 name_params.gravity = Gravity.CENTER;
 
