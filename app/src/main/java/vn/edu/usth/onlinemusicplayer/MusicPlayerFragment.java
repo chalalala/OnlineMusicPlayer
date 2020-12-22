@@ -1,6 +1,7 @@
 package vn.edu.usth.onlinemusicplayer;
 
 import android.content.res.AssetFileDescriptor;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
 import android.os.Bundle;
@@ -57,7 +58,25 @@ public class MusicPlayerFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_music_player, container, false);
 
-//        MediaPlayer player = NowPlayingBar.player;
+        ImageView heart = view.findViewById(R.id.heart);
+        Drawable heart_clicked = MaterialDrawableBuilder.with(getContext()) // provide a context
+                .setIcon(MaterialDrawableBuilder.IconValue.HEART) // provide an icon
+                .setColor(getResources().getColor(R.color.gray)) // set the icon color
+                .setSizeDp(28)
+                .build();
+        Drawable heart_outline = MaterialDrawableBuilder.with(getContext()) // provide a context
+                .setIcon(MaterialDrawableBuilder.IconValue.HEART_OUTLINE) // provide an icon
+                .setColor(getResources().getColor(R.color.gray)) // set the icon color
+                .setSizeDp(28)
+                .build();
+        heart.setImageDrawable(heart_outline);
+
+        heart.setOnClickListener(new View.OnClickListener(){
+            public void onClick(View v){
+                boolean state = heart.getDrawable() == heart_clicked;
+                heart.setImageDrawable(state ? heart_outline : heart_clicked);
+            }
+        });
 
         return view;
     }

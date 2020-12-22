@@ -20,8 +20,7 @@
             android:tint="@color/gray"/>
         <RelativeLayout
             android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:id="@+id/user">
+            android:layout_height="match_parent">
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"

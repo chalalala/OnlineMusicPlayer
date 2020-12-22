@@ -18,12 +18,12 @@ public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
     public Fragment getItem(int page) {
         // returns an instance of Fragment corresponding to the specified page
         switch (page) {
-            case 0: return SearchSongsFragment.newInstance();
+            case 0: return SongsFragment.newInstance();
             case 1: return SearchArtistFragment.newInstance();
             case 2: return SearchAlbumFragment.newInstance();
 
             default:
-                return SearchSongsFragment.newInstance();
+                return null;
         }
     }
     @Override
