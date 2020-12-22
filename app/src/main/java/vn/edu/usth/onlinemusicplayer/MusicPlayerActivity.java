@@ -48,10 +48,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
     boolean serviceBound = false;
     ArrayList<Audio> audioList;
 
-    ImageView collapsingImageView;
-
-    int imageIndex = 0;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -68,27 +64,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-
-    /**
-     * Checks if the app has permission to write to device storage
-     *
-     * If the app does not has permission then the user will be prompted to grant permissions
-     *
-     * @param activity
-     */
-    public static void verifyStoragePermissions(Activity activity) {
-        // Check if we have write permission
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
-        }
-    }
 
     private void loadAudioList() {
         loadAudio();
@@ -207,17 +182,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
         }
     }
 
-    private void loadCollapsingImage(int i) {
-        TypedArray array = getResources().obtainTypedArray(R.array.images);
-        collapsingImageView.setImageDrawable(array.getDrawable(i));
-    }
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {

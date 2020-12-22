@@ -111,7 +111,9 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnComplet
             //Load data from SharedPreferences
             StorageUtil storage = new StorageUtil(getApplicationContext());
             audioList = storage.loadAudio();
+            System.out.println("audioList" + audioList);
             audioIndex = storage.loadAudioIndex();
+            System.out.println("audioIndex" + audioIndex);
 
             if (audioIndex != -1 && audioIndex < audioList.size()) {
                 //index is in a valid range
