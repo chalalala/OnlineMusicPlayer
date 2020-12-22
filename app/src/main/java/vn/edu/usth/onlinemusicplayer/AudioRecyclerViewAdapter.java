@@ -11,12 +11,12 @@ import android.widget.TextView;
 import java.util.Collections;
 import java.util.List;
 
-public class RecyclerView_Adapter extends RecyclerView.Adapter<ViewHolder> {
+public class AudioRecyclerViewAdapter extends RecyclerView.Adapter<ViewHolder> {
 
     List<Audio> list = Collections.emptyList();
     Context context;
 
-    public RecyclerView_Adapter(List<Audio> list, Context context) {
+    public AudioRecyclerViewAdapter(List<Audio> list, Context context) {
         this.list = list;
         this.context = context;
     }
@@ -24,7 +24,7 @@ public class RecyclerView_Adapter extends RecyclerView.Adapter<ViewHolder> {
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         //Inflate the layout, initialize the View Holder
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item_layout, parent, false);
+        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.song_layout, parent, false);
         ViewHolder holder = new ViewHolder(v);
         return holder;
 
@@ -34,6 +34,7 @@ public class RecyclerView_Adapter extends RecyclerView.Adapter<ViewHolder> {
     public void onBindViewHolder(ViewHolder holder, int position) {
         //Use the provided View Holder on the onCreateViewHolder method to populate the current row on the RecyclerView
         holder.title.setText(list.get(position).getTitle());
+        holder.artist.setText(list.get(position).getArtist());
     }
 
     @Override
@@ -52,11 +53,13 @@ public class RecyclerView_Adapter extends RecyclerView.Adapter<ViewHolder> {
 class ViewHolder extends RecyclerView.ViewHolder {
 
     TextView title;
+    TextView artist;
     ImageView play_pause;
 
     ViewHolder(View itemView) {
         super(itemView);
         title = (TextView) itemView.findViewById(R.id.title);
+        artist = (TextView) itemView.findViewById(R.id.artist);
         play_pause = (ImageView) itemView.findViewById(R.id.play_pause);
     }
 }

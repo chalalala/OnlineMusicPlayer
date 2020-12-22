@@ -4,16 +4,16 @@
     android:layout_height="?android:attr/listPreferredItemHeight"
     android:padding="8dip" >
 
-<!--    <TextView-->
-<!--        android:id="@+id/artistName"-->
-<!--        android:layout_width="fill_parent"-->
-<!--        android:layout_height="26dip"-->
-<!--        android:layout_alignParentBottom="true"-->
-<!--        android:layout_alignParentRight="true"-->
-<!--        android:ellipsize="marquee"-->
-<!--        android:singleLine="true"-->
-<!--        android:text="Demi Lovato"-->
-<!--        android:textSize="14sp" />-->
+    <TextView
+        android:id="@+id/artist"
+        android:layout_width="fill_parent"
+        android:layout_height="26dip"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:ellipsize="marquee"
+        android:singleLine="true"
+        android:text="Demi Lovato"
+        android:textSize="14sp" />
 
     <TextView
         android:id="@+id/title"

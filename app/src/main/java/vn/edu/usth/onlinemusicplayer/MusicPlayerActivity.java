@@ -194,8 +194,8 @@ public class MusicPlayerActivity extends AppCompatActivity {
     private void initRecyclerView() {
         if (audioList != null && audioList.size() > 0) {
             System.out.println("audiolist + " + audioList);
-            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.recyclerview);
-            RecyclerView_Adapter adapter = new RecyclerView_Adapter(audioList, getApplication());
+            RecyclerView recyclerView = (RecyclerView) findViewById(R.id.songrecyclerview);
+            AudioRecyclerViewAdapter adapter = new AudioRecyclerViewAdapter(audioList, getApplication());
             recyclerView.setAdapter(adapter);
             recyclerView.setLayoutManager(new LinearLayoutManager(this));
             recyclerView.addOnItemTouchListener(new CustomTouchListener(this, new onItemClickListener() {
