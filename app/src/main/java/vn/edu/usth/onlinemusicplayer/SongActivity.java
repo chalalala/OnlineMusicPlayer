@@ -10,5 +10,6 @@ public class SongActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_song);
+        CustomActionBarFragment.header_title.setText("Songs");
     }
 }
