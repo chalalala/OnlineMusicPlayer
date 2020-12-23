@@ -30,6 +30,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,7 +53,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
     private MediaPlayerService player;
     boolean serviceBound = false;
     public static ArrayList<Audio> audioList;
-
+    int position;
     ImageView collapsingImageView;
 
     int imageIndex = 0;
@@ -68,7 +69,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         }
 
         Bundle b = getIntent().getExtras();
-        int position = b.getInt("position");
+        position = b.getInt("position");
 
         // Set song name
         TextView song_name = findViewById(R.id.song_name);
@@ -104,6 +105,32 @@ public class MusicPlayerActivity extends AppCompatActivity {
                 else {
                     playAudio(position);
                     play.setImageDrawable(pause_button);
+                }
+            }
+        });
+
+        // Change song
+        ImageButton next = findViewById(R.id.next);
+        next.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(getApplicationContext(), "Hello", Toast.LENGTH_LONG);
+                if (position + 1 < audioList.size()) {
+                    position = position + 1;
+                    song_name.setText(audioList.get(position).getTitle());
+                    artist.setText(audioList.get(position).getArtist());
+                }
+            }
+        });
+
+        ImageButton prev = findViewById(R.id.previous);
+        prev.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (position>1) {
+                    position = position - 1;
+                    song_name.setText(audioList.get(position).getTitle());
+                    artist.setText(audioList.get(position).getArtist());
                 }
             }
         });
