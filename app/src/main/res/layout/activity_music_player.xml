@@ -4,22 +4,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
-    tools:context="vn.edu.usth.onlinemusicplayer.MusicPlayerActivity">
+    tools:context="vn.edu.usth.onlinemusicplayer.activity.MusicPlayerActivity">
 
     <LinearLayout
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical"
-        tools:context="vn.edu.usth.onlinemusicplayer.MusicPlayerActivity">
+        tools:context="vn.edu.usth.onlinemusicplayer.activity.MusicPlayerActivity">
 
         <fragment
-            android:name="vn.edu.usth.onlinemusicplayer.CustomActionBarFragment"
+            android:name="vn.edu.usth.onlinemusicplayer.menu.CustomActionBarFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <fragment
-            android:name="vn.edu.usth.onlinemusicplayer.MusicPlayerFragment"
+            android:name="vn.edu.usth.onlinemusicplayer.fragment.MusicPlayerFragment"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

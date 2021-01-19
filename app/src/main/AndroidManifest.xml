@@ -19,18 +19,18 @@
         android:theme="@style/Theme.OnlineMusicPlayer"
         android:usesCleartextTraffic="true">
         <service
-            android:name=".MediaPlayerService"
+            android:name=".service.MediaPlayerService"
             android:enabled="true"
             android:exported="true"></service>
 
-        <activity android:name=".SignUpActivity"></activity>
-        <activity android:name=".SongActivity"></activity>
-        <activity android:name=".ArtistActivity" />
-        <activity android:name=".LoginActivity" />
-        <activity android:name=".QueueActivity" />
-        <activity android:name=".SearchActivity" />
-        <activity android:name=".MusicPlayerActivity" />
-        <activity android:name=".HomeActivity">
+        <activity android:name=".activity.SignUpActivity"></activity>
+        <activity android:name=".activity.TopTracksActivity"></activity>
+        <activity android:name=".activity.ArtistActivity" />
+        <activity android:name=".activity.LoginActivity" />
+        <activity android:name=".activity.QueueActivity" />
+        <activity android:name=".activity.SearchActivity" />
+        <activity android:name=".activity.MusicPlayerActivity" />
+        <activity android:name=".activity.HomeActivity">
             <intent-filter tools:ignore="ExtraText">
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />

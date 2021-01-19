@@ -1,10 +1,11 @@
 package vn.edu.usth.onlinemusicplayer;
 
 import android.content.Context;
-import androidx.recyclerview.widget.RecyclerView;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+
+import androidx.recyclerview.widget.RecyclerView;
 
 public class CustomTouchListener implements RecyclerView.OnItemTouchListener {
 
@@ -41,5 +42,10 @@ public class CustomTouchListener implements RecyclerView.OnItemTouchListener {
     @Override
     public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
+    }
+
+    public static interface onItemClickListener {
+
+        public void onClick(View view, int index);
     }
 }
