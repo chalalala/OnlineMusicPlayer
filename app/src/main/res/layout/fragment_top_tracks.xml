@@ -12,5 +12,5 @@
         android:layout_height="wrap_content"
         android:divider="@null"
         android:dividerHeight="0dp"
-        android:footerDividersEnabled="false"/>
+        android:footerDividersEnabled="false" />
 </FrameLayout>

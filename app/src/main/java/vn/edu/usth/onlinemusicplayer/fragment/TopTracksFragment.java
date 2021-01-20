@@ -1,25 +1,12 @@
 
 package vn.edu.usth.onlinemusicplayer.fragment;
 
-import android.content.ContentResolver;
-import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.Drawable;
-import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
@@ -30,19 +17,14 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
-import net.steamcrafted.materialiconlib.MaterialDrawableBuilder;
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-import vn.edu.usth.onlinemusicplayer.CustomOnClickListener;
 import vn.edu.usth.onlinemusicplayer.R;
-import vn.edu.usth.onlinemusicplayer.activity.MusicPlayerActivity;
 import vn.edu.usth.onlinemusicplayer.adapter.CustomAdapter;
-import vn.edu.usth.onlinemusicplayer.model.Audio;
 
 public class TopTracksFragment extends Fragment {
 
@@ -82,35 +64,35 @@ public class TopTracksFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_top_tracks, container, false);
 
+        // Initialize list containing track detail
+        ArrayList<String> song_names = new ArrayList<String>();
+        ArrayList<String> artist_names = new ArrayList<String>();
+        ArrayList<String> thumbnails = new ArrayList<String>();
+
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url ="https://mp3.zing.vn/xhr/chart-realtime?songId=0&videoId=0&albumId=0&chart=song&time=-1";
+        String url = "https://mp3.zing.vn/xhr/chart-realtime?songId=0&videoId=0&albumId=0&chart=song&time=-1";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.i("response", response);
-                        ArrayList<String> song_names = new ArrayList<String>();
-                        ArrayList<String> artist_names = new ArrayList<String>();
-                        ArrayList<Drawable> thumbnail = new ArrayList<Drawable>();
-
                         try {
                             JSONObject obj = new JSONObject(response);
                             JSONObject data = obj.getJSONObject("data");
                             JSONArray list_songs = data.getJSONArray("song");
-                            for (int i=0;i<list_songs.length();i++){
+
+                            for (int i = 0; i < list_songs.length(); i++) {
                                 JSONObject item = list_songs.getJSONObject(i);
                                 song_names.add(item.getString("name"));
                                 artist_names.add(item.getString("artists_names"));
+                                thumbnails.add(item.getString("thumbnail"));
                             }
 
-//                            setTopTracks(song_names, artist_names);
                             ListView list = getView().findViewById(R.id.top_tracks_list);
-                            CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names);
+                            CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names, thumbnails);
                             list.setAdapter(customAdapter);
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
