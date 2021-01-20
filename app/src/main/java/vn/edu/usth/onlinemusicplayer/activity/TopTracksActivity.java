@@ -12,7 +12,7 @@ public class TopTracksActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_song);
-        CustomActionBarFragment.header_title.setText("Songs");
+        setContentView(R.layout.activity_top_tracks);
+        CustomActionBarFragment.header_title.setText("Top tracks");
     }
 }
