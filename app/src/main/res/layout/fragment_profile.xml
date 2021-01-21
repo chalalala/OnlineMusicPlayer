@@ -5,7 +5,7 @@ android:layout_width="match_parent"
 android:orientation="vertical"
 android:weightSum="10"
 android:layout_height="match_parent"
-tools:context=".ProfileFragment">
+tools:context=".fragment.ProfileFragment">
 
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"

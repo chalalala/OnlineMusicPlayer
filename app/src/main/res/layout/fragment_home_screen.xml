@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".HomeFragment">
+    tools:context=".fragment.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <ScrollView
@@ -27,7 +27,7 @@
                 android:layout_height="wrap_content"
                 android:iconifiedByDefault="false"
                 android:queryHint="Search"
-                android:backgroundTint="@color/light_grey"
+                android:backgroundTint="@color/more_light_grey"
                 android:layout_centerHorizontal="true"
                 android:background="@drawable/bg_white_rounded"
                 android:queryBackground="@android:color/transparent"
