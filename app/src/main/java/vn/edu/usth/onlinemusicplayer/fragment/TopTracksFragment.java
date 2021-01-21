@@ -117,7 +117,7 @@ public class TopTracksFragment extends Fragment {
 
                                 ImageRequest imageRequest = new ImageRequest(
                                         item.getString("thumbnail"),
-                                        listener2, 0, 0, ImageView.ScaleType.CENTER,
+                                        listener2, 50, 50, ImageView.ScaleType.CENTER,
                                         Bitmap.Config.ARGB_8888, null);
                                 queue.add(imageRequest);
                             }
