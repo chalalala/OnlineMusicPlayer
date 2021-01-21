@@ -7,8 +7,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 
@@ -67,6 +71,9 @@ public class TopTracksFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_top_tracks, container, false);
 
+        // Set spinner while waiting for the data
+        ProgressBar spinner = view.findViewById(R.id.spinner);
+
         // Initialize list containing track detail
         ArrayList<String> song_names = new ArrayList<String>();
         ArrayList<String> artist_names = new ArrayList<String>();
@@ -98,6 +105,9 @@ public class TopTracksFragment extends Fragment {
                                             public void onResponse(Bitmap response) {
                                                 thumbnails.add(response);
                                                 if (finalI == list_songs.length()-1){
+                                                    // Spinner disappear when data is ready
+                                                    spinner.setVisibility(View.GONE);
+
                                                     ListView list = getView().findViewById(R.id.top_tracks_list);
                                                     CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names, thumbnails);
                                                     list.setAdapter(customAdapter);
