@@ -22,10 +22,10 @@ public class CustomAdapter extends BaseAdapter {
     Context context;
     ArrayList<String> song_names;
     ArrayList<String> artist_names;
-    ArrayList<String> thumbnails;
+    ArrayList<Bitmap> thumbnails;
     LayoutInflater inflater;
 
-    public CustomAdapter(Context context, ArrayList<String> song_names, ArrayList<String> artist_names, ArrayList<String> thumbnails) {
+    public CustomAdapter(Context context, ArrayList<String> song_names, ArrayList<String> artist_names, ArrayList<Bitmap> thumbnails) {
         this.context = context;
         this.song_names = song_names;
         this.artist_names = artist_names;
@@ -55,24 +55,9 @@ public class CustomAdapter extends BaseAdapter {
         TextView name_artist = (TextView) view.findViewById(R.id.name_artist);
         ImageView thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
 
-        RequestQueue queue = Volley.newRequestQueue(context);
-        Response.Listener<Bitmap> listener =
-                new Response.Listener<Bitmap>() {
-                    @Override
-                    public void onResponse(Bitmap response) {
-
-                        name_song.setText(song_names.get(i));
-                        name_artist.setText(artist_names.get(i));
-                        thumbnail.setImageBitmap(response);
-                    }
-                };
-
-        ImageRequest imageRequest = new ImageRequest(
-                thumbnails.get(i),
-                listener, 0, 0, ImageView.ScaleType.CENTER,
-                Bitmap.Config.ARGB_8888, null);
-        queue.add(imageRequest);
-
+        name_song.setText(song_names.get(i));
+        name_artist.setText(artist_names.get(i));
+        thumbnail.setImageBitmap(thumbnails.get(i));
 
         return view;
     }
