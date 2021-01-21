@@ -71,7 +71,7 @@ public class TopTracksFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_top_tracks, container, false);
 
-        // Set spinner while waiting for the data
+        // Spinner that appears while waiting for the data
         ProgressBar spinner = view.findViewById(R.id.spinner);
 
         // Initialize list containing track detail
