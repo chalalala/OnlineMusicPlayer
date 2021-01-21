@@ -8,9 +8,9 @@ public class Audio implements Serializable {
     private String title;
     private String album;
     private String artist;
-    private int duration;
+    private String duration;
 
-    public Audio(String data, String title, String album, String artist, int duration) {
+    public Audio(String data, String title, String album, String artist, String duration) {
         this.data = data;
         this.title = title;
         this.album = album;
@@ -50,11 +50,11 @@ public class Audio implements Serializable {
         this.artist = artist;
     }
 
-    public int getDuration() {
+    public String getDuration() {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(String duration) {
         this.duration = duration;
     }
 

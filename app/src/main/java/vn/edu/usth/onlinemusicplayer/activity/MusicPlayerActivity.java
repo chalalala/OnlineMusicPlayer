@@ -397,9 +397,10 @@ public class MusicPlayerActivity extends AppCompatActivity {
                 String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
                 String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
                 String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
+                String duration = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
 
                 // Save to audioList
-                audioList.add(new Audio(data, title, album, artist));
+                audioList.add(new Audio(data, title, album, artist, duration));
             }
         }
         if (cursor != null)
