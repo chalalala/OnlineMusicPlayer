@@ -105,7 +105,6 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnComplet
     }
 
     //The system calls this method when an activity, requests the service be started
-    @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         try {
@@ -138,7 +137,9 @@ public class MediaPlayerService extends Service implements MediaPlayer.OnComplet
 
         if (mediaSessionManager == null) {
             try {
-                initMediaSession();
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+                    initMediaSession();
+                }
                 initMediaPlayer();
             } catch (RemoteException e) {
                 e.printStackTrace();

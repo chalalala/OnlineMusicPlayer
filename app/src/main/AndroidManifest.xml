@@ -31,20 +31,24 @@
         <activity android:name=".activity.QueueActivity" />
         <activity android:name=".activity.SearchActivity" />
         <activity android:name=".activity.MusicPlayerActivity" />
-        <activity android:name=".activity.HomeActivity">
+
+<!--        <activity android:name=".activity.AudioPlayerActivity" />-->
+<!--        <activity android:name=".activity.HomeActivity">-->
+<!--            <intent-filter tools:ignore="ExtraText">-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
+
+
+        <activity android:name=".activity.HomeActivity" />
+        <activity android:name=".activity.AudioPlayerActivity">
             <intent-filter tools:ignore="ExtraText">
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-<!--        <activity android:name=".HomeActivity" />-->
-<!--        <activity android:name=".MusicPlayerActivity">-->
-<!--            <intent-filter tools:ignore="ExtraText">-->
-<!--                <action android:name="android.intent.action.MAIN" />-->
-<!--                <category android:name="android.intent.category.LAUNCHER" />-->
-<!--            </intent-filter>-->
-<!--        </activity>-->
     </application>
 
 </manifest>

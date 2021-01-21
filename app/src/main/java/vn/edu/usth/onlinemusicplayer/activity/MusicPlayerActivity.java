@@ -55,9 +55,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
     boolean serviceBound = false;
     public static ArrayList<Audio> audioList;
     int position;
-    ImageView collapsingImageView;
-
-    int imageIndex = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -143,27 +140,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
             Manifest.permission.READ_EXTERNAL_STORAGE,
             Manifest.permission.WRITE_EXTERNAL_STORAGE
     };
-
-    /**
-     * Checks if the app has permission to write to device storage
-     *
-     * If the app does not has permission then the user will be prompted to grant permissions
-     *
-     * @param activity
-     */
-    public static void verifyStoragePermissions(Activity activity) {
-        // Check if we have write permission
-        int permission = ActivityCompat.checkSelfPermission(activity, Manifest.permission.WRITE_EXTERNAL_STORAGE);
-
-        if (permission != PackageManager.PERMISSION_GRANTED) {
-            // We don't have permission so prompt the user
-            ActivityCompat.requestPermissions(
-                    activity,
-                    PERMISSIONS_STORAGE,
-                    REQUEST_EXTERNAL_STORAGE
-            );
-        }
-    }
 
     private void loadAudioList() {
         loadAudio();
@@ -282,11 +258,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
 //        }
 //    }
 
-    private void loadCollapsingImage(int i) {
-        TypedArray array = getResources().obtainTypedArray(R.array.images);
-        collapsingImageView.setImageDrawable(array.getDrawable(i));
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -362,25 +333,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
         }
     }
 
-    private void playAudioOnl(String media) {
-        //Check is service is active
-        if (!serviceBound) {
-            Intent playerIntent = new Intent(this, MediaPlayerService.class);
-            playerIntent.putExtra("media", media);
-            this.startService(playerIntent);
-            bindService(playerIntent, serviceConnection, Context.BIND_AUTO_CREATE);
-        } else {
-            //Service is active
-            //Send media with BroadcastReceiver
-            Intent broadcastIntent = new Intent(Broadcast_PLAY_NEW_AUDIO);
-            this.sendBroadcast(broadcastIntent);
-        }
-    }
-    /**
-     * Load audio files using {@link ContentResolver}
-     *
-     * If this don't works for you, load the audio files to audioList Array your oun way
-     */
     private void loadAudio() {
         ContentResolver contentResolver = getContentResolver();
 
