@@ -22,7 +22,7 @@ import vn.edu.usth.onlinemusicplayer.fragment.AlbumListFragment;
 import vn.edu.usth.onlinemusicplayer.fragment.ArtistListFragment;
 import vn.edu.usth.onlinemusicplayer.fragment.PlayListFragment;
 import vn.edu.usth.onlinemusicplayer.fragment.SongListFragment;
-import vn.edu.usth.onlinemusicplayer.fragment.SongPlayerFragment;
+import vn.edu.usth.onlinemusicplayer.fragment.MusicPlayerFragment;
 
 
 public class PlayerActivity extends MusicServiceActivity {
@@ -66,12 +66,12 @@ public class PlayerActivity extends MusicServiceActivity {
         tabLayout = (TabLayout) findViewById(R.id.tabs);
         tabLayout.setupWithViewPager(viewPager);
 
-        Fragment songPlayerFragment = getSupportFragmentManager().findFragmentById(R.id.main_content);
-        if (songPlayerFragment == null) {
-            getSupportFragmentManager().beginTransaction().add(R.id.main_content, new SongPlayerFragment(), "SongPlayer").commit();
-            Log.d(TAG, "songPlayerFragment Fragment new created");
+        Fragment musicPlayerFragment = getSupportFragmentManager().findFragmentById(R.id.main_content);
+        if (musicPlayerFragment == null) {
+            getSupportFragmentManager().beginTransaction().add(R.id.main_content, new MusicPlayerFragment(), "MusicPlayer").commit();
+            Log.d(TAG, "musicPlayerFragment Fragment new created");
         } else {
-            Log.d(TAG, "songPlayerFragment Fragment reused ");
+            Log.d(TAG, "musicPlayerFragment Fragment reused ");
         }
 
     }

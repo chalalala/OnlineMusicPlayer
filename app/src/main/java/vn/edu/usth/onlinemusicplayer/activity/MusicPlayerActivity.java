@@ -70,11 +70,11 @@ public class MusicPlayerActivity extends AppCompatActivity {
         position = b.getInt("position");
 
         // Set song name
-        TextView song_name = findViewById(R.id.song_name);
+        TextView song_name = findViewById(R.id.tv_panel_song_name);
         song_name.setText(audioList.get(position).getTitle());
 
         // Set artist name
-        TextView artist = findViewById(R.id.artist);
+        TextView artist = findViewById(R.id.tv_panel_artist_name);
         artist.setText(audioList.get(position).getArtist());
 
         // Play/stop button
@@ -108,7 +108,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
         });
 
         // Change song
-        ImageButton next = findViewById(R.id.next);
+        ImageButton next = findViewById(R.id.iv_pn_next_btn);
         next.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -121,7 +121,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
             }
         });
 
-        ImageButton prev = findViewById(R.id.previous);
+        ImageButton prev = findViewById(R.id.iv_pn_prev_btn);
         prev.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
