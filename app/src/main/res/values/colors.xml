@@ -11,4 +11,25 @@
     <color name="gray">#818181</color>
     <color name="light_gray">#D3D3D3</color>
     <color name="more_light_grey">#F9F9F9</color>
+
+    <color name="colorPrimary">#FF6200EE</color>
+    <color name="colorPrimaryDark">#FFBB86FC</color>
+    <color name="colorAccent">#000000</color>
+
+    <color name="text_color">#ffffff</color>
+    <color name="color_black">#000000</color>
+    <color name="drawer_color">#335763</color>
+    <color name="light_color">#fafafa</color>
+    <color name="off_color">#dfdada</color>
+    <color name="gray_color">#9c9b9b</color>
+
+    <color name="colorPrimaryLight">#FFCCBC</color>
+    <color name="colorPrimaryText">#212121</color>
+    <color name="colorPrimaryTextTab">#212121</color>
+
+    <color name="colorSecondaryText">#757575</color>
+    <color name="colorIcon">#FFFFFF</color>
+    <color name="colorDividor">#BDBDBD</color>
+
+    <color name="transparent">#00000000</color>
 </resources>
