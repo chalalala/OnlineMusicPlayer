@@ -20,10 +20,10 @@
             android:layout_weight="1"
             android:layout_alignParentTop="true"
             android:name="vn.edu.usth.onlinemusicplayer.fragment.HomeFragment"/>
-        <fragment
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentBottom="true"
-            android:name="vn.edu.usth.onlinemusicplayer.fragment.NowPlayingBar"/>
+<!--        <fragment-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_alignParentBottom="true"-->
+<!--            android:name="vn.edu.usth.onlinemusicplayer.fragment.NowPlayingBar"/>-->
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
