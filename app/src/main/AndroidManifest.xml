@@ -9,6 +9,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
 
     <application
         android:allowBackup="true"
@@ -23,32 +24,49 @@
             android:name=".service.MediaPlayerService"
             android:enabled="true"
             android:exported="true"></service>
+        <service android:name=".service.MusicService"/>
 
         <activity android:name=".activity.SignUpActivity"></activity>
         <activity android:name=".activity.TopTracksActivity"></activity>
         <activity android:name=".activity.ArtistActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.QueueActivity" />
-        <activity android:name=".activity.SearchActivity" />
+<!--        <activity android:name=".activity.SearchActivity" />-->
         <activity android:name=".activity.MusicPlayerActivity" />
-
-<!--        <activity android:name=".activity.AudioPlayerActivity" />-->
-<!--        <activity android:name=".activity.HomeActivity">-->
+        <activity android:name=".activity.HomeActivity">
 <!--            <intent-filter tools:ignore="ExtraText">-->
 <!--                <action android:name="android.intent.action.MAIN" />-->
 <!--                <category android:name="android.intent.category.LAUNCHER" />-->
 <!--            </intent-filter>-->
-<!--        </activity>-->
+        </activity>
 
+        <activity android:name=".activity.PermitActivity">
+        </activity>
 
-        <activity android:name=".activity.HomeActivity" />
-        <activity android:name=".activity.AudioPlayerActivity">
-            <intent-filter tools:ignore="ExtraText">
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
+        <activity
+            android:name=".activity.PlayerActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+                <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
 
+        <activity
+            android:name=".activity.SettingsActivity"
+            android:configChanges="orientation"
+            android:parentActivityName=".activity.PlayerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activity.PlayerActivity"/>
+        </activity>
+        <activity
+            android:name=".activity.SearchActivity"
+            android:label="Search"
+            android:parentActivityName=".activity.PlayerActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="activity.PlayerActivity"/>
+        </activity>
     </application>
 
 </manifest>
