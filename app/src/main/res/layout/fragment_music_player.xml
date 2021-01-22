@@ -1,114 +1,194 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl_player_interface"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:weightSum="10"
-    tools:context=".fragment.MusicPlayerFragment">
+    android:background="#fff"
+    android:elevation="24dp"
+    app:layout_insetEdge="none"
+    android:paddingBottom="10dp"
+    app:behavior_peekHeight="66dp"
+    app:behavior_hideable="true"
+    app:layout_behavior="@string/bottom_sheet_behavior">
 
-    <LinearLayout
-        android:layout_width="match_parent"
+
+    <ImageView
+        android:id="@+id/iv_pn_play_btn"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:background="@drawable/ic_pause_circle"
+
+        android:elevation="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_pn_next_btn"
+        app:layout_constraintEnd_toStartOf="@+id/iv_pn_next_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/iv_pn_prev_btn"
+        app:layout_constraintTop_toTopOf="@+id/iv_pn_next_btn" />
+
+    <ImageView
+        android:id="@+id/iv_pn_prev_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:elevation="100dp"
+
+        app:layout_constraintBottom_toBottomOf="@+id/iv_pn_play_btn"
+        app:layout_constraintEnd_toStartOf="@+id/iv_pn_play_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_pn_play_btn"
+        app:srcCompat="@drawable/ic_skip_previous"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/tv_panel_song_name"
+        android:layout_width="0dp"
+        android:layout_height="30dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginTop="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@color/colorPrimaryText"
+        android:textSize="18sp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/iv_pn_action_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:hint="On the floor" />
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/iv_pn_cover_art"
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:elevation="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/iv_pn_play_btn"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tv_panel_artist_name"
+        app:layout_constraintVertical_bias="0.31"
+        app:srcCompat="@drawable/mamamoo_album"
+        tools:ignore="MissingClass" />
+
+    <!--    <ImageView-->
+    <!--        android:id="@+id/iv_pn_cover_art_shadow"-->
+    <!--        android:layout_width="0dp"-->
+    <!--        android:layout_height="0dp"-->
+    <!--        android:layout_marginBottom="8dp"-->
+    <!--        android:layout_marginTop="8dp"-->
+    <!--        android:alpha="1"-->
+    <!--        android:elevation="0dp"-->
+    <!--        android:scaleType="centerCrop"-->
+    <!--        app:layout_constraintBottom_toTopOf="@+id/sb_pn_player"-->
+    <!--        app:layout_constraintEnd_toEndOf="parent"-->
+    <!--        app:layout_constraintStart_toStartOf="parent"-->
+    <!--        app:layout_constraintTop_toTopOf="@+id/iv_pn_cover_art"-->
+    <!--        app:srcCompat="@drawable/demi" />-->
+
+    <ImageView
+        android:id="@+id/iv_pn_cover_art_shadow_white_overlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="8dp"
+        android:alpha="1"
+        android:elevation="1dp"
+        android:fadingEdge="horizontal"
+        android:fadingEdgeLength="80dp"
+        android:requiresFadingEdge="horizontal"
+        android:scaleType="fitXY"
+        app:layout_constraintBottom_toTopOf="@+id/sb_pn_player"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_pn_cover_art" />
+    <ImageView
+        android:id="@+id/iv_pn_next_btn"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginBottom="32dp"
+        android:elevation="100dp"
+        app:layout_constraintBottom_toTopOf="@+id/sb_pn_player"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/iv_pn_play_btn"
+        app:srcCompat="@drawable/ic_skip_next"
+        tools:ignore="VectorDrawableCompat" />
+
+    <TextView
+        android:id="@+id/tv_panel_artist_name"
+        android:layout_width="0dp"
+        android:layout_height="20dp"
+        android:layout_marginRight="8dp"
+        android:ellipsize="end"
+        android:lines="1"
+        android:textColor="@color/colorPrimaryText"
+        app:layout_constraintHorizontal_bias="0.505"
+        app:layout_constraintLeft_toLeftOf="@+id/tv_panel_song_name"
+        app:layout_constraintRight_toRightOf="@+id/tv_panel_song_name"
+        app:layout_constraintTop_toBottomOf="@+id/tv_panel_song_name"
+        tools:hint="Jeniffer Lopez" />
+    <SeekBar
+        android:id="@+id/sb_pn_player"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:layout_marginBottom="16dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:elevation="100dp"
+        android:max="10"
 
-        <ImageView
-            android:id="@+id/image_album"
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:layout_gravity="center"
-            android:layout_marginTop="50dp"
-            android:src="@drawable/cover_musicplayer" />
+        android:outlineProvider="none"
+        android:progress="3"
+        android:scrollIndicators="bottom"
+        android:scrollbarStyle="insideOverlay"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
 
-        <TextView
-            android:id="@+id/song_name"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="20dp"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="Song Name"
-            android:textColor="@color/black"
-            android:textSize="30sp" />
+    <ImageView
+        android:id="@+id/iv_pn_action_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginTop="8dp"
+        android:elevation="100dp"
+        android:scaleType="fitCenter"
 
-        <TextView
-            android:id="@+id/artist"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:ellipsize="marquee"
-            android:marqueeRepeatLimit="marquee_forever"
-            android:scrollHorizontally="true"
-            android:singleLine="true"
-            android:text="Artist"
-            android:textColor="@color/gray"
-            android:textSize="20sp" />
+        app:layout_constraintBottom_toBottomOf="@+id/tv_panel_artist_name"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/tv_panel_song_name"
+        app:layout_constraintVertical_bias="0.571" />
 
-        <SeekBar
-            android:id="@+id/seekBar"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="40dp" />
+    <TextView
+        android:id="@+id/tv_pn_current_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:elevation="100dp"
+        android:text="5:20"
 
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+        app:layout_constraintBottom_toTopOf="@+id/sb_pn_player"
+        app:layout_constraintStart_toStartOf="@+id/sb_pn_player"
+        android:layout_marginLeft="8dp" />
 
-            <ImageButton
-                android:id="@+id/shuffle"
-                android:layout_width="28dp"
-                android:layout_height="28dp"
-                android:layout_centerVertical="true"
-                android:layout_toLeftOf="@+id/previous"
-                android:background="@android:color/transparent"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_shuffle"
-                android:tint="@color/gray" />
+    <TextView
+        android:id="@+id/tv_pn_total_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:elevation="100dp"
+        android:text="1:20:00"
 
-            <ImageButton
-                android:id="@+id/previous"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerVertical="true"
-                android:layout_marginHorizontal="25dp"
-                android:layout_toLeftOf="@+id/play"
-                android:background="@android:color/transparent"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_skip_previous"
-                android:tint="@color/gray" />
+        app:layout_constraintBottom_toTopOf="@+id/sb_pn_player"
+        app:layout_constraintEnd_toEndOf="@+id/sb_pn_player"
+        android:layout_marginRight="8dp" />
 
-            <ImageView
-                android:id="@+id/play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerInParent="true"
-                android:layout_centerVertical="true"
-                android:layout_marginTop="4dp"
-                android:layout_toRightOf="@+id/name_song"/>
-
-            <ImageButton
-                android:id="@+id/next"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_centerVertical="true"
-                android:layout_marginHorizontal="25dp"
-                android:layout_toRightOf="@+id/play"
-                android:background="@android:color/transparent"
-                android:scaleType="fitXY"
-                android:src="@drawable/ic_skip_next"
-                android:tint="@color/gray" />
-
-            <ImageView
-                android:id="@id/heart"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@+id/next" />
-        </RelativeLayout>
-
-    </LinearLayout>
-
-</LinearLayout>
+</androidx.constraintlayout.widget.ConstraintLayout>

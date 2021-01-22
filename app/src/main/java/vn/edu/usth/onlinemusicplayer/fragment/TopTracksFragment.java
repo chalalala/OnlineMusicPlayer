@@ -1,12 +1,18 @@
 
 package vn.edu.usth.onlinemusicplayer.fragment;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.animation.Animation;
+import android.view.animation.LinearInterpolator;
+import android.view.animation.RotateAnimation;
+import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 
@@ -14,6 +20,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -64,10 +71,13 @@ public class TopTracksFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_top_tracks, container, false);
 
+        // Spinner that appears while waiting for the data
+        ProgressBar spinner = view.findViewById(R.id.spinner);
+
         // Initialize list containing track detail
         ArrayList<String> song_names = new ArrayList<String>();
         ArrayList<String> artist_names = new ArrayList<String>();
-        ArrayList<String> thumbnails = new ArrayList<String>();
+        ArrayList<Bitmap> thumbnails = new ArrayList<Bitmap>();
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
@@ -87,12 +97,32 @@ public class TopTracksFragment extends Fragment {
                                 JSONObject item = list_songs.getJSONObject(i);
                                 song_names.add(item.getString("name"));
                                 artist_names.add(item.getString("artists_names"));
-                                thumbnails.add(item.getString("thumbnail"));
+
+                                int finalI = i;
+                                Response.Listener<Bitmap> listener2 =
+                                        new Response.Listener<Bitmap>() {
+                                            @Override
+                                            public void onResponse(Bitmap response) {
+                                                thumbnails.add(response);
+                                                if (finalI == list_songs.length()-1){
+                                                    // Spinner disappear when data is ready
+                                                    spinner.setVisibility(View.GONE);
+
+                                                    ListView list = getView().findViewById(R.id.top_tracks_list);
+                                                    CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names, thumbnails);
+                                                    list.setAdapter(customAdapter);
+                                                }
+                                            }
+                                        };
+
+                                ImageRequest imageRequest = new ImageRequest(
+                                        item.getString("thumbnail"),
+                                        listener2, 50, 50, ImageView.ScaleType.CENTER,
+                                        Bitmap.Config.ARGB_8888, null);
+                                queue.add(imageRequest);
                             }
 
-                            ListView list = getView().findViewById(R.id.top_tracks_list);
-                            CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names, thumbnails);
-                            list.setAdapter(customAdapter);
+
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
