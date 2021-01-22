@@ -9,6 +9,7 @@ import android.net.Uri;
 import android.provider.MediaStore;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +60,14 @@ public class SongDataLab {
         return songs.get(r.nextInt(songs.size() - 1));
     }
 
+    public SongModel getCurrentSong(SongModel currentSong) {
+        try {
+            return songs.get(songs.indexOf(currentSong));
+        } catch (Exception e) {
+            return getRandomSong();
+        }
+    }
+
     public SongModel getNextSong(SongModel currentSong) {
         try {
             return songs.get(songs.indexOf(currentSong) + 1);
@@ -66,7 +75,6 @@ public class SongDataLab {
             return getRandomSong();
         }
     }
-
 
     public SongModel getPreviousSong(SongModel currentSong) {
         try {
@@ -78,6 +86,13 @@ public class SongDataLab {
 
     public List<SongModel> getSongs() {
         return songs;
+    }
+
+    public List<SongModel> getRandomSongs() {
+        Collections.shuffle(songs);
+        List<SongModel> randomSongs = songs.subList(0, songs.size());
+
+        return randomSongs;
     }
 
     public List<SongModel> querySongs() {

@@ -11,7 +11,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -48,6 +47,7 @@ public class MusicPlayerFragment extends MusicServiceFragment {
     private ImageView panelPlayBtn;
     private ImageView panelNextBtn;
     private ImageView panelPrevBtn;
+    private ImageView panelShuffleBtn;
 
     private BottomSheetBehavior bottomSheetBehavior;
     private ConstraintLayout panelLayout;
@@ -74,8 +74,8 @@ public class MusicPlayerFragment extends MusicServiceFragment {
         bottomSheetBehavior = BottomSheetBehavior.from(panelLayout);
 
 //        // dp to pixel
-//        int heightInPixel = Helper.dpToPx(getActivity(), 70);
-//        bottomSheetBehavior.setPeekHeight(heightInPixel);
+        int heightInPixel = Helper.dpToPx(getActivity(), 70);
+        bottomSheetBehavior.setPeekHeight(heightInPixel);
 
         currentSong = view.findViewById(R.id.tv_panel_song_name);
         currentArtist = view.findViewById(R.id.tv_panel_artist_name);
@@ -89,6 +89,7 @@ public class MusicPlayerFragment extends MusicServiceFragment {
         panelPlayBtn = view.findViewById(R.id.iv_pn_play_btn);
         panelNextBtn = view.findViewById(R.id.iv_pn_next_btn);
         panelPrevBtn = view.findViewById(R.id.iv_pn_prev_btn);
+        panelShuffleBtn = view.findViewById(R.id.iv_pn_shuffle_btn);
 
         params = (ConstraintLayout.LayoutParams) currentSong.getLayoutParams();
 
@@ -121,7 +122,6 @@ public class MusicPlayerFragment extends MusicServiceFragment {
             actionBtn.setBackgroundResource(R.drawable.ic_pause_circle);
         } else {
             actionBtn.setBackgroundResource(R.drawable.ic_play_circle);
-
         }
 
         //for the action button
@@ -184,6 +184,13 @@ public class MusicPlayerFragment extends MusicServiceFragment {
             }
         });
 
+        panelShuffleBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                musicService.playShuffle();
+            }
+        });
+
         if (musicService.isPlaying()) {
             panelPlayBtn.setBackgroundResource(R.drawable.ic_pause_circle);
         } else {
@@ -241,7 +248,6 @@ public class MusicPlayerFragment extends MusicServiceFragment {
 
             @Override
             public void onPause() {
-                //actionBtn.setBackgroundResource(R.drawable.ic_media_play);
             }
         });
     }

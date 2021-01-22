@@ -100,6 +100,14 @@ public class MusicService extends Service implements
                 playNext();
                 mNotificationManager.notify(NOTIFICATION_ID, NotificationHandler.createNotification(this, currentSong, true));
                 break;
+            case "action.replay":
+                rePlay();
+                mNotificationManager.notify(NOTIFICATION_ID, NotificationHandler.createNotification(this, currentSong, true));
+                break;
+            case "action.shuffle":
+                playShuffle();
+                mNotificationManager.notify(NOTIFICATION_ID, NotificationHandler.createNotification(this, currentSong, true));
+                break;
             case "action.stop":
                 stop();
                 stopForeground(true);
@@ -238,8 +246,20 @@ public class MusicService extends Service implements
     }
 
     @Override
+    public void replay(long songId) {
+        player.reset();
+        SongModel playSong = SongDataLab.get(this).getSong(songId);
+        replay(playSong);
+    }
+
+    @Override
     public void play(SongModel song) {
         mPlayerThread.play(song);
+    }
+
+    @Override
+    public void replay(SongModel song) {
+        mPlayerThread.replay(song);
     }
 
     @Override
@@ -306,16 +326,19 @@ public class MusicService extends Service implements
     }
 
     public void playNext() {
-//        play(currentSongPosition + 1);
         play(SongDataLab.get(this).getNextSong(currentSong));
     }
 
     public void playPrev() {
+        play(SongDataLab.get(this).getRandomSong());
+    }
 
-//        play(currentSongPosition - 1);
-
+    public void playShuffle() {
         play(SongDataLab.get(this).getPreviousSong(currentSong));
+    }
 
+    public void rePlay() {
+        replay(SongDataLab.get(this).getCurrentSong(currentSong));
     }
 
     public List<AlbumModel> getAlbums() {
@@ -328,6 +351,10 @@ public class MusicService extends Service implements
 
     public List<SongModel> getSongs() {
         return SongDataLab.get(this).getSongs();
+    }
+
+    public List<SongModel> getShuffleSongs() {
+        return SongDataLab.get(this).getRandomSongs();
     }
 
     // switch the current service to the foreground by creating the
@@ -369,6 +396,27 @@ public class MusicService extends Service implements
                             player.prepareAsync();
                             MusicService.this.callback.onTrackChange(song);
 
+                        } catch (Exception e) {
+                            Log.e(TAG, "Error playing from data source", e);
+                        }
+                    }
+                }
+            });
+        }
+
+        public void replay(final SongModel song) {
+            currentSong = song;
+
+            mHandler.post(new Runnable() {
+                @Override
+                public void run() {
+                    if (player != null) {
+                        player.reset();
+                        try {
+                            player.setDataSource(song.getData());
+                            Log.i(TAG, song.getBookmark() + "");
+                            player.prepareAsync();
+                            player.setLooping(true);
                         } catch (Exception e) {
                             Log.e(TAG, "Error playing from data source", e);
                         }
