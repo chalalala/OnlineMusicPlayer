@@ -41,6 +41,15 @@ public class HomeActivity extends AppCompatActivity {
             }
         });
 
+        TextView device_songs = findViewById(R.id.seeAllDeviceSong);
+        device_songs.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), PlayerActivity.class);
+                startActivity(intent);
+            }
+        });
+
         TextView artists = findViewById(R.id.seeAllArtist);
         artists.setOnClickListener(new View.OnClickListener(){
             @Override

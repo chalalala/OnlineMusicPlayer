@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -22,16 +23,18 @@ import androidx.fragment.app.Fragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import vn.edu.usth.onlinemusicplayer.R;
-import vn.edu.usth.onlinemusicplayer.model.Audio;
+import vn.edu.usth.onlinemusicplayer.model.SongModel;
+import vn.edu.usth.onlinemusicplayer.service.MusicService;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ArtistFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ArtistFragment extends Fragment {
+public class ArtistFragment extends MusicServiceFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,22 +72,43 @@ public class ArtistFragment extends Fragment {
         }
     }
 
+    public static final String TAG="ArtistFragment";
+
+    List<SongModel> songs;
+    private MusicService musicSrv;
+    boolean musicServiceStatus = false;
+
     @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_artist, container, false);
+        songs=new ArrayList<>();
+        if(musicServiceStatus) { initFragment(); }
+        return view;
+    }
 
-//        LinearLayout artist_layout = (LinearLayout) view.findViewById(R.id.artistfrag);
+    @Override
+    public void onServiceConnected(MusicService musicService) {
+        musicSrv = musicService;
+        musicServiceStatus=true;
+        initFragment();
+    }
+
+    @Override
+    public void onServiceDisconnected() {
+    }
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
+    public void createUI() {
+        View view = getView();
         LinearLayout column1 = (LinearLayout) view.findViewById((R.id.col1));
         LinearLayout column2 = (LinearLayout) view.findViewById((R.id.col2));
         LinearLayout column3 = (LinearLayout) view.findViewById((R.id.col3));
-
-        ArrayList<Audio> audioList = loadAudio();
-        String[] artist_name = new String[audioList.size()];
+        String[] artist_name = new String[songs.size()];
 
         for (int j=0; j<artist_name.length; j++){
-            artist_name[j] = audioList.get(j).getArtist();
+            artist_name[j] = songs.get(j).getArtistName();
         }
 //            remove duplicate artist name
         artist_name = Arrays.stream(artist_name).distinct().toArray(String[]::new);
@@ -210,38 +234,11 @@ public class ArtistFragment extends Fragment {
             row.addView(NameField);
             column3.addView(row);
         }
-
-
-        return view;
     }
 
-    private ArrayList loadAudio() {
-        ArrayList<Audio> audioList = new ArrayList<>();
-
-        ContentResolver contentResolver = getContext().getContentResolver();
-
-        Uri uri = MediaStore.Audio.Media.EXTERNAL_CONTENT_URI;
-        String selection = MediaStore.Audio.Media.IS_MUSIC + "!= 0";
-        String sortOrder = MediaStore.Audio.Media.TITLE + " ASC";
-
-        Cursor cursor = contentResolver.query(uri, null, selection, null, sortOrder);
-
-        if (cursor != null && cursor.getCount() > 0) {
-            audioList = new ArrayList<>();
-            while (cursor.moveToNext()) {
-                String data = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DATA));
-                String title = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.TITLE));
-                String album = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ALBUM));
-                String artist = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.ARTIST));
-                String duration = cursor.getString(cursor.getColumnIndex(MediaStore.Audio.Media.DURATION));
-
-                // Save to audioList
-                audioList.add(new Audio(data, title, album, artist, duration));
-            }
-        }
-        if (cursor != null) {
-            cursor.close();
-        }
-        return audioList;
+    public void initFragment() {
+        songs=musicSrv.getSongs();
+        Log.d(TAG,songs.get(0).getTitle());
+        createUI();
     }
 }
