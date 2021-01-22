@@ -168,7 +168,7 @@
         app:layout_constraintVertical_bias="0.571" />
 
     <TextView
-        android:id="@+id/tv_pn_total_time"
+        android:id="@+id/tv_pn_current_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
@@ -180,7 +180,7 @@
         android:layout_marginLeft="8dp" />
 
     <TextView
-        android:id="@+id/tv_pn_remain_time"
+        android:id="@+id/tv_pn_total_time"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"

@@ -23,9 +23,6 @@
     <color name="off_color">#dfdada</color>
     <color name="gray_color">#9c9b9b</color>
 
-    <color name="colorPrimar2">#FF5722</color>
-    <color name="colorPrimaryDar2">#E64A19</color>
-
     <color name="colorPrimaryLight">#FFCCBC</color>
     <color name="colorPrimaryText">#212121</color>
     <color name="colorPrimaryTextTab">#212121</color>
@@ -34,7 +31,5 @@
     <color name="colorIcon">#FFFFFF</color>
     <color name="colorDividor">#BDBDBD</color>
 
-    <color name="background_dark">#ffb8860b</color>
-    <color name="background_light">#ffd2b48c</color>
     <color name="transparent">#00000000</color>
 </resources>

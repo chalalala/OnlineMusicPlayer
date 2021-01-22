@@ -81,54 +81,18 @@ public class PlayerActivity extends MusicServiceActivity {
         SectionsPageAdapter adapter = new SectionsPageAdapter(getSupportFragmentManager());
         SongListFragment songListFragment;
         AlbumListFragment albumListFragment;
-        PlayListFragment playListFragment;
         ArtistListFragment artistListFragment;
         songListFragment = new SongListFragment();
         albumListFragment = new AlbumListFragment();
         artistListFragment = new ArtistListFragment();
-        playListFragment = new PlayListFragment();
         adapter.addFragment(songListFragment, "All Songs");
         adapter.addFragment(albumListFragment, "Albums");
         adapter.addFragment(artistListFragment, "Artist");
-        adapter.addFragment(playListFragment, "PlayList");
         viewPager.setAdapter(adapter);
     }
 
     public Fragment findWithId(int id) {
         return getSupportFragmentManager().findFragmentById(id);
-    }
-
-
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        // Handle action bar item clicks here. The action bar will
-        // automatically handle clicks on the Home/Up button, so long
-        // as you specify a parent activity in AndroidManifest.xml.
-        int id = item.getItemId();
-
-        //noinspection SimplifiableIfStatement
-        if (id == R.id.action_settings) {
-            Intent k = new Intent(this, SettingsActivity.class);
-            startActivity(k);
-            return true;
-        } else if (id == R.id.searchSongItem) {
-            Intent search = new Intent(this, SearchActivity.class);
-            startActivity(search);
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
-    public void onConfigurationChanged(Configuration newConfig) {
-        super.onConfigurationChanged(newConfig);
     }
 
 }

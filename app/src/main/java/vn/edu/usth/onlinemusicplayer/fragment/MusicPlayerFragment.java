@@ -40,7 +40,7 @@ public class MusicPlayerFragment extends MusicServiceFragment {
     private TextView currentSong;
     private TextView currentArtist;
     private TextView totalTime;
-    private TextView remainingTime;
+    private TextView currentTime;
 
     private CircleImageView currentCoverArt;
 //    private ImageView currentCoverArtShadow;
@@ -84,7 +84,7 @@ public class MusicPlayerFragment extends MusicServiceFragment {
         actionBtn = view.findViewById(R.id.iv_pn_action_btn);
         seekBar = view.findViewById(R.id.sb_pn_player);
         totalTime = view.findViewById(R.id.tv_pn_total_time);
-        remainingTime = view.findViewById(R.id.tv_pn_remain_time);
+        currentTime = view.findViewById(R.id.tv_pn_current_time);
 
         panelPlayBtn = view.findViewById(R.id.iv_pn_play_btn);
         panelNextBtn = view.findViewById(R.id.iv_pn_next_btn);
@@ -255,13 +255,13 @@ public class MusicPlayerFragment extends MusicServiceFragment {
                     Thread.sleep(1000);
                     if (musicServiceStatus) {
                         final String strTotalTime = Helper.toTimeFormat(musicService.getDuration());
-                        final String strRemainTIme = Helper.toTimeFormat(musicService.getDuration() - musicService.getCurrentStreamPosition());
+                        final String strCurrTime = Helper.toTimeFormat(musicService.getCurrentStreamPosition());
                         getActivity().runOnUiThread(new Runnable() {
                             @Override
                             public void run() {
                                 seekBar.setProgress(musicService.getCurrentStreamPosition() / 1000);
                                 totalTime.setText(strTotalTime);
-                                remainingTime.setText(strRemainTIme);
+                                currentTime.setText(strCurrTime);
 
                             }
                         });
