@@ -18,6 +18,7 @@ public class SongCursorWrapper extends CursorWrapper {
         String composer = getString(getColumnIndex(MediaStore.Audio.Media.COMPOSER));
         String albumName = getString(getColumnIndex(MediaStore.Audio.Media.ALBUM));
         String data = getString(getColumnIndex(MediaStore.Audio.Media.DATA));
+        String path = getString(getColumnIndex(MediaStore.Audio.Media.RELATIVE_PATH));
         int trackNumber = getInt(getColumnIndex(MediaStore.Audio.Media.TRACK));
         int year = getInt(getColumnIndex(MediaStore.Audio.Media.YEAR));
         long duration = getLong(getColumnIndex(MediaStore.Audio.Media.DURATION));
@@ -26,6 +27,6 @@ public class SongCursorWrapper extends CursorWrapper {
         int albumId = getInt(getColumnIndex(MediaStore.Audio.Media.ALBUM_ID));
         int artistId = getInt(getColumnIndex(MediaStore.Audio.Media.ARTIST_ID));
         long bookmark = getLong(getColumnIndex(MediaStore.Audio.Media.BOOKMARK));
-        return new SongModel(id,title,artistName,composer,albumName,"",data,trackNumber,year,duration, dateModified,dateAdded,albumId,artistId,bookmark);
+        return new SongModel(id,title,artistName,composer,albumName,"",data,trackNumber,year,duration, dateModified,dateAdded,albumId,artistId,bookmark, path);
     };
 }

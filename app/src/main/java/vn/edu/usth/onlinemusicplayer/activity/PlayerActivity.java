@@ -20,7 +20,6 @@ import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.adapter.SectionsPageAdapter;
 import vn.edu.usth.onlinemusicplayer.fragment.AlbumListFragment;
 import vn.edu.usth.onlinemusicplayer.fragment.ArtistListFragment;
-import vn.edu.usth.onlinemusicplayer.fragment.PlayListFragment;
 import vn.edu.usth.onlinemusicplayer.fragment.SongListFragment;
 import vn.edu.usth.onlinemusicplayer.fragment.MusicPlayerFragment;
 

@@ -17,10 +17,11 @@ public class SongModel {
     private String albumName;
     private String albumArt;
     private String data;
+    private String path;
 
 
     public static SongModel EMPTY() {
-        return new SongModel(0,"","","","","","",0,0,0,0,0,0,0,0);
+        return new SongModel(0,"","","","","","",0,0,0,0,0,0,0,0,"");
     }
 
     public void setAlbumArt(String albumArt) {
@@ -31,7 +32,7 @@ public class SongModel {
                      String composer, String albumName, String albumArt,
                      String data, int trackNumber, int year, long duration,
                      long dateModified, long dateAdded, int albumId, int artistId,
-                     long bookmark) {
+                     long bookmark, String path) {
         this.id = id;
         this.title = title;
         this.artistName = artistName;
@@ -47,6 +48,10 @@ public class SongModel {
         this.albumId = albumId;
         this.artistId = artistId;
         this.bookmark = bookmark;
+        this.path = path;
+    }
+    public String getPath() {
+        return path;
     }
 
     public int getId() {
