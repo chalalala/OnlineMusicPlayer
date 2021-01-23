@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -77,6 +78,7 @@ public class SearchSongFragment extends Fragment {
 
         // Receive query from parent fragment
         String query = getArguments().getString("query");
+        Toast.makeText(getContext(), query, Toast.LENGTH_LONG);
 
         // Spinner that appears while waiting for the data
         ProgressBar spinner = view.findViewById(R.id.spinner);
@@ -88,7 +90,7 @@ public class SearchSongFragment extends Fragment {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url = "http://ac.mp3.zing.vn/complete?type=artist,song,key,code&query=" + query;
+        String url = "http://ac.mp3.zing.vn/complete?type=artist,song,key,code&query=" + "demi";
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -103,30 +105,7 @@ public class SearchSongFragment extends Fragment {
                             for (int i = 0; i < list_songs.length(); i++) {
                                 JSONObject item = list_songs.getJSONObject(i);
                                 song_names.add(item.getString("name"));
-                                artist_names.add(item.getString("artists_names"));
-
-                                int finalI = i;
-                                Response.Listener<Bitmap> listener2 =
-                                        new Response.Listener<Bitmap>() {
-                                            @Override
-                                            public void onResponse(Bitmap response) {
-                                                thumbnails.add(response);
-                                                if (finalI == list_songs.length()-1){
-                                                    // Spinner disappear when data is ready
-                                                    spinner.setVisibility(View.GONE);
-
-                                                    ListView list = getView().findViewById(R.id.top_tracks_list);
-                                                    CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names, thumbnails);
-                                                    list.setAdapter(customAdapter);
-                                                }
-                                            }
-                                        };
-
-                                ImageRequest imageRequest = new ImageRequest(
-                                        item.getString("thumbnail"),
-                                        listener2, 50, 50, ImageView.ScaleType.CENTER,
-                                        Bitmap.Config.ARGB_8888, null);
-                                queue.add(imageRequest);
+                                artist_names.add(item.getString("artist"));
                             }
 
 
