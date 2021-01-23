@@ -1,0 +1,375 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="20dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    tools:context=".fragment.UpdatedHomeFragment">
+
+    <SearchView
+        android:id="@+id/searchView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_gravity="center"
+        android:layout_marginBottom="20dp"
+        android:background="@drawable/bg_white_rounded"
+        android:backgroundTint="@color/more_light_grey"
+        android:iconifiedByDefault="false"
+        android:padding="2dp"
+        android:queryBackground="@android:color/transparent"
+        android:queryHint="Search" />
+
+    <TextView
+        android:id="@+id/top_song"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/searchView"
+        android:text="Top Tracks"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+
+        android:id="@+id/seeAllSong"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/top_song"
+        android:layout_alignParentRight="true"
+        android:text="See All" />
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/top_song"
+        android:id="@+id/first_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/first_top"/>
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/top_song"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/second_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/second_top" />
+    </androidx.cardview.widget.CardView>
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/seeAllSong"
+        android:layout_alignParentRight="true"
+        android:id="@+id/third_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/third_top" />
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/first_border"
+        android:id="@+id/top_first_name" />
+    <TextView
+        android:layout_width="100dp"
+        android:id="@+id/first_top_artist"
+        android:maxLines="1"
+        android:layout_marginBottom="8dp"
+        android:ellipsize="end"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/top_first_name"
+        android:textSize="10sp"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/second_border"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/top_second_name"
+     />
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/second_top_artist"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_marginBottom="8dp"
+        android:layout_below="@+id/top_first_name"
+        android:layout_centerHorizontal="true"
+        android:textSize="10sp"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/first_border"
+        android:layout_alignParentRight="true"
+        android:id="@+id/top_third_name"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:id="@+id/third_top_artist"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/top_first_name"
+        android:textSize="10sp"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/third_top_artist"
+        android:id="@+id/fourth_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fourth_top" />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/third_top_artist"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/fifth_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fifth_top" />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/third_top_artist"
+        android:layout_alignParentRight="true"
+        android:id="@+id/sixth_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/sixth_top" />
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/fourth_border"
+        android:id="@+id/top_fourth_name"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/fourth_border"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/top_fifth_name"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/fourth_border"
+        android:layout_alignParentRight="true"
+        android:id="@+id/top_sixth_name"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:id="@+id/fourth_top_artist"
+        android:layout_below="@+id/top_fourth_name"
+        android:textSize="10sp"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:id="@+id/fifth_top_artist"
+        android:layout_below="@+id/top_fourth_name"
+        android:layout_centerHorizontal="true"
+        android:textSize="10sp"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:id="@+id/sixth_top_artist"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/top_fourth_name"
+        android:textSize="10sp"/>
+
+    <TextView
+        android:id="@+id/Artist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/fourth_top_artist"
+        android:text="Artists"
+        android:layout_marginTop="10dp"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+    <TextView
+        android:id="@+id/seeAllArtist"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@+id/Artist"
+        android:layout_alignParentRight="true"
+        android:text="See All" />
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/Artist"
+        android:id="@+id/first_artist_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/first_artist"/>
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/Artist"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/second_artist_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/second_artist" />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/Artist"
+        android:layout_alignParentRight="true"
+        android:id="@+id/third_artist_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/third_artist"/>
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_marginBottom="8dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/first_artist_border"
+        android:id="@+id/first_artist_name"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/first_artist_border"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/second_artist_name"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/first_artist_border"
+        android:id="@+id/third_artist_name"/>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/second_artist_name"
+        android:id="@+id/fourth_artist_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fourth_artist" />
+
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/second_artist_name"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/fifth_artist_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/fifth_artist" />
+    </androidx.cardview.widget.CardView>
+    <androidx.cardview.widget.CardView
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_below="@+id/second_artist_name"
+        android:layout_alignParentRight="true"
+        android:id="@+id/sixth_artist_border"
+        android:elevation="10dp"
+        app:cardCornerRadius="8dp">
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/sixth_artist"/>
+    </androidx.cardview.widget.CardView>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/sixth_artist_border"
+        android:id="@+id/fourth_artist_name"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/sixth_artist_border"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/fifth_artist_name"/>
+    <TextView
+        android:layout_width="100dp"
+        android:layout_height="wrap_content"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:layout_below="@+id/sixth_artist_border"
+        android:layout_alignParentRight="true"
+        android:id="@+id/sixth_artist_name"/>
+</RelativeLayout>
