@@ -4,21 +4,25 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".QueueActivity">
+    tools:context=".activity.QueueActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:orientation="vertical"
         android:id="@+id/container">
         <fragment
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:name="vn.edu.usth.onlinemusicplayer.QueueFragment"/>
+            android:name="vn.edu.usth.onlinemusicplayer.menu.CustomActionBarFragment"/>
         <fragment
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:name="vn.edu.usth.onlinemusicplayer.NowPlayingBar"/>
+            android:name="vn.edu.usth.onlinemusicplayer.fragment.QueueFragment"/>
+        <fragment
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:name="vn.edu.usth.onlinemusicplayer.fragment.NowPlayingBar"/>
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/more_light_grey"
-    tools:context=".NowPlayingBar">
+    tools:context=".fragment.NowPlayingBar">
 
     <RelativeLayout
         android:layout_width="match_parent"
