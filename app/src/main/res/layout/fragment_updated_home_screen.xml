@@ -23,6 +23,7 @@
 
     <TextView
         android:id="@+id/top_song"
+        android:layout_marginBottom="15dp"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/searchView"
@@ -39,12 +40,12 @@
         android:text="See All" />
 
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/top_song"
         android:id="@+id/first_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -53,13 +54,13 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/top_song"
         android:layout_centerHorizontal="true"
         android:id="@+id/second_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -68,13 +69,13 @@
     </androidx.cardview.widget.CardView>
 
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_below="@+id/seeAllSong"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
+        android:layout_below="@+id/top_song"
         android:layout_alignParentRight="true"
         android:id="@+id/third_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -135,12 +136,12 @@
         android:layout_below="@+id/top_first_name"
         android:textSize="10sp"/>
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/third_top_artist"
         android:id="@+id/fourth_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -148,13 +149,13 @@
             android:id="@+id/fourth_top" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/third_top_artist"
         android:layout_centerHorizontal="true"
         android:id="@+id/fifth_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -162,13 +163,13 @@
             android:id="@+id/fifth_top" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/third_top_artist"
         android:layout_alignParentRight="true"
         android:id="@+id/sixth_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -232,6 +233,7 @@
         android:layout_below="@id/fourth_top_artist"
         android:text="Artists"
         android:layout_marginTop="10dp"
+        android:layout_marginBottom="15dp"
         android:textSize="20sp"
         android:textStyle="bold" />
     <TextView
@@ -242,12 +244,12 @@
         android:layout_alignParentRight="true"
         android:text="See All" />
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/Artist"
         android:id="@+id/first_artist_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -255,13 +257,13 @@
             android:id="@+id/first_artist"/>
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/Artist"
         android:layout_centerHorizontal="true"
         android:id="@+id/second_artist_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -269,13 +271,13 @@
             android:id="@+id/second_artist" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/Artist"
         android:layout_alignParentRight="true"
         android:id="@+id/third_artist_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -309,12 +311,12 @@
         android:layout_below="@+id/first_artist_border"
         android:id="@+id/third_artist_name"/>
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/second_artist_name"
         android:id="@+id/fourth_artist_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -322,13 +324,13 @@
 
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/second_artist_name"
         android:layout_centerHorizontal="true"
         android:id="@+id/fifth_artist_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -336,13 +338,13 @@
             android:id="@+id/fifth_artist" />
     </androidx.cardview.widget.CardView>
     <androidx.cardview.widget.CardView
-        android:layout_width="100dp"
-        android:layout_height="100dp"
+        android:layout_width="95dp"
+        android:layout_height="95dp"
         android:layout_below="@+id/second_artist_name"
         android:layout_alignParentRight="true"
         android:id="@+id/sixth_artist_border"
         android:elevation="10dp"
-        app:cardCornerRadius="8dp">
+        app:cardCornerRadius="30dp">
 
         <ImageView
             android:layout_width="match_parent"
@@ -380,7 +382,7 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your Device's Songs"
+            android:text="Local Song"
             android:layout_alignParentLeft="true"
             android:id="@+id/genre_text"
             android:textSize="20sp"
