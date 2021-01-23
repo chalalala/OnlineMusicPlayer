@@ -21,12 +21,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineMusicPlayer"
         android:usesCleartextTraffic="true">
+
         <activity android:name=".activity.ArtistSongsActivity"></activity>
 
-        <service
-            android:name=".service.MediaPlayerService"
-            android:enabled="true"
-            android:exported="true"></service>
         <service android:name=".service.MusicService"/>
 
 
@@ -36,7 +33,6 @@
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.QueueActivity" />
         <activity android:name=".activity.SearchActivity" />
-        <activity android:name=".activity.MusicPlayerActivity" />
         <activity android:name=".activity.HomeActivity">
             <intent-filter tools:ignore="ExtraText">
                 <action android:name="android.intent.action.MAIN" />
