@@ -1,5 +1,6 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.activity.ArtistSongsActivity;
 import vn.edu.usth.onlinemusicplayer.model.SongModel;
 import vn.edu.usth.onlinemusicplayer.service.MusicService;
 
@@ -92,6 +94,34 @@ public class HomeFragment extends MusicServiceFragment {
             device_song_names[i].setText(songs.get(i).getTitle());
             device_artists[i].setText(songs.get(i).getArtistName());
         }
+
+        // handle button click to artists' songs
+        ImageView img1 = view.findViewById(R.id.artist_first);
+        ImageView img2 = view.findViewById(R.id.artist_second);
+        ImageView img3 = view.findViewById(R.id.artist_third);
+        img1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        img2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        img3.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+                startActivity(intent);
+            }
+        });
 
     }
 

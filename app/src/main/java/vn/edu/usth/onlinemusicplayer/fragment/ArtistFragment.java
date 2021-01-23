@@ -1,6 +1,7 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -26,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.activity.ArtistSongsActivity;
 import vn.edu.usth.onlinemusicplayer.model.SongModel;
 import vn.edu.usth.onlinemusicplayer.service.MusicService;
 
@@ -88,6 +90,7 @@ public class ArtistFragment extends MusicServiceFragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onServiceConnected(MusicService musicService) {
         musicSrv = musicService;
@@ -145,6 +148,15 @@ public class ArtistFragment extends MusicServiceFragment {
             img.setLayoutParams(img_params);
             NameField.addView(img);
 
+            // handle button click
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+                    startActivity(intent);
+                }
+            });
+
             // Artist
             TextView artist = new TextView(this.getContext());
             artist.setText(artist_name[i]);
@@ -184,6 +196,15 @@ public class ArtistFragment extends MusicServiceFragment {
             img.setImageResource(R.drawable.karaoke);
             img.setLayoutParams(img_params);
             NameField.addView(img);
+
+            // handle button click
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+                    startActivity(intent);
+                }
+            });
 
             // Artist
             TextView artist = new TextView(this.getContext());
@@ -225,6 +246,15 @@ public class ArtistFragment extends MusicServiceFragment {
             img.setLayoutParams(img_params);
             NameField.addView(img);
 
+            // handle button click
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+                    startActivity(intent);
+                }
+            });
+
             // Artist
             TextView artist = new TextView(this.getContext());
             artist.setText(artist_name[i]);
@@ -236,6 +266,7 @@ public class ArtistFragment extends MusicServiceFragment {
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void initFragment() {
         songs=musicSrv.getSongs();
         Log.d(TAG,songs.get(0).getTitle());
