@@ -73,5 +73,20 @@ public class SearchResultsFragment extends Fragment {
         // TabLayout
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab);
         tabLayout.setupWithViewPager(pager);
+
+        // Receive query from Activity
+        String query = getArguments().getString("query");
+
+        // Pass query to child fragment
+        Bundle b = new Bundle();
+        b.putString("query", query);
+
+        SearchSongFragment fragment1 = new SearchSongFragment();
+        SearchArtistFragment fragment2 = new SearchArtistFragment();
+        SearchAlbumFragment fragment3 = new SearchAlbumFragment();
+
+        fragment1.setArguments(b);
+        fragment2.setArguments(b);
+        fragment3.setArguments(b);
     }
 }
