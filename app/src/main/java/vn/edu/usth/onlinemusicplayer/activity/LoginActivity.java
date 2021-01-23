@@ -17,7 +17,6 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-import vn.edu.usth.onlinemusicplayer.MusicPlayerApplication;
 import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.menu.CustomActionBarFragment;
 
@@ -50,12 +49,6 @@ public class LoginActivity extends AppCompatActivity {
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
-
-        // Check if user is signed in (non-null) and update UI accordingly.
-        FirebaseUser currentUser = mAuth.getCurrentUser();
-//        if (currentUser != null){
-//            ((MusicPlayerApplication) this.getApplication()).setCurrentUser(currentUser);
-//        }
     }
 
     @Override
@@ -81,6 +74,7 @@ public class LoginActivity extends AppCompatActivity {
                             Log.d(TAG, "signInWithEmail:success");
                             Toast.makeText(getApplicationContext(), "Authentication succeed.",
                                     Toast.LENGTH_SHORT).show();;
+
                             FirebaseUser user = mAuth.getCurrentUser();
                             finish();
                         } else {
@@ -91,6 +85,5 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
-//        ((MusicPlayerApplication) this.getApplication()).setCurrentUser(mAuth.getCurrentUser());
     }
 }

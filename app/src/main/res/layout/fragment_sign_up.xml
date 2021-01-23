@@ -39,6 +39,7 @@
                 android:textSize="17dp"
                 android:background="@android:color/transparent"
                 android:hint="Username"
+                android:id="@+id/username"
                 />
         </LinearLayout>
     <LinearLayout
