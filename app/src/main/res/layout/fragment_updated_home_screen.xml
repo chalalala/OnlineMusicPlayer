@@ -373,6 +373,7 @@
         android:layout_alignParentRight="true"
         android:id="@+id/sixth_artist_name"/>
     <RelativeLayout
+        android:layout_below="@id/sixth_artist_name"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
