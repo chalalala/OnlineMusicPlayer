@@ -106,10 +106,13 @@ public class SearchSongFragment extends Fragment {
                                 thumbnails.add(BitmapFactory.decodeResource(getResources(),
                                         R.drawable.cover_musicplayer));
                             }
-                            ListView list = view.findViewById(R.id.search_song);
-                            CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names, thumbnails);
-                            list.setAdapter(customAdapter);
-                            spinner.setVisibility(View.GONE);
+                            try {
+                                ListView list = view.findViewById(R.id.search_song);
+                                CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names, thumbnails);
+                                list.setAdapter(customAdapter);
+                                spinner.setVisibility(View.GONE);
+                            } catch (Exception e) {
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
