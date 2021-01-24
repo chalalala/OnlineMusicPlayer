@@ -54,7 +54,6 @@ public class FavoritesOperations {
         ContentValues values = new ContentValues();
         values.put(FavoritesDBHandler.TITLE, songsList.getTitle());
         values.put(FavoritesDBHandler.ARTISTNAME, songsList.getArtistName());
-        values.put(FavoritesDBHandler.PATH, songsList.getPath());
         values.put(FavoritesDBHandler.COMPOSER, songsList.getComposer());
         values.put(FavoritesDBHandler.ALBUMNAME, songsList.getAlbumName());
         values.put(FavoritesDBHandler.ALBUMART, songsList.getAlbumArt());
@@ -93,8 +92,7 @@ public class FavoritesOperations {
                         , cursor.getLong(cursor.getColumnIndex(FavoritesDBHandler.DATEADDED))
                         , cursor.getInt(cursor.getColumnIndex(FavoritesDBHandler.ALBUMID))
                         , cursor.getInt(cursor.getColumnIndex(FavoritesDBHandler.ARTISTID))
-                        , cursor.getLong(cursor.getColumnIndex(FavoritesDBHandler.BOOKMARK))
-                        , cursor.getString(cursor.getColumnIndex(FavoritesDBHandler.PATH)));
+                        , cursor.getLong(cursor.getColumnIndex(FavoritesDBHandler.BOOKMARK)));
                 favSongs.add(song);
             }
         }
@@ -105,7 +103,7 @@ public class FavoritesOperations {
     public void removeSong(String songPath) {
         open();
         String whereClause =
-                FavoritesDBHandler.PATH + "=?";
+                FavoritesDBHandler.DATA + "=?";
         String[] whereArgs = new String[]{songPath};
 
         database.delete(FavoritesDBHandler.TABLE_SONGS, whereClause, whereArgs);

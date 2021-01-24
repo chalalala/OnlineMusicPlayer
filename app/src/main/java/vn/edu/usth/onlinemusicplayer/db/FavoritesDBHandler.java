@@ -12,7 +12,6 @@ public class FavoritesDBHandler extends SQLiteOpenHelper {
     public static final String TABLE_SONGS           = "favorites";
     public static final String _ID                   = "songID";
     public static final String TITLE                 = "title";
-    public static final String PATH                  = "songpath";
     public static final String COMPOSER              = "composer";
     public static final String ARTISTNAME            = "artistName";
     public static final String ALBUMNAME             = "albumName";
@@ -29,7 +28,12 @@ public class FavoritesDBHandler extends SQLiteOpenHelper {
 
     private static final String TABLE_CREATE = "CREATE TABLE " + TABLE_SONGS + " (" + _ID
             + " INTEGER, " + TITLE + " TEXT, " + ARTISTNAME
-            + " TEXT, " + PATH + " TEXT PRIMARY KEY " + ")";
+            + " TEXT, " + COMPOSER + " TEXT, " + ALBUMNAME
+            + " TEXT, " + ALBUMART + " TEXT, " + TRACKNUMBER
+            + " INTEGER, " + YEAR + " INTEGER, " + ALBUMID
+            + " INTEGER, " + DURATION + " INTEGER, " + DATEMODIFIED
+            + " INTEGER, " + DATEADDED + " INTEGER, " + BOOKMARK
+            + " INTEGER, " +  DATA + " TEXT PRIMARY KEY " + ")";
 
     public FavoritesDBHandler(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
