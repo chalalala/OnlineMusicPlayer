@@ -14,6 +14,7 @@ import com.google.firebase.auth.FirebaseUser;
 
 import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.activity.LoginActivity;
+import vn.edu.usth.onlinemusicplayer.activity.ProfileActivity;
 
 public class HomeActionBarFragment extends Fragment {
     private FirebaseAuth mAuth;
@@ -56,25 +57,38 @@ public class HomeActionBarFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home_action_bar, container, false);
 
-        TextView user = view.findViewById(R.id.username);
-
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
+
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+
+        TextView user = getView().findViewById(R.id.username);
 
         // Check if logged in
         FirebaseUser currentUser = mAuth.getCurrentUser();
         if (currentUser!=null){
             user.setText(currentUser.getDisplayName());
+            user.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), ProfileActivity.class);
+                    startActivity(intent);
+                }
+            });
         }
-
-        user.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        return view;
+        else{
+            user.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(getContext(), LoginActivity.class);
+                    startActivity(intent);
+                }
+            });
+        }
     }
 }
