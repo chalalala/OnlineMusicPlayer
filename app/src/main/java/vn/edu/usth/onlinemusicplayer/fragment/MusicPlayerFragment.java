@@ -12,7 +12,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.SeekBar;
 import android.widget.TextView;
 
@@ -26,7 +25,6 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import de.hdodenhof.circleimageview.CircleImageView;
-import jp.wasabeef.blurry.Blurry;
 import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.interfaces.PlayerInterface;
 import vn.edu.usth.onlinemusicplayer.model.SongModel;
