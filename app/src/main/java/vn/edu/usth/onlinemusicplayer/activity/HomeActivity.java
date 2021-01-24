@@ -24,7 +24,7 @@ public class HomeActivity extends AppCompatActivity {
         searchbox.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
-                Toast.makeText(getApplicationContext(), query, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getApplicationContext(), query, Toast.LENGTH_LONG).show();
                 Intent intent = new Intent(getApplicationContext(), SearchActivity.class);
                 intent.putExtra("query", query);
                 startActivity(intent);

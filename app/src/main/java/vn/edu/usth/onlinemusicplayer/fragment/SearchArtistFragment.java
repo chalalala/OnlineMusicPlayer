@@ -74,10 +74,10 @@ public class SearchArtistFragment extends Fragment {
         // Initialize list containing track detail
         ArrayList<String> artist_names = new ArrayList<String>();
         ArrayList<Bitmap> thumbnails = new ArrayList<Bitmap>();
-
+//        Toast.makeText(getContext(), query, Toast.LENGTH_LONG).show();
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url = "http://ac.mp3.zing.vn/complete?type=artist,song,key,code&query=" + query;
+        String url = "http://ac.mp3.zing.vn/complete?type=artist&query=" + query;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -106,7 +106,7 @@ public class SearchArtistFragment extends Fragment {
                                                 thumbnails.add(response);
                                                 if (finalI == list_artists.length() - 1) {
                                                     try {
-                                                        ListView list = view.findViewById(R.id.top_tracks_list);
+                                                        ListView list = view.findViewById(R.id.search_song);
                                                         ArtistGridViewAdapter artistAdapter = new ArtistGridViewAdapter(getContext(), artist_names, thumbnails);
                                                         list.setAdapter(artistAdapter);
 
@@ -123,13 +123,6 @@ public class SearchArtistFragment extends Fragment {
                                         Bitmap.Config.ARGB_8888, null);
                                 queue.add(imageRequest);
                             }
-//                            try {
-//                                ListView list = view.findViewById(R.id.search_song);
-//                                ArtistGridViewAdapter artistAdapter = new ArtistGridViewAdapter(getContext(), artist_names, thumbnails);
-//                                list.setAdapter(artistAdapter);
-//                                spinner.setVisibility(View.GONE);
-//                            } catch (Exception e) {
-//                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
