@@ -98,17 +98,7 @@ public class TestArtistFragment extends Fragment {
         // once, should be performed once per app instance
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
         // get 10 artist for test
-//        for (int i=1; i<=10; i++){
-//        String url = "https://api.deezer.com/artist/1";
-//        String url2 = "https://api.deezer.com/artist/2";
-//        String url3 = "https://api.deezer.com/artist/3";
-//        String url4 = "https://api.deezer.com/artist/4";
-//        String url5 = "https://api.deezer.com/artist/5";
-//        String url6 = "https://api.deezer.com/artist/6";
-//        String url7 = "https://api.deezer.com/artist/7";
-//        String url8 = "https://api.deezer.com/artist/8";
-//        String url9 = "https://api.deezer.com/artist/9";
-//        String url10 = "https://api.deezer.com/artist/10";
+
 //
 //            StringRequest stringRequest1 = new StringRequest(Request.Method.GET,url,
 //                    new Response.Listener<String>() {
@@ -449,20 +439,60 @@ public class TestArtistFragment extends Fragment {
 //                        Toast.makeText(getContext(), "Some error occur", Toast.LENGTH_SHORT).show();
 //                    }
 //                });
-//// go!
-//        queue.add(stringRequest1);
-//        queue.add(stringRequest2);
-//        queue.add(stringRequest3);
-//        queue.add(stringRequest4);
-//        queue.add(stringRequest5);
-//        queue.add(stringRequest6);
-//        queue.add(stringRequest7);
-//        queue.add(stringRequest8);
-//        queue.add(stringRequest9);
-//        queue.add(stringRequest10);
+
 
         String url = "https://api.deezer.com/artist/1";
+        String url2 = "https://api.deezer.com/artist/2";
+        String url3 = "https://api.deezer.com/artist/3";
+        String url4 = "https://api.deezer.com/artist/4";
+        String url5 = "https://api.deezer.com/artist/5";
+//        String url6 = "https://api.deezer.com/artist/6";
+//        String url7 = "https://api.deezer.com/artist/7";
+//        String url8 = "https://api.deezer.com/artist/8";
+//        String url9 = "https://api.deezer.com/artist/9";
+//        String url10 = "https://api.deezer.com/artist/10";
+
         StringRequest stringRequest = new StringRequest(Request.Method.GET,url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            artist.add(obj.getString("name"));
+
+                            Response.Listener<Bitmap> bitmapListener = new Response.Listener<Bitmap>() {
+                                @Override
+                                public void onResponse(Bitmap response) {
+                                    images.add(response);
+                                        try {
+                                            GridView gridView = getView().findViewById(R.id.artist_grid);
+                                            ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist,images);
+                                            gridView.setAdapter(artistGridViewAdapter);
+                                        } catch (Exception e) {
+                                        }
+                                    }
+
+                                };
+                            ImageRequest imageRequest = new ImageRequest(obj.getString("picture_medium"),bitmapListener,
+                                    0,0, ImageView.ScaleType.CENTER,Bitmap.Config.ARGB_8888,null);
+                            queue.add(imageRequest);
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "Some error occur", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        StringRequest stringRequest2 = new StringRequest(Request.Method.GET,url2,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
@@ -477,19 +507,149 @@ public class TestArtistFragment extends Fragment {
 
 
 
-                                        try {
-                                            GridView gridView = getView().findViewById(R.id.artist_grid);
-                                            ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist,images)
-                                            gridView.setAdapter(artistGridViewAdapter);
-                                        } catch (Exception e) {
-                                        }
+                                    try {
+                                        GridView gridView = getView().findViewById(R.id.artist_grid);
+                                        ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist,images);
+                                        gridView.setAdapter(artistGridViewAdapter);
+                                    } catch (Exception e) {
                                     }
-
                                 }
+
                             };
                             ImageRequest imageRequest = new ImageRequest(obj.getString("picture_medium"),bitmapListener,
                                     0,0, ImageView.ScaleType.CENTER,Bitmap.Config.ARGB_8888,null);
                             queue.add(imageRequest);
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "Some error occur", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        StringRequest stringRequest3 = new StringRequest(Request.Method.GET,url3,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            artist.add(obj.getString("name"));
+
+                            Response.Listener<Bitmap> bitmapListener = new Response.Listener<Bitmap>() {
+                                @Override
+                                public void onResponse(Bitmap response) {
+                                    images.add(response);
+
+
+
+                                    try {
+                                        GridView gridView = getView().findViewById(R.id.artist_grid);
+                                        ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist,images);
+                                        gridView.setAdapter(artistGridViewAdapter);
+                                    } catch (Exception e) {
+                                    }
+                                }
+
+                            };
+                            ImageRequest imageRequest = new ImageRequest(obj.getString("picture_medium"),bitmapListener,
+                                    0,0, ImageView.ScaleType.CENTER,Bitmap.Config.ARGB_8888,null);
+                            queue.add(imageRequest);
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "Some error occur", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        StringRequest stringRequest4 = new StringRequest(Request.Method.GET,url4,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            artist.add(obj.getString("name"));
+
+                            Response.Listener<Bitmap> bitmapListener = new Response.Listener<Bitmap>() {
+                                @Override
+                                public void onResponse(Bitmap response) {
+                                    images.add(response);
+
+
+
+                                    try {
+                                        GridView gridView = getView().findViewById(R.id.artist_grid);
+                                        ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist,images);
+                                        gridView.setAdapter(artistGridViewAdapter);
+                                    } catch (Exception e) {
+                                    }
+                                }
+
+                            };
+                            ImageRequest imageRequest = new ImageRequest(obj.getString("picture_medium"),bitmapListener,
+                                    0,0, ImageView.ScaleType.CENTER,Bitmap.Config.ARGB_8888,null);
+                            queue.add(imageRequest);
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "Some error occur", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        StringRequest stringRequest5 = new StringRequest(Request.Method.GET,url5,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject obj = new JSONObject(response);
+                            artist.add(obj.getString("name"));
+
+                            Response.Listener<Bitmap> bitmapListener = new Response.Listener<Bitmap>() {
+                                @Override
+                                public void onResponse(Bitmap response) {
+                                    images.add(response);
+
+
+
+                                    try {
+                                        GridView gridView = getView().findViewById(R.id.artist_grid);
+                                        ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist,images);
+                                        gridView.setAdapter(artistGridViewAdapter);
+                                    } catch (Exception e) {
+                                    }
+                                }
+
+                            };
+                            ImageRequest imageRequest = new ImageRequest(obj.getString("picture_medium"),bitmapListener,
+                                    0,0, ImageView.ScaleType.CENTER,Bitmap.Config.ARGB_8888,null);
+                            queue.add(imageRequest);
+
+
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -505,6 +665,15 @@ public class TestArtistFragment extends Fragment {
                 });
 // go!
         queue.add(stringRequest);
+        queue.add(stringRequest2);
+        queue.add(stringRequest3);
+        queue.add(stringRequest4);
+        queue.add(stringRequest5);
+//        queue.add(stringRequest7);
+//        queue.add(stringRequest8);
+//        queue.add(stringRequest9);
+//        queue.add(stringRequest10);
+
 //        spinner.setVisibility(View.GONE);
         return view;
     }
