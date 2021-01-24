@@ -1,68 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical"
     android:weightSum="10"
-    android:layout_height="match_parent"
     tools:context=".fragment.ProfileFragment">
-
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:paddingTop="10dp">
-        <ImageButton
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_arrow_back"
-            android:background="@android:color/transparent"
-            android:tint="@color/gray"
-            android:id="@+id/back_button"/>
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:text="Profile"
-            android:textColor="@color/gray"
-            android:textSize="18dp"
-            android:textStyle="bold"
-            />
-    </RelativeLayout>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dp"
-        android:gravity="center"
-        android:layout_weight="7"
-        android:orientation="vertical"
         android:layout_marginTop="40dp"
-        >
+        android:layout_weight="7"
+        android:gravity="center"
+        android:orientation="vertical">
 
         <ImageView
-            android:layout_width="250dp"
-            android:layout_height="250dp"
-            android:src="@drawable/cover_profile"
-            />
+            android:layout_width="200dp"
+            android:layout_height="200dp"
+            android:src="@drawable/beat_box" />
 
         <TextView
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="User Name"
-            android:textAlignment="center"
-            android:textSize="35sp"
-            android:textColor="@color/black"
-            android:textStyle="bold"
             android:layout_marginTop="20dp"
-            />
+            android:text="Username"
+            android:textAlignment="center"
+            android:textColor="@color/purple_500"
+            android:textSize="35sp"
+            android:textStyle="bold"/>
 
         <TextView
+            android:id="@+id/logout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Logout"
             android:textAlignment="center"
-            android:textSize="22sp"
-            android:layout_marginTop="10dp"
-            />
+            android:textSize="22sp" />
 
     </LinearLayout>
 </LinearLayout>
