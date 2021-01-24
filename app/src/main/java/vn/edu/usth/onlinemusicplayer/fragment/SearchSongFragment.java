@@ -31,7 +31,7 @@ import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
-import vn.edu.usth.onlinemusicplayer.adapter.CustomAdapter;
+import vn.edu.usth.onlinemusicplayer.adapter.TopTrackAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
