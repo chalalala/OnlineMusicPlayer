@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.material.tabs.TabLayout;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.activity.SearchActivity;
 import vn.edu.usth.onlinemusicplayer.adapter.SearchFragmentPagerAdapter;
 
 public class SearchResultsFragment extends Fragment {
@@ -62,9 +63,14 @@ public class SearchResultsFragment extends Fragment {
     public void onViewCreated(View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        // Receive query from Activity
+//        String q = (SearchActivity) this.query;
+        Bundle b = getArguments();
+        String query = b.getString("query");
+
         // ViewPager
         PagerAdapter adapter = new SearchFragmentPagerAdapter(
-                getChildFragmentManager()
+                getChildFragmentManager(), query
         );
         ViewPager pager = (ViewPager) view.findViewById(R.id.pager);
         pager.setOffscreenPageLimit(3);
@@ -73,5 +79,19 @@ public class SearchResultsFragment extends Fragment {
         // TabLayout
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab);
         tabLayout.setupWithViewPager(pager);
+
+
+
+        // Pass query to child fragment
+//        Bundle b = new Bundle();
+//        b.putString("query", query);
+//
+//        SearchSongFragment fragment1 = new SearchSongFragment();
+//        SearchArtistFragment fragment2 = new SearchArtistFragment();
+//        SearchAlbumFragment fragment3 = new SearchAlbumFragment();
+//
+//        fragment1.setArguments(b);
+//        fragment2.setArguments(b);
+//        fragment3.setArguments(b);
     }
 }

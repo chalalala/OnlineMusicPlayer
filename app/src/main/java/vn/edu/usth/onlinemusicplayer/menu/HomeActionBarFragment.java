@@ -9,10 +9,14 @@ import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+
 import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.activity.LoginActivity;
 
 public class HomeActionBarFragment extends Fragment {
+    private FirebaseAuth mAuth;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +57,16 @@ public class HomeActionBarFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home_action_bar, container, false);
 
         TextView user = view.findViewById(R.id.username);
+
+        // Initialize Firebase Auth
+        mAuth = FirebaseAuth.getInstance();
+
+        // Check if logged in
+        FirebaseUser currentUser = mAuth.getCurrentUser();
+        if (currentUser!=null){
+            user.setText(currentUser.getDisplayName());
+        }
+
         user.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

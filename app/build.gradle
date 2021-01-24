@@ -1,9 +1,11 @@
 plugins {
     id 'com.android.application'
+    id 'com.google.gms.google-services'
 }
 
 android {
     compileSdkVersion 29
+
 
     defaultConfig {
         applicationId "vn.edu.usth.onlinemusicplayer"
@@ -28,7 +30,9 @@ android {
 }
 
 dependencies {
+    implementation 'com.google.firebase:firebase-auth:20.0.2'
     def appcompat_version = "1.2.0"
+    implementation 'de.hdodenhof:circleimageview:3.1.0'
 
     implementation "androidx.appcompat:appcompat:$appcompat_version"
     // For loading and tinting drawables on older versions of the platform

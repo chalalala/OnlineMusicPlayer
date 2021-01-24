@@ -1,8 +1,11 @@
-
 package vn.edu.usth.onlinemusicplayer.fragment;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+
+import androidx.fragment.app.Fragment;
+
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,8 +13,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-
-import androidx.fragment.app.Fragment;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -28,27 +30,32 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
 import vn.edu.usth.onlinemusicplayer.adapter.TopTrackAdapter;
 
-public class TopTracksFragment extends Fragment {
+/**
+ * A simple {@link Fragment} subclass.
+ * Use the {@link SearchSongFragment#newInstance} factory method to
+ * create an instance of this fragment.
+ */
+public class SearchSongFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String query;
 
-    public TopTracksFragment() {
+    public SearchSongFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static TopTracksFragment newInstance() {
-        TopTracksFragment fragment = new TopTracksFragment();
+    public static SearchSongFragment newInstance(String param1) {
+        SearchSongFragment fragment = new SearchSongFragment();
         Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
         fragment.setArguments(args);
         return fragment;
     }
@@ -57,8 +64,7 @@ public class TopTracksFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            query = getArguments().getString(ARG_PARAM1);
         }
     }
 
@@ -66,7 +72,10 @@ public class TopTracksFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_top_tracks, container, false);
+        View view = inflater.inflate(R.layout.fragment_search_song, container, false);
+
+        // Receive query from parent fragment
+        Toast.makeText(getContext(), query, Toast.LENGTH_LONG).show();
 
         // Spinner that appears while waiting for the data
         ProgressBar spinner = view.findViewById(R.id.spinner);
@@ -78,7 +87,7 @@ public class TopTracksFragment extends Fragment {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url = "https://mp3.zing.vn/xhr/chart-realtime?songId=0&videoId=0&albumId=0&chart=song&time=-1";
+        String url = "http://ac.mp3.zing.vn/complete?type=artist,song,key,code&query=" + query;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -87,42 +96,22 @@ public class TopTracksFragment extends Fragment {
                     public void onResponse(String response) {
                         try {
                             JSONObject obj = new JSONObject(response);
-                            JSONObject data = obj.getJSONObject("data");
+                            JSONArray raw_data = obj.getJSONArray("data");
+                            JSONObject data = raw_data.getJSONObject(0);
                             JSONArray list_songs = data.getJSONArray("song");
 
                             for (int i = 0; i < list_songs.length(); i++) {
                                 JSONObject item = list_songs.getJSONObject(i);
                                 song_names.add(item.getString("name"));
-                                artist_names.add(item.getString("artists_names"));
-
-                                int finalI = i;
-                                Response.Listener<Bitmap> listener2 =
-                                        new Response.Listener<Bitmap>() {
-                                            @Override
-                                            public void onResponse(Bitmap response) {
-                                                thumbnails.add(response);
-                                                if (finalI == list_songs.length() - 1) {
-                                                    // Spinner disappear when data is ready
-                                                    spinner.setVisibility(View.GONE);
-
-                                                    try {
-                                                        ListView list = view.findViewById(R.id.top_tracks_list);
-                                                        TopTrackAdapter topTrackAdapter = new TopTrackAdapter(getContext(), song_names, artist_names, thumbnails);
-                                                        list.setAdapter(topTrackAdapter);
-                                                    } catch (Exception e) {
-                                                    }
-                                                }
-                                            }
-                                        };
-
-                                ImageRequest imageRequest = new ImageRequest(
-                                        item.getString("thumbnail"),
-                                        listener2, 50, 50, ImageView.ScaleType.CENTER,
-                                        Bitmap.Config.ARGB_8888, null);
-                                queue.add(imageRequest);
+                                artist_names.add(item.getString("artist"));
                             }
-
-
+                            try {
+                                ListView list = view.findViewById(R.id.search_song);
+                                ArtistSongsAdapter songAdapter = new ArtistSongsAdapter(getContext(), song_names, artist_names);
+                                list.setAdapter(songAdapter);
+                                spinner.setVisibility(View.GONE);
+                            } catch (Exception e) {
+                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

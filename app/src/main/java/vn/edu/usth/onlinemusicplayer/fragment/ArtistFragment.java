@@ -1,6 +1,7 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
 import android.content.ContentResolver;
+import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.net.Uri;
@@ -26,6 +27,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.activity.ArtistSongsActivity;
 import vn.edu.usth.onlinemusicplayer.model.SongModel;
 import vn.edu.usth.onlinemusicplayer.service.MusicService;
 
@@ -88,6 +90,7 @@ public class ArtistFragment extends MusicServiceFragment {
         return view;
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public void onServiceConnected(MusicService musicService) {
         musicSrv = musicService;
@@ -140,6 +143,8 @@ public class ArtistFragment extends MusicServiceFragment {
             //Image
             ImageButton img = new ImageButton(this.getContext());
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            img.setId(i+1);
+//            Log.i("Tag","ID: "+img.getId());
             img.setBackgroundColor(Color.WHITE);
             img.setImageResource(R.drawable.karaoke);
             img.setLayoutParams(img_params);
@@ -147,9 +152,23 @@ public class ArtistFragment extends MusicServiceFragment {
 
             // Artist
             TextView artist = new TextView(this.getContext());
+//            artist.setTag("name_"+i);
+            artist.setId(i+1);
+//            Log.i("Tag","ID: "+artist.getId());
             artist.setText(artist_name[i]);
             artist.setLayoutParams(name_params);
             NameField.addView(artist);
+
+            // handle button click
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("Tag 2","Id: "+img.getId());
+                    Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+//                    artist.setTag("name_artist");
+                    startActivity(intent);
+                }
+            });
 
             row.addView(NameField);
             column1.addView(row);
@@ -180,6 +199,8 @@ public class ArtistFragment extends MusicServiceFragment {
             //Image
             ImageButton img = new ImageButton(this.getContext());
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
+            img.setId(i+1);
+//            Log.i("Tag","ID: "+img.getId());
             img.setBackgroundColor(Color.WHITE);
             img.setImageResource(R.drawable.karaoke);
             img.setLayoutParams(img_params);
@@ -187,9 +208,29 @@ public class ArtistFragment extends MusicServiceFragment {
 
             // Artist
             TextView artist = new TextView(this.getContext());
+//            artist.setTag("name_"+i);
+            artist.setId(i+100);
+//            Log.i("Tag","ID: "+artist.getId());
             artist.setText(artist_name[i]);
             artist.setLayoutParams(name_params);
             NameField.addView(artist);
+
+            // handle button click
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+//                    int z = artist.getId();
+                    Log.i("Tag 2","Id: "+img.getId());
+                    Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+//                    TextView art = view.findViewById(z);
+//                    Bundle bundle = new Bundle();
+//                    bundle.putString("key", art.getText().toString());
+//                    Log.d("Test1.5","Artist name"+art.getText().toString());
+//                    intent.putExtras(bundle);
+//                    artist.setTag("name_artist");
+                    startActivity(intent);
+                }
+            });
 
             row.addView(NameField);
             column2.addView(row);
@@ -219,6 +260,8 @@ public class ArtistFragment extends MusicServiceFragment {
 
             //Image
             ImageButton img = new ImageButton(this.getContext());
+            img.setId(i+1);
+//            Log.i("Tag","ID: "+img.getId());
             img.setScaleType(ImageView.ScaleType.CENTER_CROP);
             img.setBackgroundColor(Color.WHITE);
             img.setImageResource(R.drawable.karaoke);
@@ -227,15 +270,30 @@ public class ArtistFragment extends MusicServiceFragment {
 
             // Artist
             TextView artist = new TextView(this.getContext());
+//            artist.setTag("name_"+i);
+            artist.setId(i+100);
+//            Log.i("Tag","ID: "+artist.getId());
             artist.setText(artist_name[i]);
             artist.setLayoutParams(name_params);
             NameField.addView(artist);
+
+            // handle button click
+            img.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    Log.i("Tag 2","Id: "+img.getId());
+                    Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+//                    artist.setTag("name_artist");
+                    startActivity(intent);
+                }
+            });
 
             row.addView(NameField);
             column3.addView(row);
         }
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public void initFragment() {
         songs=musicSrv.getSongs();
         Log.d(TAG,songs.get(0).getTitle());
