@@ -64,7 +64,6 @@ public class SearchResultsFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         // Receive query from Activity
-//        String q = (SearchActivity) this.query;
         Bundle b = getArguments();
         String query = b.getString("query");
 
@@ -79,19 +78,5 @@ public class SearchResultsFragment extends Fragment {
         // TabLayout
         TabLayout tabLayout = (TabLayout) view.findViewById(R.id.tab);
         tabLayout.setupWithViewPager(pager);
-
-
-
-        // Pass query to child fragment
-//        Bundle b = new Bundle();
-//        b.putString("query", query);
-//
-//        SearchSongFragment fragment1 = new SearchSongFragment();
-//        SearchArtistFragment fragment2 = new SearchArtistFragment();
-//        SearchAlbumFragment fragment3 = new SearchAlbumFragment();
-//
-//        fragment1.setArguments(b);
-//        fragment2.setArguments(b);
-//        fragment3.setArguments(b);
     }
 }

@@ -21,7 +21,6 @@ public class HomeActivity extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         SearchView searchbox = findViewById(R.id.searchView);
-//        EditText searchbox = findViewById(R.id.searchView);
         searchbox.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             public boolean onQueryTextSubmit(String query) {
