@@ -4,6 +4,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 
+import vn.edu.usth.onlinemusicplayer.fragment.ArtistSongsFragment;
 import vn.edu.usth.onlinemusicplayer.fragment.SearchAlbumFragment;
 import vn.edu.usth.onlinemusicplayer.fragment.SearchArtistFragment;
 import vn.edu.usth.onlinemusicplayer.fragment.SearchSongFragment;
@@ -34,7 +35,6 @@ public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
                 return SearchArtistFragment.newInstance();
             case 2:
                 return SearchAlbumFragment.newInstance();
-
             default:
                 return null;
         }
