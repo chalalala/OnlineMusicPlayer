@@ -30,6 +30,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
 import vn.edu.usth.onlinemusicplayer.adapter.CustomAdapter;
 
 /**
@@ -103,13 +104,11 @@ public class SearchSongFragment extends Fragment {
                                 JSONObject item = list_songs.getJSONObject(i);
                                 song_names.add(item.getString("name"));
                                 artist_names.add(item.getString("artist"));
-                                thumbnails.add(BitmapFactory.decodeResource(getResources(),
-                                        R.drawable.cover_musicplayer));
                             }
                             try {
                                 ListView list = view.findViewById(R.id.search_song);
-                                CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names, thumbnails);
-                                list.setAdapter(customAdapter);
+                                ArtistSongsAdapter songAdapter = new ArtistSongsAdapter(getContext(), song_names, artist_names);
+                                list.setAdapter(songAdapter);
                                 spinner.setVisibility(View.GONE);
                             } catch (Exception e) {
                             }
