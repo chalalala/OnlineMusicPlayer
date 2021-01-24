@@ -2,6 +2,7 @@ package vn.edu.usth.onlinemusicplayer.menu;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,12 +67,11 @@ public class HomeActionBarFragment extends Fragment {
     @Override
     public void onStart() {
         super.onStart();
-
         TextView user = getView().findViewById(R.id.username);
 
         // Check if logged in
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        if (currentUser!=null){
+        if (currentUser != null) {
             user.setText(currentUser.getDisplayName());
             user.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -80,8 +80,8 @@ public class HomeActionBarFragment extends Fragment {
                     startActivity(intent);
                 }
             });
-        }
-        else{
+        } else {
+            user.setText("Guest");
             user.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
