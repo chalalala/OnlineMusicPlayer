@@ -99,22 +99,6 @@ public class MusicPlayerFragment extends MusicServiceFragment {
         return view;
     }
 
-    ImageView imageView;
-
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_music_player);
-
-        imageView = ImageView.findViewById(R.id.image_album);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Toast.makeText(MusicPlayerFragment.this, "This is a Circular ImageView", Toast.LENGTH_SHORT).show();
-            }
-        });
-    }
-
     @Override
     public void onServiceConnected(MusicService musicService) {
         this.musicService = musicService;

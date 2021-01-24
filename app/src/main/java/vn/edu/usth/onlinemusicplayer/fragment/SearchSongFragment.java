@@ -64,8 +64,7 @@ public class SearchSongFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_song, container, false);
 
-        // Receive query from parent fragment
-        Toast.makeText(getContext(), query, Toast.LENGTH_LONG).show();
+//        Toast.makeText(getContext(), query, Toast.LENGTH_LONG).show();
 
         // Spinner that appears while waiting for the data
         ProgressBar spinner = view.findViewById(R.id.spinner);
