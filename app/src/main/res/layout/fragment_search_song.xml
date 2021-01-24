@@ -6,7 +6,7 @@
     tools:context=".fragment.SearchSongFragment">
 
     <ListView
-        android:id="@+id/top_tracks_list"
+        android:id="@+id/search_song"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:divider="@null"

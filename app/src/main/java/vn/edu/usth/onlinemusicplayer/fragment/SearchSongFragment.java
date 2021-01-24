@@ -1,6 +1,7 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -41,22 +42,19 @@ public class SearchSongFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private String query;
 
     public SearchSongFragment() {
         // Required empty public constructor
     }
 
     // TODO: Rename and change types and number of parameters
-    public static SearchSongFragment newInstance(String param1, String param2) {
+    public static SearchSongFragment newInstance(String param1) {
         SearchSongFragment fragment = new SearchSongFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -65,8 +63,7 @@ public class SearchSongFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            query = getArguments().getString(ARG_PARAM1);
         }
     }
 
@@ -77,8 +74,7 @@ public class SearchSongFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_search_song, container, false);
 
         // Receive query from parent fragment
-        String query = getArguments().getString("query");
-        Toast.makeText(getContext(), query, Toast.LENGTH_LONG);
+        Toast.makeText(getContext(), query, Toast.LENGTH_LONG).show();
 
         // Spinner that appears while waiting for the data
         ProgressBar spinner = view.findViewById(R.id.spinner);
@@ -90,7 +86,7 @@ public class SearchSongFragment extends Fragment {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url = "http://ac.mp3.zing.vn/complete?type=artist,song,key,code&query=" + "demi";
+        String url = "http://ac.mp3.zing.vn/complete?type=artist,song,key,code&query=" + query;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -99,16 +95,21 @@ public class SearchSongFragment extends Fragment {
                     public void onResponse(String response) {
                         try {
                             JSONObject obj = new JSONObject(response);
-                            JSONObject data = obj.getJSONObject("data");
+                            JSONArray raw_data = obj.getJSONArray("data");
+                            JSONObject data = raw_data.getJSONObject(0);
                             JSONArray list_songs = data.getJSONArray("song");
 
                             for (int i = 0; i < list_songs.length(); i++) {
                                 JSONObject item = list_songs.getJSONObject(i);
                                 song_names.add(item.getString("name"));
                                 artist_names.add(item.getString("artist"));
+                                thumbnails.add(BitmapFactory.decodeResource(getResources(),
+                                        R.drawable.cover_musicplayer));
                             }
-
-
+                            ListView list = view.findViewById(R.id.search_song);
+                            CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names, thumbnails);
+                            list.setAdapter(customAdapter);
+                            spinner.setVisibility(View.GONE);
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
