@@ -5,189 +5,21 @@
     android:layout_height="match_parent"
     tools:context=".fragment.SearchArtistFragment">
 
-    <ScrollView
+    <ListView
+        android:id="@+id/search_song"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:footerDividersEnabled="false"
+        android:paddingLeft="20dp"/>
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout1">
-
-                    <ImageButton
-                        android:id="@+id/img1"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/blackpink"
-
-                        android:layout_centerInParent="true"
-                        android:background="@color/white"
-                        android:scaleType="fitCenter"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Blackpink"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        android:layout_below="@id/img1"></TextView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout2">
-
-                    <ImageButton
-                        android:id="@+id/img2"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/demi"
-                        android:background="@color/white"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitCenter"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Demi Lovato"
-                        android:gravity="center"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/img2"></TextView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout3">
-
-                    <ImageButton
-                        android:id="@+id/img3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:adjustViewBounds="true"
-                        android:background="@color/white"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/mamamoo"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Mamamoo"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/img3"></TextView>
-
-                </RelativeLayout>
-            </LinearLayout>
-
-
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout7">
-
-                    <ImageButton
-                        android:id="@+id/img7"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/oneokrock"
-
-                        android:layout_centerInParent="true"
-                        android:background="@color/white"
-                        android:scaleType="fitCenter"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="One Ok Rock"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        android:layout_below="@id/img7"></TextView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout8">
-
-                    <ImageButton
-                        android:id="@+id/img8"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/taylorswift"
-                        android:background="@color/white"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitCenter"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Taylor Swift"
-                        android:gravity="center"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/img8"></TextView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout9">
-
-                    <ImageButton
-                        android:id="@+id/img9"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:adjustViewBounds="true"
-                        android:background="@color/white"
-                        android:layout_centerInParent="true"
-                        android:scaleType="fitCenter"
-                        android:src="@drawable/ladygaga"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Lady Gaga"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/img9"></TextView>
-
-                </RelativeLayout>
-            </LinearLayout>
-
-
-
-
-
-
-        </LinearLayout>
-    </ScrollView>
+    <ProgressBar
+        android:id="@+id/spinner"
+        android:indeterminateTint="@color/purple_500"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:progressDrawable="@drawable/circular_progress_bar" />
 
 </FrameLayout>

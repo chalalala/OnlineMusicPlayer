@@ -1,31 +1,34 @@
 package vn.edu.usth.onlinemusicplayer.adapter;
 
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
 
-public class ArtistSongsAdapter extends BaseAdapter {
+public class ArtistGridViewAdapter extends BaseAdapter {
+
     Context context;
-    ArrayList<String> song_name;
     ArrayList<String> artist_name;
+    ArrayList<Bitmap> thumbnails;
     LayoutInflater inflater;
 
-    public ArtistSongsAdapter(Context applicationContext, ArrayList<String> song_name, ArrayList<String> artist_name) {
+    public ArtistGridViewAdapter(Context applicationContext, ArrayList<String> artist_name, ArrayList<Bitmap> thumbnails){
         this.context = applicationContext;
-        this.song_name = song_name;
         this.artist_name = artist_name;
+        this.thumbnails = thumbnails;
         inflater = (LayoutInflater.from(applicationContext));
     }
     @Override
     public int getCount() {
-        return song_name.size();
+        return artist_name.size();
     }
 
     @Override
@@ -40,12 +43,12 @@ public class ArtistSongsAdapter extends BaseAdapter {
 
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflater.inflate(R.layout.fragment_artist_song_single,null);
-        TextView songs = (TextView) view.findViewById(R.id.song_name1);
-        TextView artists = (TextView) view.findViewById(R.id.artist_name1);
+        view = inflater.inflate(R.layout.single_item_gridview,null);
+        ImageView img = (ImageView) view.findViewById(R.id.imagegrid);
+        TextView artist = (TextView) view.findViewById(R.id.textgrid);
 
-        songs.setText(song_name.get(i));
-        artists.setText(artist_name.get(i));
+        img.setImageBitmap(thumbnails.get(i));
+        artist.setText(artist_name.get(i));
         return view;
     }
 }
