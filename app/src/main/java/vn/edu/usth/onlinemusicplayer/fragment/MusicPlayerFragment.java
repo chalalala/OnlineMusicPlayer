@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
 import android.widget.SeekBar;
@@ -98,6 +99,22 @@ public class MusicPlayerFragment extends MusicServiceFragment {
         }
 
         return view;
+    }
+
+    ImageView imageView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_music_player);
+
+        imageView = ImageView.findViewById(R.id.image_album);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(MusicPlayerFragment.this, "This is a Circular ImageView", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
     @Override

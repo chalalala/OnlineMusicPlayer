@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,14 +14,20 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
-        <de.hdodenhof.circleimageview.CircleImageView
-            xmlns:app="http://schemas.android.com/apk/res-auto"
-            android:id="@+id/image_album"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView"
             android:layout_width="250dp"
             android:layout_height="250dp"
             android:layout_gravity="center"
             android:layout_marginTop="50dp"
-            android:src="@drawable/cover_musicplayer"/>
+            app:cardCornerRadius="100dp">
+
+            <ImageView
+                android:id="@+id/image_album"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@drawable/cover_musicplayer" />
+        </androidx.cardview.widget.CardView>
 
         <TextView
             android:id="@+id/song_name"
@@ -80,16 +87,18 @@
                 android:background="@android:color/transparent"
                 android:scaleType="fitXY"
                 android:src="@drawable/ic_skip_previous"
-                android:tint="@color/gray" />
+                android:tint="@color/gray"/>
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/play"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="34dp"
+                android:layout_height="34dp"
                 android:layout_centerInParent="true"
                 android:layout_centerVertical="true"
                 android:layout_marginTop="4dp"
-                android:src="@drawable/play_circle_filled_24px"
+                android:background="@drawable/gradient1"
+                android:src="@drawable/ic_play_circle"
+                android:tint="@color/gray"
                 android:layout_toRightOf="@+id/name_song"/>
 
             <ImageButton
@@ -104,12 +113,12 @@
                 android:src="@drawable/ic_skip_next"
                 android:tint="@color/gray" />
 
-            <ImageView
+            <ImageButton
                 android:id="@id/heart"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
                 android:layout_centerVertical="true"
-                android:src="@drawable/ic_favorite_song"
+                android:src="@drawable/favorite_song"
                 android:layout_toRightOf="@+id/next" />
         </RelativeLayout>
 
