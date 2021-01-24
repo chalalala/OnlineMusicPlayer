@@ -1,6 +1,7 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
 import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
@@ -81,16 +83,38 @@ public class ArtistSongsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_artist_songs, container, false);
+        ImageButton back = view.findViewById(R.id.back_button1);
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                getActivity().finish();
+            }
+        });
 
+        String art = "Blackpink";
+
+
+        TextView textView = view.findViewById(R.id.songofartist_name);
+        textView.setText(art);
+        callApi(art);
+        return view;
+    }
+
+    public void callApi(String artist){
         // Initialize list containing track detail
         ArrayList<String> song_name = new ArrayList<String>();
         ArrayList<String> artist_name = new ArrayList<String>();
+
+        // access button name
+//        TextView button_name = view.findViewWithTag("name_artist");
+//        String name = button_name.getText().toString();
+//        Log.i("Tag","Name: "+name);
 
         // once, should be performed once per app instance
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
 
         // a simple request to the required songs
-        String url = "http://ac.mp3.zing.vn/complete?type=artist,song,key,code&num=10&query=Blackpink";
+        String url = "http://ac.mp3.zing.vn/complete?type=artist,song,key,code&num=10&query="+artist;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,url,
                 new Response.Listener<String>() {
@@ -101,16 +125,16 @@ public class ArtistSongsFragment extends Fragment {
                             JSONObject obj = new JSONObject(response);
                             JSONArray data = obj.getJSONArray("data");
                             JSONObject detail = data.getJSONObject(0);
-                                if (detail != null) {
-                                    JSONArray details = detail.getJSONArray("song");
-                                    Log.i("tesssst","songsss"+details);
-                                    for (int j = 0; j < details.length(); j++) {
-                                        JSONObject song_detail = details.getJSONObject(j);
-                                        Log.i("test","songs"+song_detail);
-                                        song_name.add(song_detail.getString("name"));
-                                        artist_name.add(song_detail.getString("artist"));
-                                    }
+                            if (detail != null) {
+                                JSONArray details = detail.getJSONArray("song");
+                                Log.i("tesssst","songsss"+details);
+                                for (int j = 0; j < details.length(); j++) {
+                                    JSONObject song_detail = details.getJSONObject(j);
+                                    Log.i("test","songs"+song_detail);
+                                    song_name.add(song_detail.getString("name"));
+                                    artist_name.add(song_detail.getString("artist"));
                                 }
+                            }
 
 
 
@@ -132,6 +156,5 @@ public class ArtistSongsFragment extends Fragment {
                 });
 // go!
         queue.add(stringRequest);
-        return view;
     }
 }

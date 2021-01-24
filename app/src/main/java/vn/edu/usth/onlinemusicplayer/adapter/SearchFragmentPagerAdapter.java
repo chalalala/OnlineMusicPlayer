@@ -26,8 +26,8 @@ public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
             case 0: return TopTracksFragment.newInstance();
             case 1: return SearchArtistFragment.newInstance();
 //            switch temporary to artists' songs to test
-//            case 2: return SearchAlbumFragment.newInstance();
-            case 2: return ArtistSongsFragment.newInstance();
+            case 2: return SearchAlbumFragment.newInstance();
+//            case 2: return ArtistSongsFragment.newInstance();
 
             default:
                 return null;
