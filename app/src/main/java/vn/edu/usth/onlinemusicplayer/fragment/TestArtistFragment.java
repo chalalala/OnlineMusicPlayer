@@ -112,17 +112,17 @@ public class TestArtistFragment extends Fragment {
                                     @Override
                                     public void onResponse(Bitmap response) {
                                         images.add(response);
-                                        if (int j == 10) {
-                                            // Spinner disappear when data is ready
-                                            spinner.setVisibility(View.GONE);
-
-                                            try {
-                                                GridView gridView = getView().findViewById(R.id.artist_grid);
-                                                ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter()
-                                                gridView.setAdapter(artistGridViewAdapter);
-                                            } catch (Exception e) {
-                                            }
-                                        }
+//                                        if (int j == 10) {
+//                                            // Spinner disappear when data is ready
+//                                            spinner.setVisibility(View.GONE);
+//
+//                                            try {
+//                                                GridView gridView = getView().findViewById(R.id.artist_grid);
+//                                                ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter()
+//                                                gridView.setAdapter(artistGridViewAdapter);
+//                                            } catch (Exception e) {
+//                                            }
+//                                        }
 
                                     }
                                 };

@@ -26,9 +26,9 @@
 
         <service android:name=".service.MusicService"/>
 
-
-        <activity android:name=".activity.SignUpActivity" />
-        <activity android:name=".activity.TopTracksActivity" />
+        <activity android:name=".activity.ProfileActivity"></activity>
+        <activity android:name=".activity.SignUpActivity"></activity>
+        <activity android:name=".activity.TopTracksActivity"></activity>
         <activity android:name=".activity.ArtistActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.QueueActivity" />
