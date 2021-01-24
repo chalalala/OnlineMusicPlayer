@@ -32,7 +32,7 @@ public class SearchFragmentPagerAdapter extends FragmentPagerAdapter {
             case 1:
                 return SearchArtistFragment.newInstance(query);
             case 2:
-                return SearchAlbumFragment.newInstance();
+                return SearchAlbumFragment.newInstance(query);
             default:
                 return null;
         }

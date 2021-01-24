@@ -290,7 +290,7 @@ public class MusicPlayerFragment extends MusicServiceFragment {
                 try {
                     bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(), imageUri);
                 } catch (FileNotFoundException e) {
-                    bitmap = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.mamamoo);
+                    bitmap = BitmapFactory.decodeResource(getActivity().getResources(), R.drawable.ic_baseline_music_note_24);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }

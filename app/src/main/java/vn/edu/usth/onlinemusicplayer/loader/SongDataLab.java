@@ -112,7 +112,6 @@ public class SongDataLab {
         return songs;
     }
 
-    // incomplete get artist context
     public ArrayList<AlbumModel> getAlbums() {
         List<SongModel> songs = getSongs();
 
@@ -137,7 +136,6 @@ public class SongDataLab {
             allAlbums.add(new AlbumModel(albumSpecificSongs));
         }
 
-//          Debugging Code
 //        for(AlbumModel k:allAlbums) {
 //            for(SongModel song: k.getAlbumSongs()) {
 //                Log.i("Test","Album Title: "+song.getAlbumName()+"Album ID: "+song.getAlbumId()+" Song Name: "+song.getTitle());
@@ -169,7 +167,6 @@ public class SongDataLab {
             allArtists.add(new ArtistModel(artistSpecificAlbum));
         }
 
-        //Debugging Code
 //        for(ArtistModel k:allArtists) {
 //            for(AlbumModel album: k.getAlbums()) {
 //                Log.i("Test "+album.getArtistId(),"Album Title: "+album.getName());

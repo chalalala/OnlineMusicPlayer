@@ -46,6 +46,7 @@ public class MusicService extends Service implements
 
     private MediaPlayer player;
     private SongModel currentSong;
+    private String currentSongUrl;
     private int currentSongPosition;
     Callback callback;
     private final IBinder musicBind = new MusicBinder();
@@ -100,10 +101,10 @@ public class MusicService extends Service implements
                 playNext();
                 mNotificationManager.notify(NOTIFICATION_ID, NotificationHandler.createNotification(this, currentSong, true));
                 break;
-            case "action.replay":
-                rePlay();
-                mNotificationManager.notify(NOTIFICATION_ID, NotificationHandler.createNotification(this, currentSong, true));
-                break;
+//            case "action.replay":
+//                rePlay();
+//                mNotificationManager.notify(NOTIFICATION_ID, NotificationHandler.createNotification(this, currentSong, true));
+//                break;
             case "action.shuffle":
                 playShuffle();
                 mNotificationManager.notify(NOTIFICATION_ID, NotificationHandler.createNotification(this, currentSong, true));
@@ -245,22 +246,34 @@ public class MusicService extends Service implements
         play(playSong);
     }
 
-    @Override
-    public void replay(long songId) {
-        player.reset();
-        SongModel playSong = SongDataLab.get(this).getSong(songId);
-        replay(playSong);
-    }
+//    @Override
+//    public void playUrl(String songId) {
+//        player.reset();
+//        String playSong = SongDataLab.get(this).getSong(songId);
+//        playUrl(playSong);
+//    }
+
+//    @Override
+//    public void replay(long songId) {
+//        player.reset();
+//        SongModel playSong = SongDataLab.get(this).getSong(songId);
+//        replay(playSong);
+//    }
 
     @Override
     public void play(SongModel song) {
         mPlayerThread.play(song);
     }
 
-    @Override
-    public void replay(SongModel song) {
-        mPlayerThread.replay(song);
-    }
+//    @Override
+//    public void playUrl(String songId) {
+//        mPlayerThread.playUrl(song);
+//    }
+
+//    @Override
+//    public void replay(SongModel song) {
+//        mPlayerThread.replay(song);
+//    }
 
     @Override
     public void pause() {
@@ -337,9 +350,9 @@ public class MusicService extends Service implements
         play(SongDataLab.get(this).getPreviousSong(currentSong));
     }
 
-    public void rePlay() {
-        replay(SongDataLab.get(this).getCurrentSong(currentSong));
-    }
+//    public void rePlay() {
+//        replay(SongDataLab.get(this).getCurrentSong(currentSong));
+//    }
 
     public List<AlbumModel> getAlbums() {
         return SongDataLab.get(this).getAlbums();
@@ -404,8 +417,8 @@ public class MusicService extends Service implements
             });
         }
 
-        public void replay(final SongModel song) {
-            currentSong = song;
+        public void playUrl(final String songId) {
+            String audioUrl = "http://api.mp3.zing.vn/api/streaming/audio/"+ songId +"/128";
 
             mHandler.post(new Runnable() {
                 @Override
@@ -413,10 +426,11 @@ public class MusicService extends Service implements
                     if (player != null) {
                         player.reset();
                         try {
-                            player.setDataSource(song.getData());
-                            Log.i(TAG, song.getBookmark() + "");
-                            player.prepareAsync();
-                            player.setLooping(true);
+                            player.setDataSource(audioUrl);
+                            Log.i(TAG, audioUrl);
+                            player.prepare();
+//                            MusicService.this.callback.onTrackChange(audioUrl);
+
                         } catch (Exception e) {
                             Log.e(TAG, "Error playing from data source", e);
                         }
@@ -424,6 +438,27 @@ public class MusicService extends Service implements
                 }
             });
         }
+
+//        public void replay(final SongModel song) {
+//            currentSong = song;
+//
+//            mHandler.post(new Runnable() {
+//                @Override
+//                public void run() {
+//                    if (player != null) {
+//                        player.reset();
+//                        try {
+//                            player.setDataSource(song.getData());
+//                            Log.i(TAG, song.getBookmark() + "");
+//                            player.prepareAsync();
+//                            player.setLooping(true);
+//                        } catch (Exception e) {
+//                            Log.e(TAG, "Error playing from data source", e);
+//                        }
+//                    }
+//                }
+//            });
+//        }
 
         public void prepareNext() {
 

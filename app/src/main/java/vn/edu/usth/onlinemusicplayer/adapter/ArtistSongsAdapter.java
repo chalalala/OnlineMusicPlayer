@@ -5,11 +5,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.TextView;
+
+import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.model.SongModel;
 
 public class ArtistSongsAdapter extends BaseAdapter {
     Context context;
@@ -38,14 +42,19 @@ public class ArtistSongsAdapter extends BaseAdapter {
         return 0;
     }
 
+    public interface ArtistSongItemClickListener {
+        void onClick(View v, int pos);
+    }
+
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
-        view = inflater.inflate(R.layout.fragment_artist_song_single,null);
-        TextView songs = (TextView) view.findViewById(R.id.song_name1);
-        TextView artists = (TextView) view.findViewById(R.id.artist_name1);
-
+        view = inflater.inflate(R.layout.song_layout,null);
+        TextView songs = (TextView) view.findViewById(R.id.title);
+        TextView artists = (TextView) view.findViewById(R.id.artist);
+        ImageButton playBtn = (ImageButton) view.findViewById(R.id.play_pause);
         songs.setText(song_name.get(i));
         artists.setText(artist_name.get(i));
         return view;
     }
+
 }
