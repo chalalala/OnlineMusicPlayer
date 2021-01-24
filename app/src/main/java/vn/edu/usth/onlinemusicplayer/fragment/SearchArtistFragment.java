@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.Toast;
@@ -16,6 +17,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -28,6 +30,7 @@ import java.util.ArrayList;
 import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.adapter.ArtistGridViewAdapter;
 import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
+import vn.edu.usth.onlinemusicplayer.adapter.TopTrackAdapter;
 
 public class SearchArtistFragment extends Fragment {
 
@@ -85,22 +88,48 @@ public class SearchArtistFragment extends Fragment {
                             JSONObject obj = new JSONObject(response);
                             JSONArray raw_data = obj.getJSONArray("data");
                             JSONObject data = raw_data.getJSONObject(0);
-                            JSONArray list_songs = data.getJSONArray("artist");
+                            JSONArray list_artists = data.getJSONArray("artist");
 
-                            for (int i = 0; i < list_songs.length(); i++) {
-                                JSONObject item = list_songs.getJSONObject(i);
+                            for (int i = 0; i < list_artists.length(); i++) {
+                                JSONObject item = list_artists.getJSONObject(i);
                                 artist_names.add(item.getString("name"));
 
                                 String path = item.getString("thumb");
                                 String img_url = "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/" + path;
+                                Log.i("src", img_url);
+
+                                int finalI = i;
+                                Response.Listener<Bitmap> listener2 =
+                                        new Response.Listener<Bitmap>() {
+                                            @Override
+                                            public void onResponse(Bitmap response) {
+                                                thumbnails.add(response);
+                                                if (finalI == list_artists.length() - 1) {
+                                                    try {
+                                                        ListView list = view.findViewById(R.id.top_tracks_list);
+                                                        ArtistGridViewAdapter artistAdapter = new ArtistGridViewAdapter(getContext(), artist_names, thumbnails);
+                                                        list.setAdapter(artistAdapter);
+
+                                                        // Spinner disappear when data is ready
+                                                        spinner.setVisibility(View.GONE);
+                                                    } catch (Exception e) {
+                                                    }
+                                                }
+                                            }
+                                        };
+                                ImageRequest imageRequest = new ImageRequest(
+                                        img_url,
+                                        listener2, 50, 50, ImageView.ScaleType.CENTER,
+                                        Bitmap.Config.ARGB_8888, null);
+                                queue.add(imageRequest);
                             }
-                            try {
-                                ListView list = view.findViewById(R.id.search_song);
-                                ArtistGridViewAdapter artistAdapter = new ArtistGridViewAdapter(getContext(), artist_names, thumbnails);
-                                list.setAdapter(artistAdapter);
-                                spinner.setVisibility(View.GONE);
-                            } catch (Exception e) {
-                            }
+//                            try {
+//                                ListView list = view.findViewById(R.id.search_song);
+//                                ArtistGridViewAdapter artistAdapter = new ArtistGridViewAdapter(getContext(), artist_names, thumbnails);
+//                                list.setAdapter(artistAdapter);
+//                                spinner.setVisibility(View.GONE);
+//                            } catch (Exception e) {
+//                            }
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
