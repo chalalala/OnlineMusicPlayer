@@ -17,13 +17,13 @@ public class AlbumGridViewAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<String> album_name;
-    ArrayList<Bitmap> thumbnails;
+    ArrayList<Bitmap> thumbnailsAlbum;
     LayoutInflater inflater;
 
-    public AlbumGridViewAdapter(Context applicationContext, ArrayList<String> album_name, ArrayList<Bitmap> thumbnails){
+    public AlbumGridViewAdapter(Context applicationContext, ArrayList<String> album_name, ArrayList<Bitmap> thumbnailsAlbum){
         this.context = applicationContext;
         this.album_name = album_name;
-        this.thumbnails = thumbnails;
+        this.thumbnailsAlbum = thumbnailsAlbum;
         inflater = (LayoutInflater.from(applicationContext));
     }
     @Override
@@ -32,23 +32,23 @@ public class AlbumGridViewAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public Object getItem(int pos) {
         return null;
     }
 
     @Override
-    public long getItemId(int i) {
+    public long getItemId(int pos) {
         return 0;
     }
 
     @Override
-    public View getView(int i, View view, ViewGroup viewGroup) {
+    public View getView(int pos, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.item_album_gridview,null);
-        ImageView thumb = (ImageView) view.findViewById(R.id.imageAlbum);
+        ImageView img = (ImageView) view.findViewById(R.id.imageAlbum);
         TextView album = (TextView) view.findViewById(R.id.textAlbum);
 
-        thumb.setImageBitmap(thumbnails.get(i));
-        album.setText(album_name.get(i));
+        img.setImageBitmap(thumbnailsAlbum.get(pos));
+        album.setText(album_name.get(pos));
         return view;
     }
 }

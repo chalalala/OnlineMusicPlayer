@@ -11,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
+import android.widget.Button;
 import android.widget.ListView;
 import android.widget.PopupMenu;
 import android.widget.ProgressBar;
@@ -51,17 +51,6 @@ import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
 import vn.edu.usth.onlinemusicplayer.adapter.SongAdapter;
 import vn.edu.usth.onlinemusicplayer.model.SongModel;
 
-class CustomOnClickListener implements View.OnClickListener{
-    int param;
-    public CustomOnClickListener(int param){
-        this.param = param;
-    }
-
-    @Override
-    public void onClick(View v){
-    }
-}
-
 public class SearchSongFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -71,6 +60,8 @@ public class SearchSongFragment extends Fragment {
     private String query;
     MediaPlayer mediaPlayer;
     ArtistSongsAdapter songAdapter;
+    Button playBtn, pauseBtn;
+
     public SearchSongFragment() {
         // Required empty public constructor
     }
@@ -123,25 +114,16 @@ public class SearchSongFragment extends Fragment {
                             JSONArray raw_data = obj.getJSONArray("data");
                             JSONObject data = raw_data.getJSONObject(0);
                             JSONArray list_songs = data.getJSONArray("song");
-                            Log.d("SearchSongFragment", String.valueOf(songIds));
-                            Log.d("SearchSongFragment", String.valueOf(raw_data));
                             for (int i = 0; i < list_songs.length(); i++) {
                                 JSONObject item = list_songs.getJSONObject(i);
                                 song_names.add(item.getString("name"));
                                 artist_names.add(item.getString("artist"));
                                 songIds.add(item.getString("id"));
-//                                list.setOnClickListener(new ArtistSongsAdapter.ArtistSongItemClickListener(i) {
-//                                    @Override
-//                                    public void onClick(View v) {
-//                                        Intent intent = new Intent(getContext(), MusicPlayerActivity.class);
-//                                        intent.putExtra("position", param);
-//                                        startActivity(intent);
-//                                    }
-//                                });
                             }
                             try {
                                 ListView list = view.findViewById(R.id.search_song);
                                 songAdapter = new ArtistSongsAdapter(getContext(), song_names, artist_names);
+
                                 list.setAdapter(songAdapter);
                                 spinner.setVisibility(View.GONE);
                             } catch (Exception e) {
@@ -159,6 +141,19 @@ public class SearchSongFragment extends Fragment {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+
+
+        // initializing our buttons
+        playBtn = view.findViewById(R.id.idBtnPlay);
+
+        // setting on click listener for our play and pause buttons.
+        playBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // calling method to play audio.
+                playAudioUrl("ZWABWZW0");
+            }
+        });
 
         return view;
     }
