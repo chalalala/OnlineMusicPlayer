@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -74,7 +75,7 @@ public class SearchArtistFragment extends Fragment {
         // Initialize list containing track detail
         ArrayList<String> artist_names = new ArrayList<String>();
         ArrayList<Bitmap> thumbnails = new ArrayList<Bitmap>();
-//        Toast.makeText(getContext(), query, Toast.LENGTH_LONG).show();
+
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
         String url = "http://ac.mp3.zing.vn/complete?type=artist&query=" + query;
@@ -106,7 +107,7 @@ public class SearchArtistFragment extends Fragment {
                                                 thumbnails.add(response);
                                                 if (finalI == list_artists.length() - 1) {
                                                     try {
-                                                        ListView list = view.findViewById(R.id.search_song);
+                                                        GridView list = view.findViewById(R.id.search_song);
                                                         ArtistGridViewAdapter artistAdapter = new ArtistGridViewAdapter(getContext(), artist_names, thumbnails);
                                                         list.setAdapter(artistAdapter);
 
@@ -119,7 +120,7 @@ public class SearchArtistFragment extends Fragment {
                                         };
                                 ImageRequest imageRequest = new ImageRequest(
                                         img_url,
-                                        listener2, 50, 50, ImageView.ScaleType.CENTER,
+                                        listener2, 100, 100, ImageView.ScaleType.CENTER,
                                         Bitmap.Config.ARGB_8888, null);
                                 queue.add(imageRequest);
                             }

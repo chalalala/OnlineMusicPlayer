@@ -5,21 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".fragment.SearchArtistFragment">
 
-    <ListView
+    <GridView
         android:id="@+id/search_song"
-        android:layout_width="match_parent"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:divider="@null"
         android:dividerHeight="0dp"
         android:footerDividersEnabled="false"
-        android:paddingLeft="20dp"/>
+        android:numColumns="3"
+        android:paddingLeft="20dp" />
 
     <ProgressBar
         android:id="@+id/spinner"
-        android:indeterminateTint="@color/purple_500"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:indeterminateTint="@color/purple_500"
         android:progressDrawable="@drawable/circular_progress_bar" />
 
 </FrameLayout>
