@@ -7,9 +7,6 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.RotateAnimation;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
@@ -31,7 +28,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
-import vn.edu.usth.onlinemusicplayer.adapter.CustomAdapter;
+import vn.edu.usth.onlinemusicplayer.adapter.TopTrackAdapter;
 
 public class TopTracksFragment extends Fragment {
 
@@ -104,13 +101,16 @@ public class TopTracksFragment extends Fragment {
                                             @Override
                                             public void onResponse(Bitmap response) {
                                                 thumbnails.add(response);
-                                                if (finalI == list_songs.length()-1){
+                                                if (finalI == list_songs.length() - 1) {
                                                     // Spinner disappear when data is ready
                                                     spinner.setVisibility(View.GONE);
 
-                                                    ListView list = getView().findViewById(R.id.top_tracks_list);
-                                                    CustomAdapter customAdapter = new CustomAdapter(getContext(), song_names, artist_names, thumbnails);
-                                                    list.setAdapter(customAdapter);
+                                                    try {
+                                                        ListView list = view.findViewById(R.id.top_tracks_list);
+                                                        TopTrackAdapter topTrackAdapter = new TopTrackAdapter(getContext(), song_names, artist_names, thumbnails);
+                                                        list.setAdapter(topTrackAdapter);
+                                                    } catch (Exception e) {
+                                                    }
                                                 }
                                             }
                                         };

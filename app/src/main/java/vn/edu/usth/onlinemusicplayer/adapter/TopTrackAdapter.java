@@ -18,14 +18,14 @@ import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
 
-public class CustomAdapter extends BaseAdapter {
+public class TopTrackAdapter extends BaseAdapter {
     Context context;
     ArrayList<String> song_names;
     ArrayList<String> artist_names;
     ArrayList<Bitmap> thumbnails;
     LayoutInflater inflater;
 
-    public CustomAdapter(Context context, ArrayList<String> song_names, ArrayList<String> artist_names, ArrayList<Bitmap> thumbnails) {
+    public TopTrackAdapter(Context context, ArrayList<String> song_names, ArrayList<String> artist_names, ArrayList<Bitmap> thumbnails) {
         this.context = context;
         this.song_names = song_names;
         this.artist_names = artist_names;
