@@ -95,33 +95,33 @@ public class HomeFragment extends MusicServiceFragment {
             device_artists[i].setText(songs.get(i).getArtistName());
         }
 
-        // handle button click to artists' songs
-        ImageView img1 = view.findViewById(R.id.artist_first);
-        ImageView img2 = view.findViewById(R.id.artist_second);
-        ImageView img3 = view.findViewById(R.id.artist_third);
-        img1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        img2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        img3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
-                startActivity(intent);
-            }
-        });
+//        // handle button click to artists' songs
+//        ImageView img1 = view.findViewById(R.id.artist_first);
+//        ImageView img2 = view.findViewById(R.id.artist_second);
+//        ImageView img3 = view.findViewById(R.id.artist_third);
+//        img1.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        img2.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        img3.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
     }
 
