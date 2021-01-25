@@ -121,7 +121,7 @@ public class TestArtistFragment extends Fragment {
                                 artist.add(name.getString("Name"));
 
                                     images.add(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.karaoke));
-
+                                    
                             }
 
                             GridView gridView = (GridView) getView().findViewById(R.id.artist_grid);

@@ -14,6 +14,18 @@
     app:behavior_hideable="true"
     app:layout_behavior="@string/bottom_sheet_behavior">
 
+    <ImageView
+        android:id="@+id/iv_pn_shuffle_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_pn_prev_btn"
+        app:layout_constraintEnd_toStartOf="@+id/iv_pn_prev_btn"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_pn_prev_btn"
+        app:srcCompat="@drawable/ic_shuffle"
+        tools:ignore="VectorDrawableCompat"
+        tools:layout_editor_absoluteY="826dp" />
 
     <ImageView
         android:id="@+id/iv_pn_play_btn"
@@ -75,36 +87,21 @@
         tools:ignore="MissingClass" />
 
     <!--    <ImageView-->
-    <!--        android:id="@+id/iv_pn_cover_art_shadow"-->
+    <!--        android:id="@+id/iv_pn_cover_art_shadow_white_overlay"-->
     <!--        android:layout_width="0dp"-->
     <!--        android:layout_height="0dp"-->
     <!--        android:layout_marginBottom="8dp"-->
     <!--        android:layout_marginTop="8dp"-->
     <!--        android:alpha="1"-->
-    <!--        android:elevation="0dp"-->
-    <!--        android:scaleType="centerCrop"-->
+    <!--        android:elevation="1dp"-->
+    <!--        android:fadingEdge="horizontal"-->
+    <!--        android:fadingEdgeLength="80dp"-->
+    <!--        android:requiresFadingEdge="horizontal"-->
+    <!--        android:scaleType="fitXY"-->
     <!--        app:layout_constraintBottom_toTopOf="@+id/sb_pn_player"-->
     <!--        app:layout_constraintEnd_toEndOf="parent"-->
     <!--        app:layout_constraintStart_toStartOf="parent"-->
-    <!--        app:layout_constraintTop_toTopOf="@+id/iv_pn_cover_art"-->
-    <!--        app:srcCompat="@drawable/demi" />-->
-
-    <ImageView
-        android:id="@+id/iv_pn_cover_art_shadow_white_overlay"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginTop="8dp"
-        android:alpha="1"
-        android:elevation="1dp"
-        android:fadingEdge="horizontal"
-        android:fadingEdgeLength="80dp"
-        android:requiresFadingEdge="horizontal"
-        android:scaleType="fitXY"
-        app:layout_constraintBottom_toTopOf="@+id/sb_pn_player"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/iv_pn_cover_art" />
+    <!--        app:layout_constraintTop_toTopOf="@+id/iv_pn_cover_art" />-->
     <ImageView
         android:id="@+id/iv_pn_next_btn"
         android:layout_width="60dp"
@@ -116,6 +113,21 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/iv_pn_play_btn"
         app:srcCompat="@drawable/ic_skip_next"
+        tools:ignore="VectorDrawableCompat" />
+
+    <ImageView
+        android:id="@+id/iv_pn_fav_btn"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="32dp"
+        android:elevation="100dp"
+        app:layout_constraintBottom_toBottomOf="@+id/iv_pn_next_btn"
+        app:layout_constraintEnd_toStartOf="@+id/iv_pn_next_btn"
+        app:layout_constraintHorizontal_bias="0.364"
+        app:layout_constraintStart_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/iv_pn_next_btn"
+        app:layout_constraintVertical_bias="0.0"
+        app:srcCompat="@drawable/ic_favorite_border"
         tools:ignore="VectorDrawableCompat" />
 
     <TextView

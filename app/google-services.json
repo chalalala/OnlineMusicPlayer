@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "514323660845",
+    "firebase_url": "https://onlinemusicplayer-c7398-default-rtdb.firebaseio.com",
+    "project_id": "onlinemusicplayer-c7398",
+    "storage_bucket": "onlinemusicplayer-c7398.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514323660845:android:a544756580b6059bcf78a4",
+        "android_client_info": {
+          "package_name": "vn.edu.usth.demoaccount"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514323660845-mtno11dq95pf0603tk1e4vi3hrol1o2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF0exDMA_aJEg1ybBgbWiq_UYjHVBrGfg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514323660845-mtno11dq95pf0603tk1e4vi3hrol1o2s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514323660845:android:02d0cd036834e00ecf78a4",
+        "android_client_info": {
+          "package_name": "vn.edu.usth.onlinemusicplayer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514323660845-mtno11dq95pf0603tk1e4vi3hrol1o2s.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCF0exDMA_aJEg1ybBgbWiq_UYjHVBrGfg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514323660845-mtno11dq95pf0603tk1e4vi3hrol1o2s.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
