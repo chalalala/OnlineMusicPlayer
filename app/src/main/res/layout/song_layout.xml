@@ -7,7 +7,7 @@
     <TextView
         android:id="@+id/artist"
         android:layout_width="fill_parent"
-        android:layout_height="26dip"
+        android:layout_height="wrap_content"
         android:layout_alignParentTop="true"
         android:layout_alignParentRight="true"
         android:layout_alignParentBottom="true"
@@ -19,9 +19,9 @@
 
     <TextView
         android:id="@+id/title"
-        android:layout_width="fill_parent"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
-        android:layout_alignParentRight="true"
+        android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
         android:layout_alignWithParentIfMissing="true"
         android:gravity="center_vertical"

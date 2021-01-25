@@ -2,6 +2,8 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
 import android.graphics.Bitmap;
+import android.media.AudioManager;
+import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
+import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -25,9 +28,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
 import vn.edu.usth.onlinemusicplayer.adapter.TopTrackAdapter;
 
 public class TopTracksFragment extends Fragment {
@@ -40,6 +45,7 @@ public class TopTracksFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+    MediaPlayer mediaPlayer;
 
     public TopTracksFragment() {
         // Required empty public constructor
@@ -74,6 +80,8 @@ public class TopTracksFragment extends Fragment {
         // Initialize list containing track detail
         ArrayList<String> song_names = new ArrayList<String>();
         ArrayList<String> artist_names = new ArrayList<String>();
+        ArrayList<String> song_ids = new ArrayList<String>();
+
         ArrayList<Bitmap> thumbnails = new ArrayList<Bitmap>();
 
         // Instantiate the RequestQueue.
@@ -94,6 +102,7 @@ public class TopTracksFragment extends Fragment {
                                 JSONObject item = list_songs.getJSONObject(i);
                                 song_names.add(item.getString("name"));
                                 artist_names.add(item.getString("artists_names"));
+                                song_ids.add(item.getString("id"));
 
                                 int finalI = i;
                                 Response.Listener<Bitmap> listener2 =
@@ -107,7 +116,15 @@ public class TopTracksFragment extends Fragment {
 
                                                     try {
                                                         ListView list = view.findViewById(R.id.top_tracks_list);
-                                                        TopTrackAdapter topTrackAdapter = new TopTrackAdapter(getContext(), song_names, artist_names, thumbnails);
+                                                        TopTrackAdapter topTrackAdapter = new TopTrackAdapter(getContext(), song_names, artist_names, thumbnails, song_ids);
+                                                        topTrackAdapter.setCustomButtonListner(new TopTrackAdapter.customButtonListener() {
+                                                            @Override
+                                                            public void onButtonClickListner(int position, String value) {
+                                                                Toast.makeText(getActivity(), "Audio played",
+                                                                        Toast.LENGTH_SHORT).show();
+                                                                playAudioUrl(value);
+                                                            }
+                                                        });
                                                         list.setAdapter(topTrackAdapter);
                                                     } catch (Exception e) {
                                                     }
@@ -138,5 +155,21 @@ public class TopTracksFragment extends Fragment {
         queue.add(stringRequest);
 
         return view;
+    }
+
+    private void playAudioUrl(String songId) {
+        String audioUrl = "http://api.mp3.zing.vn/api/streaming/audio/"+ songId + "/128";
+
+        mediaPlayer = new MediaPlayer();
+        mediaPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+
+        try {
+            mediaPlayer.setDataSource(audioUrl);
+            mediaPlayer.prepare();
+            mediaPlayer.start();
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }

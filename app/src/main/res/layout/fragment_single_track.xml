@@ -35,7 +35,7 @@
 
             <TextView
                 android:id="@+id/name_song"
-                android:layout_width="wrap_content"
+                android:layout_width="200dp"
                 android:layout_height="wrap_content"
                 android:textColor="@color/black"
                 android:textSize="16dp"
@@ -46,6 +46,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
         </LinearLayout>
+        <ImageButton
+            android:id="@+id/bt_play"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginTop="12dp"
+            android:background="@null"
+            android:scaleType="fitXY"
+            android:layout_alignParentRight="true"
+            app:srcCompat="@drawable/ic_play_circle" />
     </RelativeLayout>
 
 </FrameLayout>
