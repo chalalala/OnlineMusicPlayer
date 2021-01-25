@@ -6,7 +6,11 @@ public interface PlayerInterface {
 
     void start();
     void play(long songId);
+
+//    void replay(long songId);
+
     void play(SongModel song);
+//    void replay(SongModel song);
     void pause();
     void stop();
     void seekTo(int position);

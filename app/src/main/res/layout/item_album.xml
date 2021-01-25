@@ -27,7 +27,7 @@
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/mamamoo_album" />
+            app:srcCompat="@drawable/ic_baseline_music_note_24" />
 
         <TextView
             android:id="@+id/tv_album_name"

@@ -73,7 +73,7 @@ public class NotificationHandler {
         try {
             bitmap = MediaStore.Images.Media.getBitmap(context.getContentResolver(), Uri.parse(uri));
         } catch (Exception e) {
-            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.demi);
+            bitmap = BitmapFactory.decodeResource(context.getResources(), R.drawable.ic_baseline_music_note_24);
         }
         return bitmap;
     }

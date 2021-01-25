@@ -5,196 +5,22 @@
     android:layout_height="match_parent"
     tools:context=".fragment.SearchAlbumFragment">
 
-    <ScrollView
+    <GridView
+        android:id="@+id/search_album"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:divider="@null"
+        android:dividerHeight="0dp"
+        android:footerDividersEnabled="false"
+        android:numColumns="3"
+        android:paddingHorizontal="20dp" />
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout1">
-
-                    <ImageButton
-                        android:id="@+id/img1"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/square1"
-                        android:adjustViewBounds="true"
-                        android:layout_centerInParent="true"
-                        android:background="@color/white"
-                        android:scaleType="centerCrop"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="SQUARE ONE"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:layout_below="@id/img1"></TextView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout2">
-
-                    <ImageButton
-                        android:id="@+id/img2"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/demi_album"
-                        android:background="@color/white"
-                        android:adjustViewBounds="true"
-                        android:layout_centerInParent="true"
-                        android:scaleType="centerCrop"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="DEMI"
-                        android:gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/img2"></TextView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout3">
-
-                    <ImageButton
-                        android:id="@+id/img3"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:adjustViewBounds="true"
-                        android:background="@color/white"
-                        android:layout_centerInParent="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/mamamoo_album"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="BLUE;S"
-                        android:layout_marginTop="20dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/img3"></TextView>
-
-                </RelativeLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_margin="5dp"
-                android:orientation="horizontal">
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout7">
-
-                    <ImageButton
-                        android:id="@+id/img7"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/ambitions"
-                        android:layout_centerInParent="true"
-                        android:background="@color/white"
-                        android:scaleType="centerCrop"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="AMBITIONS"
-                        android:layout_marginTop="20dp"
-                        android:layout_centerHorizontal="true"
-                        android:gravity="center"
-                        android:layout_below="@id/img7"></TextView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout8">
-
-                    <ImageButton
-                        android:id="@+id/img8"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:src="@drawable/reputation"
-                        android:background="@color/white"
-                        android:layout_centerInParent="true"
-                        android:scaleType="centerCrop"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="REPUTATION"
-                        android:gravity="center"
-                        android:layout_marginTop="20dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/img8"></TextView>
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:id="@+id/layout9">
-
-                    <ImageButton
-                        android:id="@+id/img9"
-                        android:layout_width="100dp"
-                        android:layout_height="100dp"
-                        android:adjustViewBounds="true"
-                        android:background="@color/white"
-                        android:layout_centerInParent="true"
-                        android:scaleType="centerCrop"
-                        android:src="@drawable/chromatica"></ImageButton>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="CHROMATICA"
-                        android:layout_marginTop="20dp"
-                        android:layout_centerHorizontal="true"
-                        android:layout_below="@id/img9"></TextView>
-
-                </RelativeLayout>
-            </LinearLayout>
-
-
-
-
-
-
-        </LinearLayout>
-    </ScrollView>
-
-    <!-- TODO: Update blank fragment layout -->
-
+    <ProgressBar
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:indeterminateTint="@color/purple_500"
+        android:progressDrawable="@drawable/circular_progress_bar" />
 
 </FrameLayout>

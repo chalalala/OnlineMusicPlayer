@@ -11,6 +11,7 @@ import android.view.View;
 import android.widget.PopupMenu;
 
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +30,7 @@ public class SongListFragment extends MusicServiceFragment {
     RecyclerView recyclerView;
     List<SongModel> songs;
     SongAdapter adapter;
+    CardView shuffle;
     private MusicService musicSrv;
     boolean musicServiceStatus = false;
 
@@ -38,11 +40,12 @@ public class SongListFragment extends MusicServiceFragment {
         View rootview = inflater.inflate(R.layout.fragment_song_list, container, false);
         songs=new ArrayList<>();
         recyclerView=rootview.findViewById(R.id.rv_song_list);
+        shuffle=rootview.findViewById(R.id.shuffle_cardview);
         adapter=new SongAdapter(songs,getContext());
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(linearLayoutManager);
         recyclerView.setAdapter(adapter);
-        if(musicServiceStatus) { initFragment(); }
+        if(musicServiceStatus) { initFragment();  handleAllAction();}
         return rootview;
     }
 
@@ -51,6 +54,7 @@ public class SongListFragment extends MusicServiceFragment {
         musicSrv = musicService;
         musicServiceStatus=true;
         initFragment();
+        handleAllAction();
     }
 
     @Override
@@ -99,6 +103,14 @@ public class SongListFragment extends MusicServiceFragment {
         });
     }
 
+    public void handleAllAction() {
+        shuffle.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                musicService.playShuffle();
+            }
+        });
+    }
     //initialize all the component
     public void initFragment() {
         songs=musicSrv.getSongs();

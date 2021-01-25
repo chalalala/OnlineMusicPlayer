@@ -3,12 +3,13 @@ package vn.edu.usth.onlinemusicplayer.loader;
 import android.content.ContentUris;
 import android.content.Context;
 import android.database.Cursor;
-import android.database.CursorWrapper;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.provider.MediaStore;
+import android.util.Log;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,6 +60,14 @@ public class SongDataLab {
         return songs.get(r.nextInt(songs.size() - 1));
     }
 
+    public SongModel getCurrentSong(SongModel currentSong) {
+        try {
+            return songs.get(songs.indexOf(currentSong));
+        } catch (Exception e) {
+            return getRandomSong();
+        }
+    }
+
     public SongModel getNextSong(SongModel currentSong) {
         try {
             return songs.get(songs.indexOf(currentSong) + 1);
@@ -66,7 +75,6 @@ public class SongDataLab {
             return getRandomSong();
         }
     }
-
 
     public SongModel getPreviousSong(SongModel currentSong) {
         try {
@@ -78,6 +86,13 @@ public class SongDataLab {
 
     public List<SongModel> getSongs() {
         return songs;
+    }
+
+    public List<SongModel> getRandomSongs() {
+        Collections.shuffle(songs);
+        List<SongModel> randomSongs = songs.subList(0, songs.size());
+
+        return randomSongs;
     }
 
     public List<SongModel> querySongs() {
@@ -97,7 +112,6 @@ public class SongDataLab {
         return songs;
     }
 
-    // incomplete get artist context
     public ArrayList<AlbumModel> getAlbums() {
         List<SongModel> songs = getSongs();
 
@@ -122,7 +136,6 @@ public class SongDataLab {
             allAlbums.add(new AlbumModel(albumSpecificSongs));
         }
 
-//          Debugging Code
 //        for(AlbumModel k:allAlbums) {
 //            for(SongModel song: k.getAlbumSongs()) {
 //                Log.i("Test","Album Title: "+song.getAlbumName()+"Album ID: "+song.getAlbumId()+" Song Name: "+song.getTitle());
@@ -154,7 +167,6 @@ public class SongDataLab {
             allArtists.add(new ArtistModel(artistSpecificAlbum));
         }
 
-        //Debugging Code
 //        for(ArtistModel k:allArtists) {
 //            for(AlbumModel album: k.getAlbums()) {
 //                Log.i("Test "+album.getArtistId(),"Album Title: "+album.getName());
