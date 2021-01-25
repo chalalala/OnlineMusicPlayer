@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -23,13 +24,25 @@ public class TopTrackAdapter extends BaseAdapter {
     ArrayList<String> song_names;
     ArrayList<String> artist_names;
     ArrayList<Bitmap> thumbnails;
+    ArrayList<String> song_ids;
+    customButtonListener customListner;
+
     LayoutInflater inflater;
 
-    public TopTrackAdapter(Context context, ArrayList<String> song_names, ArrayList<String> artist_names, ArrayList<Bitmap> thumbnails) {
+    public interface customButtonListener {
+        public void onButtonClickListner(int position,String value);
+    }
+
+    public void setCustomButtonListner(customButtonListener listener) {
+        this.customListner = listener;
+    }
+
+    public TopTrackAdapter(Context context, ArrayList<String> song_names, ArrayList<String> artist_names, ArrayList<Bitmap> thumbnails, ArrayList<String> song_ids) {
         this.context = context;
         this.song_names = song_names;
         this.artist_names = artist_names;
         this.thumbnails = thumbnails;
+        this.song_ids = song_ids;
         inflater = (LayoutInflater.from(context));
     }
 
@@ -48,17 +61,29 @@ public class TopTrackAdapter extends BaseAdapter {
         return 0;
     }
 
+    public String getItemSongId(int i) {
+        return song_ids.get(i);
+    }
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.fragment_single_track, null);
         TextView name_song = (TextView) view.findViewById(R.id.name_song);
         TextView name_artist = (TextView) view.findViewById(R.id.name_artist);
         ImageView thumbnail = (ImageView) view.findViewById(R.id.thumbnail);
-
+        ImageButton playBtn = (ImageButton) view.findViewById(R.id.bt_play);
         name_song.setText(song_names.get(i));
         name_artist.setText(artist_names.get(i));
         thumbnail.setImageBitmap(thumbnails.get(i));
 
+        playBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (customListner != null) {
+                    customListner.onButtonClickListner(i,getItemSongId(i));
+                }
+
+            }
+        });
         return view;
     }
 }

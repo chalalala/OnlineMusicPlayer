@@ -109,7 +109,7 @@ public class SearchSongFragment extends Fragment {
                                 songAdapter.setCustomButtonListner(new ArtistSongsAdapter.customButtonListener() {
                                     @Override
                                     public void onButtonClickListner(int position, String value) {
-                                        Toast.makeText(getActivity(), "Button click " + value,
+                                        Toast.makeText(getActivity(), "Audio Played",
                                                 Toast.LENGTH_SHORT).show();
                                         playAudioUrl(value);
                                     }

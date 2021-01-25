@@ -22,10 +22,10 @@
             android:layout_weight="1"
             android:name="vn.edu.usth.onlinemusicplayer.fragment.ArtistFragment"/>
 
-        <fragment
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:name="vn.edu.usth.onlinemusicplayer.fragment.NowPlayingBar"/>
+<!--        <fragment-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:name="vn.edu.usth.onlinemusicplayer.fragment.NowPlayingBar"/>-->
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
