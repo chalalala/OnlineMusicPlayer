@@ -8,8 +8,6 @@ import android.widget.BaseAdapter;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
-import com.squareup.picasso.Picasso;
-
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
@@ -19,12 +17,25 @@ public class ArtistSongsAdapter extends BaseAdapter {
     Context context;
     ArrayList<String> song_name;
     ArrayList<String> artist_name;
-    LayoutInflater inflater;
+    ArrayList<String> song_id;
 
-    public ArtistSongsAdapter(Context applicationContext, ArrayList<String> song_name, ArrayList<String> artist_name) {
+    LayoutInflater inflater;
+    customButtonListener customListner;
+
+    public interface customButtonListener {
+        public void onButtonClickListner(int position,String value);
+    }
+
+    public void setCustomButtonListner(customButtonListener listener) {
+        this.customListner = listener;
+    }
+
+    public ArtistSongsAdapter(Context applicationContext, ArrayList<String> song_name, ArrayList<String> artist_name, ArrayList<String> song_id) {
         this.context = applicationContext;
         this.song_name = song_name;
         this.artist_name = artist_name;
+        this.song_id = song_id;
+
         inflater = (LayoutInflater.from(applicationContext));
     }
     @Override
@@ -33,7 +44,7 @@ public class ArtistSongsAdapter extends BaseAdapter {
     }
 
     @Override
-    public Object getItem(int i) {
+    public Object getItem(int position) {
         return null;
     }
 
@@ -42,8 +53,8 @@ public class ArtistSongsAdapter extends BaseAdapter {
         return 0;
     }
 
-    public interface ArtistSongItemClickListener {
-        void onClick(View v, int pos);
+    public String getItemSongId(int i) {
+        return song_id.get(i);
     }
 
     @Override
@@ -54,7 +65,20 @@ public class ArtistSongsAdapter extends BaseAdapter {
         ImageButton playBtn = (ImageButton) view.findViewById(R.id.play_pause);
         songs.setText(song_name.get(i));
         artists.setText(artist_name.get(i));
+
+        playBtn.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+            public void onClick(View v) {
+                if (customListner != null) {
+                    customListner.onButtonClickListner(i,getItemSongId(i));
+                }
+
+            }
+        });
+
         return view;
     }
+
 
 }

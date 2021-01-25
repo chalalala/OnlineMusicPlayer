@@ -97,7 +97,7 @@ public class SearchSongFragment extends Fragment {
         // Initialize list containing track detail
         ArrayList<String> song_names = new ArrayList<String>();
         ArrayList<String> artist_names = new ArrayList<String>();
-        ArrayList<String> songIds = new ArrayList<String>();
+        ArrayList<String> song_ids = new ArrayList<String>();
         ArrayList<Bitmap> thumbnails = new ArrayList<Bitmap>();
 
         // Instantiate the RequestQueue.
@@ -118,12 +118,21 @@ public class SearchSongFragment extends Fragment {
                                 JSONObject item = list_songs.getJSONObject(i);
                                 song_names.add(item.getString("name"));
                                 artist_names.add(item.getString("artist"));
-                                songIds.add(item.getString("id"));
+                                song_ids.add(item.getString("id"));
                             }
                             try {
                                 ListView list = view.findViewById(R.id.search_song);
-                                songAdapter = new ArtistSongsAdapter(getContext(), song_names, artist_names);
-
+                                songAdapter = new ArtistSongsAdapter(getContext(), song_names, artist_names, song_ids);
+                                Log.d("SearchSongFragment song_names", String.valueOf(song_names));
+                                //click on song item title and artist name listener
+                                songAdapter.setCustomButtonListner(new ArtistSongsAdapter.customButtonListener() {
+                                    @Override
+                                    public void onButtonClickListner(int position, String value) {
+                                        Toast.makeText(getActivity(), "Button click " + value,
+                                                Toast.LENGTH_SHORT).show();
+                                        playAudioUrl(value);
+                                    }
+                                });
                                 list.setAdapter(songAdapter);
                                 spinner.setVisibility(View.GONE);
                             } catch (Exception e) {
@@ -141,19 +150,6 @@ public class SearchSongFragment extends Fragment {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-
-
-        // initializing our buttons
-        playBtn = view.findViewById(R.id.idBtnPlay);
-
-        // setting on click listener for our play and pause buttons.
-        playBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // calling method to play audio.
-                playAudioUrl("ZWABWZW0");
-            }
-        });
 
         return view;
     }

@@ -98,6 +98,7 @@ public class ArtistSongsFragment extends Fragment {
         // Initialize list containing track detail
         ArrayList<String> song_name = new ArrayList<String>();
         ArrayList<String> artist_name = new ArrayList<String>();
+        ArrayList<String> song_ids = new ArrayList<String>();
 
         // access button name
 //        TextView button_name = view.findViewWithTag("name_artist");
@@ -127,13 +128,14 @@ public class ArtistSongsFragment extends Fragment {
                                     Log.i("test","songs"+song_detail);
                                     song_name.add(song_detail.getString("name"));
                                     artist_name.add(song_detail.getString("artist"));
+                                    song_ids.add(song_detail.getString("id"));
                                 }
                             }
 
 
 
                             ListView listView = getView().findViewById(R.id.songofartist);
-                            ArtistSongsAdapter artistSongsAdapter = new ArtistSongsAdapter(getContext(),song_name,artist_name);
+                            ArtistSongsAdapter artistSongsAdapter = new ArtistSongsAdapter(getContext(),song_name,artist_name,song_ids);
                             listView.setAdapter(artistSongsAdapter);
 
                         } catch (JSONException e) {
