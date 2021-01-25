@@ -116,6 +116,7 @@ public class TestArtistFragment extends Fragment {
                                 JSONObject name = obj.getJSONObject(i);
                                 Log.i("Tag","response "+name);
                                 artist.add(name.getString("Name"));
+
                             }
                             GridView gridView = (GridView) getView().findViewById(R.id.artist_grid);
                             ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist);

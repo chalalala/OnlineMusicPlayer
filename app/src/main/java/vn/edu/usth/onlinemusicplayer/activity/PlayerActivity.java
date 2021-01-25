@@ -2,12 +2,8 @@ package vn.edu.usth.onlinemusicplayer.activity;
 
 import android.app.NotificationManager;
 import android.content.Context;
-import android.content.Intent;
-import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
 
 import androidx.appcompat.widget.Toolbar;
