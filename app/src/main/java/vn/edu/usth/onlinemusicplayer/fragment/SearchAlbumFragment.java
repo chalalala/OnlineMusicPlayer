@@ -70,8 +70,14 @@ public class SearchAlbumFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_album, container, false);
 
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         // Spinner that appears while waiting for the data
-        ProgressBar spinner = view.findViewById(R.id.spinner);
+        ProgressBar spinner = getView().findViewById(R.id.spinner);
 
         // Initialize list containing track detail
         ArrayList<String> album_names = new ArrayList<String>();
@@ -79,7 +85,7 @@ public class SearchAlbumFragment extends Fragment {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url = "http://ac.mp3.zing.vn/complete?type=album&num=9&query=" + query;
+        String url = "http://ac.mp3.zing.vn/complete?type=album&num=1&query=" + query;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -96,9 +102,15 @@ public class SearchAlbumFragment extends Fragment {
                                 JSONObject item = list_albums.getJSONObject(i);
                                 album_names.add(item.getString("name"));
 
+                                String img_url;
                                 String path = item.getString("thumb");
-                                String img_url = "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/" + path;
-                                Log.i("Album", img_url);
+                                if (path.equals("")){
+                                    img_url = "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/";
+                                }
+                                else{
+                                    img_url = "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/" + path;
+                                    Log.i("Album", img_url);
+                                }
 
                                 int finalI = i;
                                 Response.Listener<Bitmap> listener2 =
@@ -108,7 +120,7 @@ public class SearchAlbumFragment extends Fragment {
                                                 thumbnails.add(response);
                                                 if (finalI == list_albums.length() - 1) {
                                                     try {
-                                                        GridView list = view.findViewById(R.id.search_album);
+                                                        GridView list = getView().findViewById(R.id.search_album);
                                                         AlbumGridViewAdapter albumAdapter = new AlbumGridViewAdapter(getContext(), album_names, thumbnails);
                                                         list.setAdapter(albumAdapter);
 
@@ -138,7 +150,5 @@ public class SearchAlbumFragment extends Fragment {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-
-        return view;
     }
 }

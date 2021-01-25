@@ -1,32 +1,19 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
-import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
-import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.PopupMenu;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
-import androidx.media2.exoplayer.external.ExoPlayerFactory;
-import androidx.media2.exoplayer.external.extractor.DefaultExtractorsFactory;
-import androidx.media2.exoplayer.external.extractor.ExtractorsFactory;
-import androidx.media2.exoplayer.external.trackselection.AdaptiveTrackSelection;
-import androidx.media2.exoplayer.external.trackselection.DefaultTrackSelector;
-import androidx.media2.exoplayer.external.trackselection.TrackSelector;
-import androidx.media2.exoplayer.external.upstream.BandwidthMeter;
-import androidx.media2.exoplayer.external.upstream.DefaultBandwidthMeter;
-import androidx.media2.exoplayer.external.upstream.DefaultHttpDataSourceFactory;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -34,10 +21,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.android.exoplayer2.SimpleExoPlayer;
-import com.google.android.exoplayer2.source.ExtractorMediaSource;
-import com.google.android.exoplayer2.source.MediaSource;
-import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -48,8 +31,6 @@ import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
-import vn.edu.usth.onlinemusicplayer.adapter.SongAdapter;
-import vn.edu.usth.onlinemusicplayer.model.SongModel;
 
 public class SearchSongFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match

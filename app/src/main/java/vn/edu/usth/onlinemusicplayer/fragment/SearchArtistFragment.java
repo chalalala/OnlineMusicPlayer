@@ -8,9 +8,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -30,8 +28,6 @@ import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.adapter.ArtistGridViewAdapter;
-import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
-import vn.edu.usth.onlinemusicplayer.adapter.TopTrackAdapter;
 
 public class SearchArtistFragment extends Fragment {
 
@@ -69,8 +65,14 @@ public class SearchArtistFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_search_artist, container, false);
 
+        return view;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
         // Spinner that appears while waiting for the data
-        ProgressBar spinner = view.findViewById(R.id.spinner);
+        ProgressBar spinner = getView().findViewById(R.id.spinner);
 
         // Initialize list containing track detail
         ArrayList<String> artist_names = new ArrayList<String>();
@@ -78,7 +80,7 @@ public class SearchArtistFragment extends Fragment {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url = "http://ac.mp3.zing.vn/complete?type=artist&query=" + query;
+        String url = "http://ac.mp3.zing.vn/complete?type=artist&num=3&query=" + query;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
@@ -95,9 +97,15 @@ public class SearchArtistFragment extends Fragment {
                                 JSONObject item = list_artists.getJSONObject(i);
                                 artist_names.add(item.getString("name"));
 
+                                String img_url;
                                 String path = item.getString("thumb");
-                                String img_url = "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/" + path;
-                                Log.i("src", img_url);
+                                if (path != ""){
+                                    img_url = "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/" + path;
+                                    Log.i("src", img_url);
+                                }
+                                else{
+                                    img_url = "https://www.hotelieracademy.org/wp-content/uploads/2019/12/unknown-person-icon-4.png";
+                                }
 
                                 int finalI = i;
                                 Response.Listener<Bitmap> listener2 =
@@ -107,7 +115,7 @@ public class SearchArtistFragment extends Fragment {
                                                 thumbnails.add(response);
                                                 if (finalI == list_artists.length() - 1) {
                                                     try {
-                                                        GridView list = view.findViewById(R.id.search_song);
+                                                        GridView list = getView().findViewById(R.id.search_song);
                                                         ArtistGridViewAdapter artistAdapter = new ArtistGridViewAdapter(getContext(), artist_names, thumbnails);
                                                         list.setAdapter(artistAdapter);
 
@@ -138,6 +146,6 @@ public class SearchArtistFragment extends Fragment {
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
 
-        return view;
+
     }
 }
