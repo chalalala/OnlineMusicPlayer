@@ -1,5 +1,6 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
@@ -9,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -31,6 +33,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.activity.ArtistSongsActivity;
 import vn.edu.usth.onlinemusicplayer.adapter.ArtistGridViewAdapter;
 import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
 import vn.edu.usth.onlinemusicplayer.adapter.TopTrackAdapter;
@@ -118,6 +121,15 @@ public class TestArtistFragment extends Fragment {
                             ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist);
                             gridView.setAdapter(artistGridViewAdapter);
 
+                            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    Intent intent = new Intent(getContext(), ArtistSongsActivity.class);
+                                    startActivity(intent);
+                                }
+                            });
+
+
 
 
                         } catch (JSONException e) {
@@ -175,7 +187,6 @@ public class TestArtistFragment extends Fragment {
 //                        Toast.makeText(getContext(), "Some error occur", Toast.LENGTH_SHORT).show();
 //                    }
 //                });
-
 
         queue.add(stringRequest);
 

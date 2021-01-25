@@ -45,7 +45,7 @@ public class ArtistGridViewAdapter extends BaseAdapter {
     @Override
     public View getView(int i, View view, ViewGroup viewGroup) {
         view = inflater.inflate(R.layout.single_item_gridview,null);
-        ImageButton img = (ImageButton) view.findViewById(R.id.imagegrid);
+        ImageView img = (ImageView) view.findViewById(R.id.imagegrid);
         TextView artist = (TextView) view.findViewById(R.id.textgrid);
 
         img.setImageResource(R.drawable.karaoke);
