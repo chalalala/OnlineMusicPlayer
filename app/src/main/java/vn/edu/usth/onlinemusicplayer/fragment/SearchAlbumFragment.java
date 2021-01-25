@@ -79,7 +79,7 @@ public class SearchAlbumFragment extends Fragment {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
-        String url = "http://ac.mp3.zing.vn/complete?type=album&query=" + query;
+        String url = "http://ac.mp3.zing.vn/complete?type=album&num=9&query=" + query;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
