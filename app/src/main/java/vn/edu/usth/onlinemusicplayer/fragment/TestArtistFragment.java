@@ -2,6 +2,7 @@ package vn.edu.usth.onlinemusicplayer.fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
@@ -98,12 +99,14 @@ public class TestArtistFragment extends Fragment {
         ArrayList<String> artist = new ArrayList<String>();
         ArrayList<Bitmap> images = new ArrayList<Bitmap>();
 
+
         // once, should be performed once per app instance
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
 
 
         String url = "http://45.76.248.143/api/artists/GENRE=acid-rock-artists";
 //        String url2 = "https://api.deezer.com/artist/2";
+
 
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,url,
@@ -116,9 +119,13 @@ public class TestArtistFragment extends Fragment {
                                 JSONObject name = obj.getJSONObject(i);
                                 Log.i("Tag","response "+name);
                                 artist.add(name.getString("Name"));
+
+                                    images.add(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.karaoke));
+
                             }
+
                             GridView gridView = (GridView) getView().findViewById(R.id.artist_grid);
-                            ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist);
+                            ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist,images);
                             gridView.setAdapter(artistGridViewAdapter);
 
                             gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -187,7 +194,6 @@ public class TestArtistFragment extends Fragment {
 //                        Toast.makeText(getContext(), "Some error occur", Toast.LENGTH_SHORT).show();
 //                    }
 //                });
-
         queue.add(stringRequest);
 
 

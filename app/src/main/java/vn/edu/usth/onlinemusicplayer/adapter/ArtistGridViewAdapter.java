@@ -18,13 +18,13 @@ public class ArtistGridViewAdapter extends BaseAdapter {
 
     Context context;
     ArrayList<String> artist_name;
-//    ArrayList<Bitmap> thumbnails;
+    ArrayList<Bitmap> thumbnails;
     LayoutInflater inflater;
 
-    public ArtistGridViewAdapter(Context applicationContext, ArrayList<String> artist_name){
+    public ArtistGridViewAdapter(Context applicationContext, ArrayList<String> artist_name, ArrayList<Bitmap> thumbnails){
         this.context = applicationContext;
         this.artist_name = artist_name;
-//        this.thumbnails = thumbnails;
+        this.thumbnails = thumbnails;
         inflater = (LayoutInflater.from(applicationContext));
     }
     @Override
@@ -48,7 +48,7 @@ public class ArtistGridViewAdapter extends BaseAdapter {
         ImageView img = (ImageView) view.findViewById(R.id.imagegrid);
         TextView artist = (TextView) view.findViewById(R.id.textgrid);
 
-        img.setImageResource(R.drawable.karaoke);
+        img.setImageBitmap(thumbnails.get(i));
         artist.setText(artist_name.get(i));
         return view;
     }
