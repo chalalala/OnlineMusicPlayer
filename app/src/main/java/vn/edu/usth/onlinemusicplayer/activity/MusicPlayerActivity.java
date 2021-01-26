@@ -41,7 +41,6 @@ import vn.edu.usth.onlinemusicplayer.menu.CustomActionBarFragment;
 public class MusicPlayerActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
     private SeekBar seekbar;
-    private int duration;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -76,8 +75,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
                             JSONArray song_list = data.getJSONArray("song");
                             JSONObject song = song_list.getJSONObject(0);
 
-                            duration = song.getInt("duration");
-
                             String img_url = "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/" + song.getString("thumb");
                             getImage(img_url, queue);
                         } catch (JSONException e) {
@@ -102,8 +99,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
         ImageView back_button = findViewById(R.id.back_button);
         back_button.setColorFilter(getColor(R.color.white));
 
-        playAudioUrl(song_id);
-
         ImageButton play_btn = findViewById(R.id.play);
         play_btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -119,7 +114,33 @@ public class MusicPlayerActivity extends AppCompatActivity {
         });
 
         seekbar = findViewById(R.id.seekBar);
+        playAudioUrl(song_id);
+        updateSeekbar();
+
+    }
+
+    private void updateSeekbar() {
+        int duration = mediaPlayer.getDuration()/1000;
         seekbar.setMax(duration);
+
+        Thread t = new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (mediaPlayer.isPlaying()) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    int current_position = mediaPlayer.getCurrentPosition()/1000;
+                    Log.i("current", "current position: " + current_position);
+                    Log.i("current", "duration: " + duration);
+                    seekbar.setProgress(current_position);
+                }
+            }
+        });
+
+        t.start();
     }
 
     private void getImage(String img_url, RequestQueue queue) {
@@ -141,38 +162,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
                 listener, 250, 250, ImageView.ScaleType.CENTER,
                 Bitmap.Config.ARGB_8888, null);
         queue.add(imageRequest);
-
-        Thread t = new Thread(new Runnable() {
-            int current_position;
-
-            @Override
-            public void run() {
-                if (mediaPlayer != null) {
-                    current_position = mediaPlayer.getCurrentPosition();
-                }
-
-                Bundle bundle = new Bundle();
-                bundle.putInt("current", current_position);
-
-                // notify main thread
-                Message msg = new Message();
-                msg.setData(bundle);
-                handler.sendMessage(msg);
-            }
-        });
-        t.start();
     }
-
-    Handler handler = new Handler(Looper.getMainLooper()) {
-        @Override
-        public void handleMessage(Message msg) {
-            int current_position = msg.getData().getInt("current");
-            seekbar.setProgress(current_position / duration);
-            if (mediaPlayer != null) {
-                seekbar.setProgress(current_position/duration);
-            }
-        }
-    };
 
     private void playAudioUrl(String songId) {
         String audioUrl = "http://api.mp3.zing.vn/api/streaming/audio/" + songId + "/128";
@@ -184,6 +174,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
             mediaPlayer.setDataSource(audioUrl);
             mediaPlayer.prepare();
             mediaPlayer.start();
+            seekbar.setProgress(0);
 
         } catch (IOException e) {
             e.printStackTrace();
