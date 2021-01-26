@@ -117,6 +117,7 @@ public class SearchSongFragment extends Fragment {
                                 list.setAdapter(songAdapter);
                                 spinner.setVisibility(View.GONE);
                             } catch (Exception e) {
+                                Log.e("error", e.getMessage());
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();

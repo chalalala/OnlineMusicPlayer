@@ -122,6 +122,7 @@ public class SearchArtistFragment extends Fragment {
                                                         // Spinner disappear when data is ready
                                                         spinner.setVisibility(View.GONE);
                                                     } catch (Exception e) {
+                                                        Log.e("error", e.getMessage());
                                                     }
                                                 }
                                             }
