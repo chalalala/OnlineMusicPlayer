@@ -10,7 +10,7 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
 
     <application
         android:allowBackup="true"
@@ -21,14 +21,14 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.OnlineMusicPlayer"
         android:usesCleartextTraffic="true">
+        <activity android:name=".activity.MusicPlayerActivity"></activity>
+        <activity android:name=".activity.ArtistSongsActivity" />
 
-        <activity android:name=".activity.ArtistSongsActivity"></activity>
+        <service android:name=".service.MusicService" />
 
-        <service android:name=".service.MusicService"/>
-
-        <activity android:name=".activity.ProfileActivity"></activity>
-        <activity android:name=".activity.SignUpActivity"></activity>
-        <activity android:name=".activity.TopTracksActivity"></activity>
+        <activity android:name=".activity.ProfileActivity" />
+        <activity android:name=".activity.SignUpActivity" />
+        <activity android:name=".activity.TopTracksActivity" />
         <activity android:name=".activity.ArtistActivity" />
         <activity android:name=".activity.LoginActivity" />
         <activity android:name=".activity.QueueActivity" />
@@ -40,16 +40,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".activity.PermitActivity"></activity>
+        <activity android:name=".activity.PlayerActivity">
 
-        <activity android:name=".activity.PermitActivity">
-        </activity>
-
-        <activity
-            android:name=".activity.PlayerActivity">
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.MAIN"/>-->
-<!--                <category android:name="android.intent.category.LAUNCHER"/>-->
-<!--            </intent-filter>-->
+            <!-- <intent-filter> -->
+            <!-- <action android:name="android.intent.action.MAIN"/> -->
+            <!-- <category android:name="android.intent.category.LAUNCHER"/> -->
+            <!-- </intent-filter> -->
         </activity>
     </application>
 

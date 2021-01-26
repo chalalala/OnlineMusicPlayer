@@ -58,16 +58,7 @@ public class CustomActionBarFragment extends Fragment {
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Intent intent = new Intent(v.getContext(), HomeActivity.class);
-//                startActivity(intent);
                 getActivity().finish();
-            }
-        });
-
-        search = view.findViewById(R.id.search_button);
-        search.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
             }
         });
 
