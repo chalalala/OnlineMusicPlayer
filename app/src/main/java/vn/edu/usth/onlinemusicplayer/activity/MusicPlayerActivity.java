@@ -62,19 +62,19 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://ac.mp3.zing.vn/complete?type=song&num=1&query=" + song_name;
+        String url = "http://ac.mp3.zing.vn/complete?type=song&num=1&query=" + name;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        JSONObject obj = null;
                         try {
-                            obj = new JSONObject(response);
+                            JSONObject obj = new JSONObject(response);
                             JSONArray raw_data = obj.getJSONArray("data");
-                            JSONObject data = raw_data.getJSONObject(1);
-                            JSONObject song = data.getJSONObject("song");
+                            JSONObject data = raw_data.getJSONObject(0);
+                            JSONArray song_list = data.getJSONArray("song");
+                            JSONObject song = song_list.getJSONObject(0);
 
                             duration = song.getInt("duration");
 
@@ -118,8 +118,8 @@ public class MusicPlayerActivity extends AppCompatActivity {
             }
         });
 
-        SeekBar seekBar = findViewById(R.id.seekBar);
-        seekBar.setMax(duration);
+        seekbar = findViewById(R.id.seekBar);
+        seekbar.setMax(duration);
     }
 
     private void getImage(String img_url, RequestQueue queue) {
@@ -138,7 +138,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
                 };
         ImageRequest imageRequest = new ImageRequest(
                 img_url,
-                listener, 100, 100, ImageView.ScaleType.CENTER,
+                listener, 250, 250, ImageView.ScaleType.CENTER,
                 Bitmap.Config.ARGB_8888, null);
         queue.add(imageRequest);
 
