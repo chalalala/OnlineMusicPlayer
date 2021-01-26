@@ -121,14 +121,10 @@ public class TopTracksFragment extends Fragment {
                                                         topTrackAdapter.setCustomButtonListner(new TopTrackAdapter.customButtonListener() {
                                                             @Override
                                                             public void onButtonClickListner(int position, String value) {
-                                                                Toast.makeText(getActivity(), "Audio played",
-                                                                        Toast.LENGTH_SHORT).show();
-
                                                                 Intent intent = new Intent(getContext(), MusicPlayerActivity.class);
                                                                 intent.putExtra("song_id", value);
                                                                 intent.putExtra("song_name", song_names.get(position));
                                                                 intent.putExtra("song_artist", artist_names.get(position));
-
                                                                 startActivity(intent);
                                                             }
                                                         });

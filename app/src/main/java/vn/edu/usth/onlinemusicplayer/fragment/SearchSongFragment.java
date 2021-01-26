@@ -1,5 +1,6 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -30,6 +31,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.activity.MusicPlayerActivity;
 import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
 
 public class SearchSongFragment extends Fragment {
@@ -109,9 +111,11 @@ public class SearchSongFragment extends Fragment {
                                 songAdapter.setCustomButtonListner(new ArtistSongsAdapter.customButtonListener() {
                                     @Override
                                     public void onButtonClickListner(int position, String value) {
-                                        Toast.makeText(getActivity(), "Audio Played",
-                                                Toast.LENGTH_SHORT).show();
-                                        playAudioUrl(value);
+                                        Intent intent = new Intent(getContext(), MusicPlayerActivity.class);
+                                        intent.putExtra("song_id", value);
+                                        intent.putExtra("song_name", song_names.get(position));
+                                        intent.putExtra("song_artist", artist_names.get(position));
+                                        startActivity(intent);
                                     }
                                 });
                                 list.setAdapter(songAdapter);
