@@ -56,12 +56,13 @@ public class MusicPlayerActivity extends AppCompatActivity {
         TextView song_name = findViewById(R.id.song_name);
         song_name.setText(name);
 
+        String name_a = b.getString("song_artist");
         TextView artist_name = findViewById(R.id.artist);
-        artist_name.setText(b.getString("song_artist"));
+        artist_name.setText(name_a);
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
-        String url = "http://ac.mp3.zing.vn/complete?type=song&num=1&query=" + name;
+        String url = "http://ac.mp3.zing.vn/complete?type=song&num=1&query=" + name + " " + name_a;
 
         // Request a string response from the provided URL.
         StringRequest stringRequest = new StringRequest(Request.Method.GET, url,
