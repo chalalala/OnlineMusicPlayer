@@ -1,11 +1,13 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -16,6 +18,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.ImageRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -26,6 +29,7 @@ import org.json.JSONObject;
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
+import vn.edu.usth.onlinemusicplayer.activity.ArtistSongsActivity;
 import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
 
 /**
@@ -43,6 +47,7 @@ public class ArtistSongsFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+//    private String data;
 
     public ArtistSongsFragment() {
         // Required empty public constructor
@@ -66,10 +71,12 @@ public class ArtistSongsFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+
+//        Bundle bundle = this.getArguments();
+//        if (bundle != null){
+//            data = bundle.getString("key");
+//        }
+
     }
 
     @Override
@@ -77,6 +84,12 @@ public class ArtistSongsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_artist_songs, container, false);
+//        Bundle bundle = getArguments();
+//        String data = bundle.getString("key");
+        // get sent data from artistsongs activity
+        ArtistSongsActivity artistSongsActivity = (ArtistSongsActivity) getActivity();
+        String artist = artistSongsActivity.getIntent().getExtras().getString("key");
+//        Toast.makeText(getContext(),data,Toast.LENGTH_SHORT).show();
         ImageButton back = view.findViewById(R.id.back_button1);
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,12 +98,12 @@ public class ArtistSongsFragment extends Fragment {
             }
         });
 
-        String art = "Blackpink";
+//        String art = "Blackpink";
 
 
         TextView textView = view.findViewById(R.id.songofartist_name);
-        textView.setText(art);
-        callApi(art);
+        textView.setText(artist);
+        callApi(artist);
         return view;
     }
 
@@ -110,6 +123,7 @@ public class ArtistSongsFragment extends Fragment {
 
         // a simple request to the required songs
         String url = "http://ac.mp3.zing.vn/complete?type=artist,song,key,code&num=10&query="+artist;
+        String url2 = "http://ac.mp3.zing.vn/complete?type=artist&num=1&query="+artist;
 
         StringRequest stringRequest = new StringRequest(Request.Method.GET,url,
                 new Response.Listener<String>() {
@@ -150,7 +164,55 @@ public class ArtistSongsFragment extends Fragment {
                         Toast.makeText(getContext(), "Some error occur", Toast.LENGTH_SHORT).show();
                     }
                 });
+
+        StringRequest stringRequest2 = new StringRequest(Request.Method.GET,url2,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+
+                            JSONObject obj = new JSONObject(response);
+                            JSONArray data = obj.getJSONArray("data");
+                            JSONObject detail = data.getJSONObject(0);
+                            JSONArray artist = detail.getJSONArray("artist");
+                            JSONObject artist_detail = artist.getJSONObject(0);
+                            String img_full = "";
+//                            Log.i("Tag","Detaillll: "+artist_detail);
+                            if (artist_detail != null) {
+                                String img = artist_detail.getString("thumb");
+                                img_full = "https://photo-resize-zmp3.zadn.vn/w240_r1x1_jpeg/"+img;
+//                                Log.i("Tag","Img: "+img_full);
+                            }
+                            Response.Listener<Bitmap> listener1 = new Response.Listener<Bitmap>() {
+                                @Override
+                                public void onResponse(Bitmap response) {
+                                    ImageView iv = (ImageView) getView().findViewById(R.id.img_test);
+                                    iv.setImageBitmap(response);
+                                }
+                            };
+// a simple request to the required image
+                            ImageRequest imageRequest = new ImageRequest(img_full,
+                                    listener1, 0, 0, ImageView.ScaleType.FIT_XY,
+                                    Bitmap.Config.ARGB_8888,null);
+                            queue.add(imageRequest);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "Some error occur", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+
 // go!
+        queue.add(stringRequest2);
         queue.add(stringRequest);
+
     }
 }

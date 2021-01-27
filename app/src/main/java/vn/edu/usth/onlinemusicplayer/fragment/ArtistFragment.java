@@ -1,42 +1,45 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
-import android.content.ContentResolver;
 import android.content.Intent;
-import android.database.Cursor;
-import android.graphics.Color;
-import android.net.Uri;
-import android.os.Build;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
-import android.provider.MediaStore;
+
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+
 import android.util.Log;
-import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageButton;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.RelativeLayout;
-import android.widget.TextView;
+import android.widget.AdapterView;
+import android.widget.GridView;
+import android.widget.ProgressBar;
+import android.widget.Toast;
 
-import androidx.annotation.RequiresApi;
-import androidx.fragment.app.Fragment;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
 
 import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.activity.ArtistSongsActivity;
-import vn.edu.usth.onlinemusicplayer.model.SongModel;
-import vn.edu.usth.onlinemusicplayer.service.MusicService;
+import vn.edu.usth.onlinemusicplayer.adapter.ArtistGridViewAdapter;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ArtistFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ArtistFragment extends MusicServiceFragment {
+public class ArtistFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,12 +58,16 @@ public class ArtistFragment extends MusicServiceFragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
+     * @param param1 Parameter 1.
+     * @param param2 Parameter 2.
      * @return A new instance of fragment ArtistFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static ArtistFragment newInstance() {
+    public static ArtistFragment newInstance(String param1, String param2) {
         ArtistFragment fragment = new ArtistFragment();
         Bundle args = new Bundle();
+        args.putString(ARG_PARAM1, param1);
+        args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
     }
@@ -74,229 +81,83 @@ public class ArtistFragment extends MusicServiceFragment {
         }
     }
 
-    public static final String TAG="ArtistFragment";
-
-    List<SongModel> songs;
-    private MusicService musicSrv;
-    boolean musicServiceStatus = false;
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+        // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_artist, container, false);
-        songs=new ArrayList<>();
-        if(musicServiceStatus) { initFragment(); }
+
+        // Initialize list containing artist detail
+        ArrayList<String> artist = new ArrayList<String>();
+        ArrayList<Bitmap> images = new ArrayList<Bitmap>();
+
+        // Spinner that appears while waiting for the data
+        ProgressBar spinner = view.findViewById(R.id.spinner);
+
+        // once, should be performed once per app instance
+        RequestQueue queue = Volley.newRequestQueue(this.getContext());
+
+
+        String url = "http://45.76.248.143/api/artists/GENRE=South-Korean-idol-groups-(2010s)";
+//        String url2 = "https://api.deezer.com/artist/2";
+
+
+
+        StringRequest stringRequest = new StringRequest(Request.Method.GET,url,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONArray obj = new JSONArray(response);
+                            for (int i=0; i<obj.length();i++){
+                                JSONObject name = obj.getJSONObject(i);
+                                Log.i("Tag","response "+name);
+                                artist.add(name.getString("Name"));
+                                // since the api link does not provide any img link, use a local img instead
+                                images.add(BitmapFactory.decodeResource(getContext().getResources(), R.drawable.karaoke));
+                                int wait = i;
+                                if (wait == obj.length() -1){
+                                    spinner.setVisibility(View.GONE);
+                                }
+                            }
+
+                            GridView gridView = (GridView) getView().findViewById(R.id.artist_grid);
+                            ArtistGridViewAdapter artistGridViewAdapter = new ArtistGridViewAdapter(getContext(),artist,images);
+                            gridView.setAdapter(artistGridViewAdapter);
+
+                            gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                                @Override
+                                public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                                    // send data( artist name) to artistsongs activity
+
+                                    Intent intent = new Intent(getActivity(), ArtistSongsActivity.class);
+                                    intent.putExtra("key",artist.get(i));
+                                    startActivity(intent);
+//                                    Toast.makeText(getContext(),"Data click:"+artist.get(i),Toast.LENGTH_SHORT).show();
+                                }
+                            });
+
+
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getContext(), "Some error occur", Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        queue.add(stringRequest);
+
+
+
+//
         return view;
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    @Override
-    public void onServiceConnected(MusicService musicService) {
-        musicSrv = musicService;
-        musicServiceStatus=true;
-        initFragment();
-    }
-
-    @Override
-    public void onServiceDisconnected() {
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void createUI() {
-        View view = getView();
-        LinearLayout column1 = (LinearLayout) view.findViewById((R.id.col1));
-        LinearLayout column2 = (LinearLayout) view.findViewById((R.id.col2));
-        LinearLayout column3 = (LinearLayout) view.findViewById((R.id.col3));
-        String[] artist_name = new String[songs.size()];
-
-        for (int j=0; j<artist_name.length; j++){
-            artist_name[j] = songs.get(j).getArtistName();
-        }
-//            remove duplicate artist name
-        artist_name = Arrays.stream(artist_name).distinct().toArray(String[]::new);
-
-        for (int i=0; i<Math.ceil((double) artist_name.length/3); i++) {
-//                Row 1
-            // Create row by LinearLayout
-            LinearLayout row = new LinearLayout(this.getActivity());
-            RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,256);
-//                LinearLayout.LayoutParams row_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            row.setPadding(5,5,5,5);
-            row.setLayoutParams(row_params);
-            row.setOrientation(LinearLayout.VERTICAL);
-
-            // Create layout contains Image and Artists
-            LinearLayout NameField = new LinearLayout(this.getActivity());
-            RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            NameField.setOrientation(LinearLayout.VERTICAL);
-            nameFieldParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-            nameFieldParams.addRule(RelativeLayout.CENTER_VERTICAL);
-            NameField.setLayoutParams(nameFieldParams);
-
-            LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
-            img_params.gravity = Gravity.CENTER;
-            img_params.bottomMargin = 20;
-            LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            name_params.gravity = Gravity.CENTER;
-
-            //Image
-            ImageButton img = new ImageButton(this.getContext());
-            img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            img.setId(i+1);
-//            Log.i("Tag","ID: "+img.getId());
-            img.setBackgroundColor(Color.WHITE);
-            img.setImageResource(R.drawable.karaoke);
-            img.setLayoutParams(img_params);
-            NameField.addView(img);
-
-            // Artist
-            TextView artist = new TextView(this.getContext());
-//            artist.setTag("name_"+i);
-            artist.setId(i+1);
-//            Log.i("Tag","ID: "+artist.getId());
-            artist.setText(artist_name[i]);
-            artist.setLayoutParams(name_params);
-            NameField.addView(artist);
-
-            // handle button click
-            img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.i("Tag 2","Id: "+img.getId());
-                    Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
-//                    artist.setTag("name_artist");
-                    startActivity(intent);
-                }
-            });
-
-            row.addView(NameField);
-            column1.addView(row);
-        }
-
-        for (int i = (int) Math.ceil((double) artist_name.length/3); i<Math.ceil((double) 2*artist_name.length/3); i++){
-            LinearLayout row = new LinearLayout(this.getActivity());
-            RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,256);
-//                LinearLayout.LayoutParams row_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            row.setLayoutParams(row_params);
-            row.setPadding(5,5,5,5);
-            row.setOrientation(LinearLayout.VERTICAL);
-
-            // Create layout contains Image and Artists
-            LinearLayout NameField = new LinearLayout(this.getActivity());
-            RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            NameField.setOrientation(LinearLayout.VERTICAL);
-            nameFieldParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-            nameFieldParams.addRule(RelativeLayout.CENTER_VERTICAL);
-            NameField.setLayoutParams(nameFieldParams);
-
-            LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
-            img_params.gravity = Gravity.CENTER;
-            img_params.bottomMargin = 20;
-            LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            name_params.gravity = Gravity.CENTER;
-
-            //Image
-            ImageButton img = new ImageButton(this.getContext());
-            img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            img.setId(i+1);
-//            Log.i("Tag","ID: "+img.getId());
-            img.setBackgroundColor(Color.WHITE);
-            img.setImageResource(R.drawable.karaoke);
-            img.setLayoutParams(img_params);
-            NameField.addView(img);
-
-            // Artist
-            TextView artist = new TextView(this.getContext());
-//            artist.setTag("name_"+i);
-            artist.setId(i+100);
-//            Log.i("Tag","ID: "+artist.getId());
-            artist.setText(artist_name[i]);
-            artist.setLayoutParams(name_params);
-            NameField.addView(artist);
-
-            // handle button click
-            img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-//                    int z = artist.getId();
-                    Log.i("Tag 2","Id: "+img.getId());
-                    Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
-//                    TextView art = view.findViewById(z);
-//                    Bundle bundle = new Bundle();
-//                    bundle.putString("key", art.getText().toString());
-//                    Log.d("Test1.5","Artist name"+art.getText().toString());
-//                    intent.putExtras(bundle);
-//                    artist.setTag("name_artist");
-                    startActivity(intent);
-                }
-            });
-
-            row.addView(NameField);
-            column2.addView(row);
-        }
-
-        for (int i = (int) Math.ceil((double) 2*artist_name.length/3); i<artist_name.length; i++){
-            LinearLayout row = new LinearLayout(this.getActivity());
-            RelativeLayout.LayoutParams row_params = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT,256);
-//                LinearLayout.LayoutParams row_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.MATCH_PARENT);
-            row.setLayoutParams(row_params);
-            row.setPadding(5,5,5,5);
-            row.setOrientation(LinearLayout.VERTICAL);
-
-            // Create layout contains Image and Artists
-            LinearLayout NameField = new LinearLayout(this.getActivity());
-            RelativeLayout.LayoutParams nameFieldParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
-            NameField.setOrientation(LinearLayout.VERTICAL);
-            nameFieldParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
-            nameFieldParams.addRule(RelativeLayout.CENTER_VERTICAL);
-            NameField.setLayoutParams(nameFieldParams);
-
-            LinearLayout.LayoutParams img_params = new LinearLayout.LayoutParams(128, 128);
-            img_params.gravity = Gravity.CENTER;
-            img_params.bottomMargin = 20;
-            LinearLayout.LayoutParams name_params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT);
-            name_params.gravity = Gravity.CENTER;
-
-            //Image
-            ImageButton img = new ImageButton(this.getContext());
-            img.setId(i+1);
-//            Log.i("Tag","ID: "+img.getId());
-            img.setScaleType(ImageView.ScaleType.CENTER_CROP);
-            img.setBackgroundColor(Color.WHITE);
-            img.setImageResource(R.drawable.karaoke);
-            img.setLayoutParams(img_params);
-            NameField.addView(img);
-
-            // Artist
-            TextView artist = new TextView(this.getContext());
-//            artist.setTag("name_"+i);
-            artist.setId(i+100);
-//            Log.i("Tag","ID: "+artist.getId());
-            artist.setText(artist_name[i]);
-            artist.setLayoutParams(name_params);
-            NameField.addView(artist);
-
-            // handle button click
-            img.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    Log.i("Tag 2","Id: "+img.getId());
-                    Intent intent =new Intent(getContext(), ArtistSongsActivity.class);
-//                    artist.setTag("name_artist");
-                    startActivity(intent);
-                }
-            });
-
-            row.addView(NameField);
-            column3.addView(row);
-        }
-    }
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
-    public void initFragment() {
-        songs=musicSrv.getSongs();
-        Log.d(TAG,songs.get(0).getTitle());
-        createUI();
     }
 }

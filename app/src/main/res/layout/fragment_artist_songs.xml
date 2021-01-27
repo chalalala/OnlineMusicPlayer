@@ -7,14 +7,17 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:id="@+id/artist_songg"
         android:layout_height="match_parent">
 
         <ImageView
             android:id="@+id/img_test"
             android:layout_width="match_parent"
             android:layout_height="160dp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/blackpink" />
+            android:scaleType="fitXY"
+            android:alpha="0.8"
+
+            />
 
         <ImageButton
             android:id="@+id/back_button1"
@@ -24,7 +27,7 @@
             android:layout_margin="5dp"
             android:background="@color/transparent"
             android:src="@drawable/ic_arrow_back"
-            android:tint="@color/white" />
+            android:tint="@color/gray" />
 
         <TextView
             android:id="@+id/songofartist_name"
@@ -32,7 +35,7 @@
             android:layout_height="wrap_content"
             android:layout_alignBottom="@+id/img_test"
             android:layout_margin="10dp"
-            android:textColor="#ffffff"
+            android:textColor="@color/white"
             android:textSize="20sp"
             android:textStyle="bold" />
 
