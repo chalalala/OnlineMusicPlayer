@@ -24,6 +24,8 @@
                 android:id="@+id/song_name1"
                 android:textSize="16sp"
                 android:textStyle="bold"
+                android:maxLines="1"
+                android:ellipsize="end"
                 android:padding="3dp"
                 />
 
