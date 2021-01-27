@@ -1,6 +1,7 @@
 package vn.edu.usth.onlinemusicplayer.fragment;
 
 import android.graphics.Bitmap;
+import android.graphics.Matrix;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -188,11 +189,18 @@ public class ArtistSongsFragment extends Fragment {
                                 public void onResponse(Bitmap response) {
                                     ImageView iv = (ImageView) getView().findViewById(R.id.img_test);
                                     iv.setImageBitmap(response);
+                                    // using matrix to scale the image
+                                    Matrix matrix = iv.getImageMatrix();
+                                    float imageWidth = iv.getDrawable().getIntrinsicWidth();
+                                    int screenWidth = getResources().getDisplayMetrics().widthPixels;
+                                    float scaleRatio = screenWidth / imageWidth;
+                                    matrix.postScale(scaleRatio, scaleRatio);
+                                    iv.setImageMatrix(matrix);
                                 }
                             };
 // a simple request to the required image
                             ImageRequest imageRequest = new ImageRequest(img_full,
-                                    listener1, 0, 0, ImageView.ScaleType.FIT_XY,
+                                    listener1, 0, 0, ImageView.ScaleType.CENTER,
                                     Bitmap.Config.ARGB_8888,null);
                             queue.add(imageRequest);
 

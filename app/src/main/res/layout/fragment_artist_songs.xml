@@ -13,8 +13,8 @@
         <ImageView
             android:id="@+id/img_test"
             android:layout_width="match_parent"
-            android:layout_height="160dp"
-            android:scaleType="fitXY"
+            android:layout_height="180dp"
+            android:scaleType="matrix"
             android:alpha="0.8"
 
             />
