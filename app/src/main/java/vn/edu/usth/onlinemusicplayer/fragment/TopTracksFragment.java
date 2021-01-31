@@ -82,8 +82,7 @@ public class TopTracksFragment extends Fragment {
         ArrayList<String> song_names = new ArrayList<String>();
         ArrayList<String> artist_names = new ArrayList<String>();
         ArrayList<String> song_ids = new ArrayList<String>();
-
-        ArrayList<Bitmap> thumbnails = new ArrayList<Bitmap>();
+        ArrayList<String> img_urls = new ArrayList<String>();
 
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this.getContext());
@@ -104,17 +103,18 @@ public class TopTracksFragment extends Fragment {
                                 song_names.add(item.getString("name"));
                                 artist_names.add(item.getString("artists_names"));
                                 song_ids.add(item.getString("id"));
+                                img_urls.add(item.getString("thumbnail"));
+                            }
 
+                            Bitmap[] thumbnails = new Bitmap[img_urls.size()];
+                            for (int i = 0; i < img_urls.size(); i++) {
                                 int finalI = i;
                                 Response.Listener<Bitmap> listener2 =
                                         new Response.Listener<Bitmap>() {
                                             @Override
                                             public void onResponse(Bitmap response) {
-                                                thumbnails.add(response);
-                                                if (finalI == list_songs.length() - 1) {
-                                                    // Spinner disappear when data is ready
-                                                    spinner.setVisibility(View.GONE);
-
+                                                thumbnails[finalI] = response;
+                                                if (finalI == img_urls.size() - 1) {
                                                     try {
                                                         ListView list = view.findViewById(R.id.top_tracks_list);
                                                         TopTrackAdapter topTrackAdapter = new TopTrackAdapter(getContext(), song_names, artist_names, thumbnails, song_ids);
@@ -129,6 +129,9 @@ public class TopTracksFragment extends Fragment {
                                                             }
                                                         });
                                                         list.setAdapter(topTrackAdapter);
+
+                                                        // Spinner disappear when data is ready
+                                                        spinner.setVisibility(View.GONE);
                                                     } catch (Exception e) {
                                                     }
                                                 }
@@ -136,13 +139,11 @@ public class TopTracksFragment extends Fragment {
                                         };
 
                                 ImageRequest imageRequest = new ImageRequest(
-                                        item.getString("thumbnail"),
+                                        img_urls.get(i),
                                         listener2, 50, 50, ImageView.ScaleType.CENTER,
                                         Bitmap.Config.ARGB_8888, null);
                                 queue.add(imageRequest);
                             }
-
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -156,7 +157,6 @@ public class TopTracksFragment extends Fragment {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
-
         return view;
     }
 

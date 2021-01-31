@@ -23,7 +23,7 @@ public class TopTrackAdapter extends BaseAdapter {
     Context context;
     ArrayList<String> song_names;
     ArrayList<String> artist_names;
-    ArrayList<Bitmap> thumbnails;
+    Bitmap[] thumbnails;
     ArrayList<String> song_ids;
     customButtonListener customListner;
 
@@ -37,7 +37,7 @@ public class TopTrackAdapter extends BaseAdapter {
         this.customListner = listener;
     }
 
-    public TopTrackAdapter(Context context, ArrayList<String> song_names, ArrayList<String> artist_names, ArrayList<Bitmap> thumbnails, ArrayList<String> song_ids) {
+    public TopTrackAdapter(Context context, ArrayList<String> song_names, ArrayList<String> artist_names, Bitmap[] thumbnails, ArrayList<String> song_ids) {
         this.context = context;
         this.song_names = song_names;
         this.artist_names = artist_names;
@@ -73,7 +73,7 @@ public class TopTrackAdapter extends BaseAdapter {
         ImageButton playBtn = (ImageButton) view.findViewById(R.id.bt_play);
         name_song.setText(song_names.get(i));
         name_artist.setText(artist_names.get(i));
-        thumbnail.setImageBitmap(thumbnails.get(i));
+        thumbnail.setImageBitmap(thumbnails[i]);
 
         playBtn.setOnClickListener(new View.OnClickListener() {
             @Override
