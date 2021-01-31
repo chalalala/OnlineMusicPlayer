@@ -6,12 +6,8 @@ import android.graphics.drawable.Drawable;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Looper;
-import android.os.Message;
 import android.util.Log;
 import android.view.View;
-import android.widget.GridView;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.SeekBar;
@@ -35,8 +31,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 
 import vn.edu.usth.onlinemusicplayer.R;
-import vn.edu.usth.onlinemusicplayer.adapter.ArtistGridViewAdapter;
-import vn.edu.usth.onlinemusicplayer.menu.CustomActionBarFragment;
 
 public class MusicPlayerActivity extends AppCompatActivity {
     private MediaPlayer mediaPlayer;
@@ -116,12 +110,10 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
         seekbar = findViewById(R.id.seekBar);
         playAudioUrl(song_id);
-        updateSeekbar();
-
     }
 
     private void updateSeekbar() {
-        int duration = mediaPlayer.getDuration()/1000;
+        int duration = mediaPlayer.getDuration() / 1000;
         seekbar.setMax(duration);
 
         Thread t = new Thread(new Runnable() {
@@ -133,7 +125,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    int current_position = mediaPlayer.getCurrentPosition()/1000;
+                    int current_position = mediaPlayer.getCurrentPosition() / 1000;
                     Log.i("current", "current position: " + current_position);
                     Log.i("current", "duration: " + duration);
                     seekbar.setProgress(current_position);
@@ -176,6 +168,7 @@ public class MusicPlayerActivity extends AppCompatActivity {
             mediaPlayer.prepare();
             mediaPlayer.start();
             seekbar.setProgress(0);
+            updateSeekbar();
 
         } catch (IOException e) {
             e.printStackTrace();
