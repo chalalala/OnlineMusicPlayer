@@ -41,11 +41,35 @@ public class MusicPlayerActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_music_player);
 
+        // Get song ID
         Bundle b = getIntent().getExtras();
+        String song_id = b.getString("song_id");
 
-        String song_id;
-        song_id = b.getString("song_id");
+        // Play the corresponding song
+        seekbar = findViewById(R.id.seekBar);
+        playAudioUrl(song_id);
 
+        // Get and display detail of the playing song
+        updateView(b);
+
+        // Handle play/pause button
+        ImageButton play_btn = findViewById(R.id.play);
+        play_btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (mediaPlayer.isPlaying()) {
+                    mediaPlayer.pause();
+                    play_btn.setImageResource(R.drawable.ic_play);
+                } else {
+                    playAudioUrl(song_id);
+                    play_btn.setImageResource(R.drawable.ic_pause);
+                }
+            }
+        });
+    }
+
+    private void updateView(Bundle b) {
+        // Get and display detail of the song
         String name = b.getString("song_name");
         TextView song_name = findViewById(R.id.song_name);
         song_name.setText(name);
@@ -54,6 +78,17 @@ public class MusicPlayerActivity extends AppCompatActivity {
         TextView artist_name = findViewById(R.id.artist);
         artist_name.setText(name_a);
 
+        updateThumbnail(name, name_a);
+
+        // Change color of text in Action Bar
+        TextView title = findViewById(R.id.header_title);
+        title.setTextColor(getColor(R.color.white));
+
+        ImageView back_button = findViewById(R.id.back_button);
+        back_button.setColorFilter(getColor(R.color.white));
+    }
+
+    private void updateThumbnail(String name, String name_a) {
         // Instantiate the RequestQueue.
         RequestQueue queue = Volley.newRequestQueue(this);
         String url = "http://ac.mp3.zing.vn/complete?type=song&num=1&query=" + name + " " + name_a;
@@ -87,29 +122,27 @@ public class MusicPlayerActivity extends AppCompatActivity {
 
         // Add the request to the RequestQueue.
         queue.add(stringRequest);
+    }
 
-        TextView title = findViewById(R.id.header_title);
-        title.setTextColor(getColor(R.color.white));
-
-        ImageView back_button = findViewById(R.id.back_button);
-        back_button.setColorFilter(getColor(R.color.white));
-
-        ImageButton play_btn = findViewById(R.id.play);
-        play_btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (mediaPlayer.isPlaying()) {
-                    mediaPlayer.pause();
-                    play_btn.setImageResource(R.drawable.ic_play);
-                } else {
-                    playAudioUrl(song_id);
-                    play_btn.setImageResource(R.drawable.ic_pause);
-                }
-            }
-        });
-
-        seekbar = findViewById(R.id.seekBar);
-        playAudioUrl(song_id);
+    private void getImage(String img_url, RequestQueue queue) {
+        Response.Listener<Bitmap> listener =
+                new Response.Listener<Bitmap>() {
+                    @Override
+                    public void onResponse(Bitmap response) {
+                        try {
+                            ImageView thumbnail = findViewById(R.id.image_album);
+                            Drawable img = new BitmapDrawable(getResources(), response);
+                            thumbnail.setImageDrawable(img);
+                        } catch (Exception e) {
+                            Log.e("error", e.getMessage());
+                        }
+                    }
+                };
+        ImageRequest imageRequest = new ImageRequest(
+                img_url,
+                listener, 250, 250, ImageView.ScaleType.CENTER,
+                Bitmap.Config.ARGB_8888, null);
+        queue.add(imageRequest);
     }
 
     private void updateSeekbar() {
@@ -134,27 +167,6 @@ public class MusicPlayerActivity extends AppCompatActivity {
         });
 
         t.start();
-    }
-
-    private void getImage(String img_url, RequestQueue queue) {
-        Response.Listener<Bitmap> listener =
-                new Response.Listener<Bitmap>() {
-                    @Override
-                    public void onResponse(Bitmap response) {
-                        try {
-                            ImageView thumbnail = findViewById(R.id.image_album);
-                            Drawable img = new BitmapDrawable(getResources(), response);
-                            thumbnail.setImageDrawable(img);
-                        } catch (Exception e) {
-                            Log.e("error", e.getMessage());
-                        }
-                    }
-                };
-        ImageRequest imageRequest = new ImageRequest(
-                img_url,
-                listener, 250, 250, ImageView.ScaleType.CENTER,
-                Bitmap.Config.ARGB_8888, null);
-        queue.add(imageRequest);
     }
 
     private void playAudioUrl(String songId) {
