@@ -3,8 +3,6 @@ package vn.edu.usth.onlinemusicplayer.fragment;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
-import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -13,7 +11,6 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-import android.widget.Toast;
 
 import androidx.fragment.app.Fragment;
 
@@ -29,12 +26,10 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 import vn.edu.usth.onlinemusicplayer.R;
 import vn.edu.usth.onlinemusicplayer.activity.MusicPlayerActivity;
-import vn.edu.usth.onlinemusicplayer.adapter.ArtistSongsAdapter;
 import vn.edu.usth.onlinemusicplayer.adapter.TopTrackAdapter;
 
 public class TopTracksFragment extends Fragment {
